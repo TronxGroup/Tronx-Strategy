@@ -1,82 +1,106 @@
-// app/sections/quienes-somos/page.tsx
-import Link from 'next/link'
-import { Check } from 'lucide-react'
+import Link from 'next/link';
+import { Check } from 'lucide-react';
 
 export default function Page() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-16">
-      <h1 className="text-3xl md:text-4xl font-bold">Quiénes Somos</h1>
-      <p className="mt-3 text-neutral-300 max-w-3xl">
-        Tronx Strategy es la unidad de consultoría de <b>Tronx Group</b>. Conectamos <b>estrategia</b>, <b>tecnología</b> y <b>comunicación</b> para que marcas y equipos crezcan con <b>orden, visibilidad y resultados</b>. Trabajamos con emprendedores, profesionales, PyMEs e instituciones, adaptando la metodología a cada contexto.
+      <h1 className="text-3xl md:text-4xl font-bold">Quiénes somos</h1>
+
+      <p className="mt-3 text-white/70 max-w-3xl">
+        <b>Tronx Strategy</b> es la unidad de consultoría de <b>Tronx Group</b>. Conectamos
+        <b> estrategia</b>, <b>tecnología</b> y <b>comunicación</b> para que marcas y equipos crezcan con
+        <b> orden, visibilidad y resultados</b>. Trabajamos con emprendedores, profesionales, PyMEs e
+        instituciones, adaptando la metodología a cada contexto.
       </p>
 
       {/* Pilares */}
-      <section className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6 mt-8">
+      <section className="rounded-3xl border border-white/10 bg-white/5 p-6 mt-8">
         <h2 className="text-xl font-semibold">Nuestros pilares</h2>
-        <ul className="mt-4 grid md:grid-cols-2 gap-3 text-sm text-neutral-300">
+        <ul className="mt-4 grid md:grid-cols-2 gap-3 text-sm text-white/80">
           {[
-            'Estrategia con foco en negocio (objetivos, priorización, roadmap)',
+            'Estrategia con foco en negocio (objetivos, priorización y roadmap)',
             'Digitalización orientada a resultados (web/landings, campañas, CRM y pagos)',
             'Creatividad que conecta (contenidos, video y marca al servicio del funnel)',
-            'Medición & mejora continua (GA4+GTM, dashboards, optimización)',
+            'Medición continua (GA4, GTM, dashboards) y optimización con aprendizaje',
           ].map((it, i) => (
-            <li key={i} className="flex gap-2">
-              <Check size={16} className="mt-0.5" /> {it}
-            </li>
+            <Li key={i}>{it}</Li>
           ))}
         </ul>
       </section>
 
       {/* Cómo trabajamos */}
-      <section className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6 mt-8">
+      <section className="rounded-3xl border border-white/10 bg-white/5 p-6 mt-8">
         <h2 className="text-xl font-semibold">Cómo trabajamos</h2>
-        <ul className="mt-4 space-y-2 text-sm text-neutral-300">
-          <li className="flex gap-2"><Check size={16} className="mt-0.5" /> <b>Alineación:</b> diagnóstico, propuesta de valor y métricas.</li>
-          <li className="flex gap-2"><Check size={16} className="mt-0.5" /> <b>Activación:</b> activos (web/landing), campañas, CRM y automatizaciones.</li>
-          <li className="flex gap-2"><Check size={16} className="mt-0.5" /> <b>Crecimiento:</b> reporting, insights y optimización continua.</li>
+        <ul className="mt-4 space-y-2 text-sm text-white/80">
+          <Li><b>Alineación:</b> diagnóstico, propuesta de valor, definición de métricas y backlog.</Li>
+          <Li><b>Activación:</b> activos (web/landing), campañas, CRM y automatizaciones.</Li>
+          <Li><b>Crecimiento:</b> reporting, insights y sprints de mejora quincenales.</Li>
         </ul>
       </section>
 
       {/* Por qué Tronx */}
-      <section className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6 mt-8">
+      <section className="rounded-3xl border border-white/10 bg-white/5 p-6 mt-8">
         <h2 className="text-xl font-semibold">Por qué Tronx Strategy</h2>
-        <ul className="mt-4 grid md:grid-cols-2 gap-3 text-sm text-neutral-300">
+        <ul className="mt-4 grid md:grid-cols-2 gap-3 text-sm text-white/80">
           {[
             'Entregables claros en semanas, no meses',
-            'KPI y reporting con una única fuente de verdad',
+            'KPIs y reporting con una única fuente de verdad',
             'Integración con CRM y pagos online',
-            'Trabajo con datos B2B cumpliendo privacidad y opt-out',
+            'Datos B2B con privacidad y opt-out garantizados',
           ].map((it, i) => (
-            <li key={i} className="flex gap-2">
-              <Check size={16} className="mt-0.5" /> {it}
-            </li>
+            <Li key={i}>{it}</Li>
           ))}
         </ul>
+      </section>
+
+      {/* Contexto de grupo */}
+      <section className="rounded-3xl border border-white/10 bg-white/5 p-6 mt-8">
+        <h2 className="text-xl font-semibold">Parte de Tronx Group</h2>
+        <p className="mt-2 text-sm text-white/80">
+          Tronx Group reúne <b>Tronx Strategy</b> (estrategia y performance), <b>Dekaelo Media</b> (audiovisual) y
+          <b> Tronx TV</b> (contenido y distribución). Los clientes se presentan en{' '}
+          <Link href="/casos" className="underline underline-offset-4 hover:text-white">Casos de Éxito</Link>.
+        </p>
       </section>
 
       {/* CTA */}
       <div className="mt-10 flex flex-wrap gap-3">
         <Link
-          href="/sections/servicios"
-          className="inline-flex items-center gap-2 rounded-2xl border border-[var(--border)] px-5 py-3 font-semibold hover:bg-neutral-900"
+          href="/servicios"
+          className="inline-flex items-center gap-2 rounded-2xl border border-white/10 px-5 py-3 font-semibold hover:bg-white/10"
+          aria-label="Ver Servicios"
         >
           Ver Servicios
         </Link>
         <Link
-          href="/sections/casos"
-          className="inline-flex items-center gap-2 rounded-2xl border border-[var(--border)] px-5 py-3 font-semibold hover:bg-neutral-900"
+          href="/casos"
+          className="inline-flex items-center gap-2 rounded-2xl border border-white/10 px-5 py-3 font-semibold hover:bg-white/10"
+          aria-label="Ver Casos de Éxito"
         >
           Casos de Éxito
         </Link>
         <Link
-          href="/sections/contacto"
+          href="/contacto"
           className="inline-flex items-center gap-2 rounded-2xl bg-white text-neutral-900 px-5 py-3 font-semibold"
+          aria-label="Ir a Contacto"
         >
           Hablemos
         </Link>
       </div>
 
-      <p className="mt-4 text-sm text-neutral-400">Parte del ecosistema <b>Tronx Group</b>.</p>
+      <p className="mt-4 text-sm text-white/60">
+        Parte del ecosistema <b>Tronx Group</b>.
+      </p>
     </div>
-  )
+  );
+}
+
+/* ---------- Subcomponentes ---------- */
+
+function Li({ children }: { children: React.ReactNode }) {
+  return (
+    <li className="flex gap-2">
+      <Check size={16} className="mt-0.5" /> {children}
+    </li>
+  );
 }
