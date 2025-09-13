@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import { Activity, Target, TrendingUp, Star } from 'lucide-react'
+import Link from 'next/link';
+import { Activity, Target, TrendingUp, Star } from 'lucide-react';
 
 type Metric = { label: string; value: string }
 type CaseItem = {
@@ -7,7 +7,7 @@ type CaseItem = {
   subtitle: string
   bullets: string[]
   tags?: string[]
-  metrics?: Metric[] // 👈 Métricas clave por caso
+  metrics?: Metric[]
 }
 
 const cases: CaseItem[] = [
@@ -30,7 +30,7 @@ const cases: CaseItem[] = [
       { label: 'CPL', value: '—' },
       { label: 'Tasa de cierre', value: '—' },
     ],
-  }, // 👈 ESTA COMA FALTABA
+  },
   {
     title: 'Echevensko B2B',
     subtitle: 'Canal de charlas corporativas',
@@ -50,7 +50,7 @@ const cases: CaseItem[] = [
   {
     title: 'Citylube Peñaflor',
     subtitle: 'Serviteca multimarca — Bilbao 75, Peñaflor',
-    tags: ['Pymes', 'Local', 'Automotriz'],
+    tags: ['Pyme', 'Local', 'Automotriz'],
     bullets: [
       'Landing orientada a conversión (selector, reserva, WhatsApp/llamar)',
       'Estrategia de 6 meses (campañas + contenido)',
@@ -68,59 +68,45 @@ const cases: CaseItem[] = [
       { label: 'Tasa de cierre', value: '—' },
     ],
   },
-]
+];
 
 export default function Page() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-16">
       <h1 className="text-3xl md:text-4xl font-bold">Casos de Éxito</h1>
-      <p className="mt-3 text-neutral-300 max-w-3xl">
-        Algunos proyectos representativos del enfoque 360° de Tronx Strategy.
+      <p className="mt-3 text-white/70 max-w-3xl">
+        Proyectos representativos del enfoque 360° de Tronx Strategy: estrategia, ejecución y medición.
       </p>
 
       <div className="mt-8 grid md:grid-cols-3 gap-6">
         {cases.map((c, i) => (
-          <article
-            key={i}
-            className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6 flex flex-col"
-          >
+          <article key={i} className="rounded-3xl border border-white/10 bg-white/5 p-6 flex flex-col">
             <header>
               <h2 className="text-xl font-semibold">{c.title}</h2>
-              <p className="text-neutral-400 text-sm">{c.subtitle}</p>
-              {c.tags && c.tags.length > 0 && (
+              <p className="text-white/60 text-sm">{c.subtitle}</p>
+
+              {!!c.tags?.length && (
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {c.tags.map((t, j) => (
-                    <span
-                      key={j}
-                      className="text-xs rounded-full border border-[var(--border)] bg-neutral-900 px-2.5 py-1 text-neutral-300"
-                    >
-                      {t}
-                    </span>
+                  {c.tags!.map((t, j) => (
+                    <Tag key={j}>{t}</Tag>
                   ))}
                 </div>
               )}
             </header>
 
-            <ul className="mt-4 space-y-2 text-sm text-neutral-300">
+            <ul className="mt-4 space-y-2 text-sm text-white/80">
               {c.bullets.map((b, j) => (
                 <li key={j}>• {b}</li>
               ))}
             </ul>
 
             {/* Métricas por caso */}
-            {c.metrics && c.metrics.length > 0 && (
+            {!!c.metrics?.length && (
               <div className="mt-5 grid grid-cols-3 gap-3">
-                {c.metrics.map((m, k) => (
-                  <div
-                    key={k}
-                    className="rounded-2xl border border-[var(--border)] bg-neutral-900/60 p-3"
-                  >
-                    <div className="text-[11px] uppercase tracking-wide text-neutral-400">
-                      {m.label}
-                    </div>
-                    <div className="mt-1 text-base font-semibold text-white">
-                      {m.value}
-                    </div>
+                {c.metrics!.map((m, k) => (
+                  <div key={k} className="rounded-2xl border border-white/10 bg-neutral-900/60 p-3">
+                    <div className="text-[11px] uppercase tracking-wide text-white/60">{m.label}</div>
+                    <div className="mt-1 text-base font-semibold text-white">{m.value}</div>
                   </div>
                 ))}
               </div>
@@ -130,8 +116,8 @@ export default function Page() {
       </div>
 
       {/* Datos de operación (global) */}
-      <div className="mt-12 rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6">
-        <div className="flex items-center gap-2 text-xs text-neutral-400">
+      <div className="mt-12 rounded-3xl border border-white/10 bg-white/5 p-6">
+        <div className="flex items-center gap-2 text-xs text-white/60">
           <Activity size={14} /> Datos de operación (se actualiza mensualmente)
         </div>
         <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -140,37 +126,49 @@ export default function Page() {
           <Kpi icon={<TrendingUp size={18} />} label="Tasa de cierre" value="—" />
           <Kpi icon={<Star size={18} />} label="Rating Google" value="—" />
         </div>
-        <p className="mt-3 text-xs text-neutral-500">
-          *Reemplaza “—” por valores reales. Sugerencia: conecta GA4/GTM + CRM para volcar números automáticamente.
+        <p className="mt-3 text-[11px] text-white/50">
+          *Reemplaza “—” por valores reales (sugerencia: GA4/GTM + CRM para volcar números automáticamente).
         </p>
       </div>
 
       {/* CTA inferior */}
       <div className="mt-10 flex flex-wrap gap-3">
         <Link
-          href="/sections/contacto"
+          href="/contacto"
           className="inline-flex items-center gap-2 rounded-2xl bg-white text-neutral-900 px-5 py-3 font-semibold"
+          aria-label="Iniciar proyecto"
         >
           Iniciar proyecto
         </Link>
         <Link
-          href="/sections/socios"
-          className="inline-flex items-center gap-2 rounded-2xl border border-[var(--border)] px-5 py-3 font-semibold hover:bg-neutral-900"
+          href="/socios"
+          className="inline-flex items-center gap-2 rounded-2xl border border-white/10 px-5 py-3 font-semibold hover:bg-white/10"
+          aria-label="Ver Programa Socios"
         >
           Programa Socios
         </Link>
       </div>
     </div>
-  )
+  );
 }
+
+/* ---------- Subcomponentes ---------- */
 
 function Kpi({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-[var(--border)] bg-neutral-900/60 p-4">
-      <div className="flex items-center gap-2 text-neutral-400 text-xs">
+    <div className="rounded-2xl border border-white/10 bg-neutral-900/60 p-4">
+      <div className="flex items-center gap-2 text-white/60 text-xs">
         {icon} <span className="uppercase tracking-wide">{label}</span>
       </div>
       <div className="mt-1 text-lg font-semibold text-white">{value}</div>
     </div>
-  )
+  );
+}
+
+function Tag({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="text-xs rounded-full border border-white/10 bg-neutral-900 px-2.5 py-1 text-white/80">
+      {children}
+    </span>
+  );
 }
