@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Check, Film, Landmark, Users } from 'lucide-react';
+import { Check, Film, Users } from 'lucide-react';
 
 export default function Page() {
   return (
@@ -59,38 +59,70 @@ export default function Page() {
         />
       </div>
 
-      {/* Add-ons / Alianzas */}
+      {/* Add-on interno (marca del grupo) */}
       <div className="mt-12 grid gap-6 md:grid-cols-3">
         <Addon
           icon={<Film size={18} />}
           title="Audiovisual Estratégico (Add-on)"
-          desc="Producción por Dekaelo Media: video institucional/YouTube y piezas para performance."
+          desc="Producción por Dekaelo Media (marca de Tronx Group): video institucional/YouTube y piezas para performance."
           cta={{ href: 'https://www.dekaelomedia.com', label: 'Dekaelo Media →' }}
-        />
-        <Addon
-          icon={<Landmark size={18} />}
-          title="Membresías & Misiones (Alianzas)"
-          desc="APCC ↔ HKLABA: networking, foros y delegaciones para expansión en Asia."
-          ctaGroup={[
-            { href: 'https://apcc-chamber.vercel.app', label: 'APCC →' },
-            { href: 'https://hklaba.vercel.app', label: 'HKLABA →' },
-          ]}
-        />
-        <Addon
-          icon={<Users size={18} />}
-          title="Charlas & Formación (Alianza)"
-          desc="Echevensko: cultura de innovación, creatividad aplicada y liderazgo con propósito."
-          cta={{ href: 'https://empresas.echevensko.com', label: 'Echevensko →' }}
         />
       </div>
 
+      {/* Casos (clientes) */}
+      <section className="mt-12">
+        <h2 className="text-xl md:text-2xl font-semibold">Casos (clientes)</h2>
+        <p className="mt-2 text-white/70 max-w-3xl">
+          Algunos ejemplos representativos donde aplicamos estos servicios de punta a punta.
+        </p>
+
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          <ClientCase
+            title="APCC"
+            subtitle="Plan institucional + digitalización"
+            bullets={[
+              'Sitio institucional y landings de conversión',
+              'Embudo de membresías con CRM y automatizaciones',
+              'Curso con checkout y flujos de email',
+            ]}
+          />
+          <ClientCase
+            title="HKLABA"
+            subtitle="Soporte de captación y contenidos"
+            bullets={[
+              'Piezas editoriales y convocatorias',
+              'Optimización de páginas/landings',
+              'Medición y CRM para seguimiento',
+            ]}
+          />
+          <ClientCase
+            title="Echevensko"
+            subtitle="Charlas corporativas B2B"
+            bullets={[
+              'Landing de captación + video',
+              'Email a base segmentada y campañas de intención',
+              'Cierre mediante programa de revenue share',
+            ]}
+          />
+        </div>
+
+        <div className="mt-6">
+          <Link
+            href="/casos"
+            className="inline-flex items-center gap-2 rounded-2xl border border-white/10 px-5 py-3 font-semibold hover:bg-white/10"
+          >
+            Ver más casos
+          </Link>
+        </div>
+      </section>
+
       {/* Notas operativas */}
-      <div className="mt-10 rounded-3xl border border-white/10 bg-white/5 p-6">
+      <div className="mt-12 rounded-3xl border border-white/10 bg-white/5 p-6">
         <h3 className="text-lg font-semibold">Notas operativas</h3>
         <ul className="mt-3 grid md:grid-cols-3 gap-2 text-sm text-white/80">
-          <li className="flex gap-2"><Check size={16} className="mt-0.5" /> Requisitos del cliente: responsable interno, accesos y aprobaciones.</li>
-          <li className="flex gap-2"><Check size={16} className="mt-0.5" /> Exclusiones: contabilidad/tributaria; trabajamos con partners cuando aplica.</li>
-          <li className="flex gap-2"><Check size={16} className="mt-0.5" /> Reportes mensuales y revisión trimestral de estrategia.</li>
+          <Li>Requisitos del cliente: responsable interno, accesos y aprobaciones.</Li>
+          <Li>Exclusiones: contabilidad/tributaria; trabajamos con partners cuando aplica.</Li>
+          <Li>Reportes mensuales y revisión trimestral de estrategia.</Li>
         </ul>
       </div>
 
@@ -112,6 +144,8 @@ export default function Page() {
     </div>
   );
 }
+
+/* ========== Subcomponentes ========== */
 
 function Card({
   title,
@@ -138,10 +172,7 @@ function Card({
       </div>
 
       {summary && <p className="mt-2 text-sm text-white/70">{summary}</p>}
-
-      {kpis.length > 0 && (
-        <p className="mt-2 text-xs text-white/60">KPIs: {kpis.join(' • ')}</p>
-      )}
+      {kpis.length > 0 && <p className="mt-2 text-xs text-white/60">KPIs: {kpis.join(' • ')}</p>}
 
       <ul className="mt-4 space-y-2 text-sm text-white/70">
         {items.map((it, i) => (
@@ -159,13 +190,11 @@ function Addon({
   title,
   desc,
   cta,
-  ctaGroup,
 }: {
   icon: JSX.Element;
   title: string;
   desc: string;
   cta?: { href: string; label: string };
-  ctaGroup?: { href: string; label: string }[];
 }) {
   return (
     <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
@@ -173,18 +202,52 @@ function Addon({
         {icon} {title}
       </h3>
       <p className="mt-2 text-sm text-white/70">{desc}</p>
-      <div className="mt-3 flex flex-wrap gap-3 text-sm">
-        {cta && (
+      {cta && (
+        <div className="mt-3">
           <Link className="link" href={cta.href}>
             {cta.label}
           </Link>
-        )}
-        {ctaGroup?.map((c) => (
-          <Link key={c.href} className="link" href={c.href}>
-            {c.label}
-          </Link>
-        ))}
-      </div>
+        </div>
+      )}
     </div>
+  );
+}
+
+function ClientCase({
+  title,
+  subtitle,
+  bullets,
+}: {
+  title: string;
+  subtitle: string;
+  bullets: string[];
+}) {
+  return (
+    <article className="rounded-3xl border border-white/10 bg-white/5 p-6">
+      <header className="flex items-start justify-between gap-2">
+        <div>
+          <h3 className="text-lg font-semibold">{title}</h3>
+          <p className="text-white/60 text-sm">{subtitle}</p>
+        </div>
+        <span className="text-[11px] rounded-full border border-white/10 bg-neutral-900 px-2.5 py-1 text-white/70">
+          Cliente
+        </span>
+      </header>
+      <ul className="mt-4 space-y-2 text-sm text-white/80">
+        {bullets.map((b, i) => (
+          <li key={i} className="flex gap-2">
+            <Users size={14} className="mt-0.5" /> {b}
+          </li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
+function Li({ children }: { children: React.ReactNode }) {
+  return (
+    <li className="flex gap-2">
+      <Check size={16} className="mt-0.5" /> {children}
+    </li>
   );
 }
