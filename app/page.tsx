@@ -32,7 +32,7 @@ export default function Page() {
     '/grid_tronx_6.png',
     '/grid_tronx_7.png',
     '/grid_tronx_8.png',
-    '/grid_tronx_90.png',
+    '/grid_tronx_9.png',
   ];
 
   return (
