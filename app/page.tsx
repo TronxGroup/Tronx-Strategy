@@ -24,15 +24,15 @@ export default function Page() {
 
   // Rutas de imágenes (colócalas en /public)
   const gridImgs = [
-    '/grid_tronx_1.jpg',
-    '/grid_tronx_2.jpg',
-    '/grid_tronx_3.jpg',
-    '/grid_tronx_4.jpg',
-    '/grid_tronx_5.jpg',
-    '/grid_tronx_6.jpg',
-    '/grid_tronx_7.jpg',
-    '/grid_tronx_8.jpg',
-    '/grid_tronx_9.jpg',
+    '/grid_tronx_1.png',
+    '/grid_tronx_2.png',
+    '/grid_tronx_3.png',
+    '/grid_tronx_4.png',
+    '/grid_tronx_5.png',
+    '/grid_tronx_6.png',
+    '/grid_tronx_7.png',
+    '/grid_tronx_8.png',
+    '/grid_tronx_9.png',
   ];
 
   return (
