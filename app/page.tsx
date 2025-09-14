@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowRight,
   Check,
@@ -19,6 +20,19 @@ export default function Page() {
     { icon: <Target size={18} />, label: 'CPL promedio', value: '—' },
     { icon: <TrendingUp size={18} />, label: 'Tasa de cierre', value: '—' },
     { icon: <Star size={18} />, label: 'Satisfacción', value: '—' },
+  ];
+
+  // Rutas de imágenes (colócalas en /public)
+  const gridImgs = [
+    '/grid_tronx_1.jpg',
+    '/grid_tronx_2.jpg',
+    '/grid_tronx_3.jpg',
+    '/grid_tronx_4.jpg',
+    '/grid_tronx_5.jpg',
+    '/grid_tronx_6.jpg',
+    '/grid_tronx_7.jpg',
+    '/grid_tronx_8.jpg',
+    '/grid_tronx_9.jpg',
   ];
 
   return (
@@ -106,11 +120,17 @@ export default function Page() {
           {/* Grid visual derecha */}
           <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
             <div className="grid grid-cols-3 gap-3">
-              {Array.from({ length: 9 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="aspect-square rounded-2xl bg-neutral-900/60 border border-white/10"
-                />
+              {gridImgs.map((src, i) => (
+                <div key={src} className="relative aspect-square overflow-hidden rounded-2xl border border-white/10">
+                  <Image
+                    src={src}
+                    alt={`Grid visual Tronx ${i + 1}`}
+                    fill
+                    sizes="(max-width: 768px) 33vw, 200px"
+                    className="object-cover"
+                    priority={i < 3} // prioriza fila 1 para carga más rápida
+                  />
+                </div>
               ))}
             </div>
             <p className="mt-4 text-sm text-white/60">
@@ -175,7 +195,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* CASOS DESTACADOS (clientes/partners) */}
+      {/* CASOS DESTACADOS */}
       <section className="border-t border-white/10 bg-black/40">
         <div className="max-w-6xl mx-auto px-4 py-16">
           <h2 className="text-2xl md:text-3xl font-bold">Casos destacados</h2>
@@ -214,7 +234,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* CONTEXTO DE GRUPO (sin mezclar clientes) */}
+      {/* CONTEXTO DE GRUPO */}
       <section className="max-w-6xl mx-auto px-4 py-10">
         <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
           <h3 className="text-xl font-semibold">Tronx Strategy dentro de Tronx Group</h3>
