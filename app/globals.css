@@ -1,23 +1,72 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root { --bg: 255 255 255; --fg: 18 24 38; }
-
-html, body { @apply h-full bg-white text-[color:rgb(var(--fg))]; }
-
-.gradient-hero {
-  background: radial-gradient(1000px 600px at 10% -10%, rgba(70,138,255,0.25), transparent 60%),
-              radial-gradient(800px 500px at 90% -20%, rgba(31,178,170,0.20), transparent 60%);
+:root {
+  --bg: 255 255 255;
+  --fg: 18 24 38;
 }
-.card { @apply rounded-2xl border border-slate-200 bg-white shadow-soft; }
-.badge { @apply inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium; }
-.btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition; }
-.btn-primary { @apply bg-brand-500 text-white hover:bg-brand-400; }
-.btn-ghost { @apply border border-slate-300 hover:bg-slate-50; }
-.section { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
-.h1 { @apply text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight; }
-.h2 { @apply text-2xl sm:text-3xl font-bold; }
-.h3 { @apply text-xl sm:text-2xl font-bold; }
-.p-muted { @apply text-slate-600; }
+
+html, body {
+  @apply h-full bg-white text-[color:rgb(var(--fg))];
+}
+
+/* HERO gradient: reemplazamos azules por brand */
+.gradient-hero {
+  background: radial-gradient(
+      1000px 600px at 10% -10%,
+      rgba(27, 197, 214, 0.25), /* brand-500 con opacidad */
+      transparent 60%
+    ),
+    radial-gradient(
+      800px 500px at 90% -20%,
+      rgba(27, 197, 214, 0.20), /* mismo color más suave */
+      transparent 60%
+    );
+}
+
+/* COMPONENTES */
+.card {
+  @apply rounded-2xl border border-slate-200 bg-white shadow-soft;
+}
+
+.badge {
+  @apply inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition;
+}
+
+.btn-primary {
+  @apply bg-brand-500 text-white hover:bg-brand-600;
+}
+
+.btn-secondary {
+  @apply bg-brand-50 text-brand-700 border border-brand-200 hover:bg-brand-100;
+}
+
+.btn-ghost {
+  @apply border border-slate-300 hover:bg-slate-50;
+}
+
+.section {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* TIPOGRAFÍA */
+.h1 {
+  @apply text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight;
+}
+
+.h2 {
+  @apply text-2xl sm:text-3xl font-bold;
+}
+
+.h3 {
+  @apply text-xl sm:text-2xl font-bold;
+}
+
+.p-muted {
+  @apply text-slate-600;
+}
