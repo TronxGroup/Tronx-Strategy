@@ -156,13 +156,12 @@ export default function Page() {
             Zoho CRM, HubSpot (si aplica), Google Workspace, GA4, GTM, Search Console,
             Vercel, Cloudflare, Make/Zapier.
           </p>
-        </Card>
         <Card title="Operación centralizada" icon={<ShieldCheck size={18} />}>
-          <p>
-            Administración con cuenta maestra (tronxgroupspa@gmail.com): Ads, analítica, Search Console y Drive oficial.
-            Accesos segregados por marca y mínimo privilegio.
-          </p>
-        </Card>
+  <p>
+    Consolida tu operación digital en un solo lugar: analítica, campañas, CRM y activos
+    conectados. Accesos con mínimo privilegio y controlados para mayor seguridad.
+  </p>
+</Card>
       </div>
 
       {/* FAQ */}
