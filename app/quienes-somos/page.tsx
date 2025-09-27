@@ -4,7 +4,7 @@ export const metadata = { title: "Quiénes somos – Tronx Strategy" };
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 text-xs font-medium">
+    <span className="inline-flex items-center rounded-full bg-brand-50 text-brand-700 border border-brand-200 px-3 py-1 text-xs font-medium">
       {children}
     </span>
   );
@@ -31,7 +31,7 @@ function Step({
   return (
     <div className="card p-5 border border-slate-200 rounded-2xl bg-white">
       <div className="flex items-center gap-3">
-        <div className="h-8 w-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm font-bold">
+        <div className="h-8 w-8 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-sm font-bold">
           {num}
         </div>
         <h4 className="font-semibold text-slate-900">{title}</h4>
@@ -45,7 +45,7 @@ export default function Page() {
   return (
     <>
       {/* HERO */}
-      <div className="bg-gradient-to-br from-emerald-50 via-white to-emerald-50">
+      <div className="bg-gradient-to-br from-brand-50 via-white to-brand-50">
         <Section className="py-16">
           <div className="max-w-3xl">
             <div className="flex flex-wrap gap-2">
@@ -57,8 +57,8 @@ export default function Page() {
               Somos Tronx Strategy: estrategia, tecnología y contenido para crecer con datos.
             </h1>
             <p className="p-muted mt-4">
-              La unidad de crecimiento B2B de Tronx Group. Combinamos consultoría, operación digital
-              y producción de contenido para acelerar negocios con foco en resultados medibles.
+              Unidad de crecimiento B2B de Tronx Group. Operamos tu embudo con entregables en semanas
+              y reportes claros de CAC, conversión y LTV.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href="/servicios/programa-socios" className="btn btn-primary">Programa Socios</a>
@@ -82,7 +82,7 @@ export default function Page() {
           </ValueCard>
           <ValueCard title="Nuestro diferencial">
             Operamos como extensión de tu equipo: entregables en semanas, playbooks reutilizables,
-            reporting claro y una cultura de mejora continua basada en datos.
+            reporting claro y cultura de mejora continua basada en datos.
           </ValueCard>
         </div>
       </Section>
@@ -91,7 +91,7 @@ export default function Page() {
       <Section className="py-6">
         <h2 className="h3">Nuestros pilares</h2>
         <p className="p-muted mt-2 max-w-3xl">
-          Unimos tres competencias clave para acelerar el tiempo a valor y sostener el crecimiento.
+          Unimos tres competencias clave para acelerar el time-to-value y sostener el crecimiento.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
@@ -129,6 +129,25 @@ export default function Page() {
         </div>
       </Section>
 
+      {/* PRINCIPIOS / CULTURA */}
+      <Section className="py-12">
+        <h2 className="h3">Principios operativos</h2>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
+          <ValueCard title="Datos primero">
+            Todas las decisiones estratégicas y tácticas se sustentan en métricas verificables.
+          </ValueCard>
+          <ValueCard title="Entrega continua">
+            Sprints de 15 días con backlog priorizado y revisiones ejecutivas simples.
+          </ValueCard>
+          <ValueCard title="Seguridad & compliance">
+            Accesos mínimos, 2FA, políticas de privacidad y trazabilidad completa.
+          </ValueCard>
+          <ValueCard title="Co-creación">
+            Trabajamos con tus líderes de negocio para alinear objetivos y tiempos.
+          </ValueCard>
+        </div>
+      </Section>
+
       {/* ECOSISTEMA TRONX */}
       <Section className="py-12">
         <h2 className="h3">Ecosistema Tronx</h2>
@@ -140,17 +159,17 @@ export default function Page() {
           <ValueCard title="Dekaelo Media (audiovisual)">
             Producción estratégica: institucional, reels, vodcasts y campañas con publicación lista por plataforma.
             <br />
-            <a className="text-emerald-700 underline underline-offset-2" href="https://dekaleomedia.com" target="_blank">dekaleomedia.com</a>
+            <a className="text-brand-700 underline underline-offset-2" href="https://dekaleomedia.com" target="_blank">dekaleomedia.com</a>
           </ValueCard>
           <ValueCard title="Tronx TV (editorial)">
             Historias originales (4K) que combinan documental, ficción y conversación. Programa estreno: Reality Day.
             <br />
-            <a className="text-emerald-700 underline underline-offset-2" href="https://tronxtv.com" target="_blank">tronxtv.com</a>
+            <a className="text-brand-700 underline underline-offset-2" href="https://tronxtv.com" target="_blank">tronxtv.com</a>
           </ValueCard>
           <ValueCard title="Socios (Revenue Share)">
             Operamos embudos y CRM para aliados como <strong>APCC</strong> y <strong>Echevensko</strong>.
             <br />
-            <a className="text-emerald-700 underline underline-offset-2" href="/servicios/programa-socios">Conocer el programa</a>
+            <a className="text-brand-700 underline underline-offset-2" href="/servicios/programa-socios">Conocer el programa</a>
           </ValueCard>
         </div>
       </Section>
