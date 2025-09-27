@@ -1,0 +1,6 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="40" viewBox="0 0 160 40" fill="none">
+  <rect x="2" y="8" width="24" height="24" rx="6" fill="#468aff"/>
+  <path d="M9 20h10M14 15v10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <text x="34" y="26" font-size="16" font-family="Arial, Helvetica" fill="#1d3e7f">Tronx Strategy</text>
+</svg>
