@@ -64,13 +64,13 @@ export default function Footer() {
             reservados.
           </p>
           <p>
-            Canal único de contacto (holding):{" "}
+            Canal único de contacto:{" "}
             <a href="tel:+56920080031" className="hover:underline">
               +56 9 2008 0031
             </a>{" "}
             ·{" "}
-            <a href="mailto:info@tronxgroup.com" className="hover:underline">
-              info@tronxgroup.com
+            <a href="mailto:info@tronxstrategy.com" className="hover:underline">
+              info@tronxstrategy.com
             </a>
           </p>
         </div>
