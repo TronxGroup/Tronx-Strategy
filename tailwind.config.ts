@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -7,16 +6,16 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          50: "#f2f7ff",
-          100: "#e6efff",
-          200: "#c4dbff",
-          300: "#9ec6ff",
-          400: "#6fa8ff",
-          500: "#468aff",
-          600: "#2f6ee6",
-          700: "#2759bc",
-          800: "#214a99",
-          900: "#1d3e7f"
+          50: "#E6FAFC",
+          100: "#CCF4F9",
+          200: "#99E9F3",
+          300: "#66DEEDE",
+          400: "#33D3E7",
+          500: "#1BC5D6", // 🎯 Color principal del logo
+          600: "#16A6B6",
+          700: "#118896",
+          800: "#0C6A76",
+          900: "#074C56"
         }
       },
       boxShadow: {
@@ -26,4 +25,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;
