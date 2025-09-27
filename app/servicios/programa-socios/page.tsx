@@ -1,9 +1,10 @@
 import Section from "@/components/Section";
+import { CheckCircle2, TrendingUp, Users, Workflow, BarChart3 } from "lucide-react";
 
 export const metadata = {
   title: "Programa Socios (Revenue Share) – Tronx Strategy",
   description:
-    "Vendemos tus servicios con nuestro embudo, CRM y contenidos. Tú te enfocas en entregar; nosotros en captar, nutrir y cerrar.",
+    "Nos convertimos en tu partner comercial: operamos embudos, CRM y contenidos para que vendas más. Tú entregas, nosotros captamos, nutrimos y cerramos.",
 };
 
 function Pill({ children }: { children: React.ReactNode }) {
@@ -28,53 +29,81 @@ export default function Page() {
     <Section className="py-16">
       {/* HERO */}
       <div className="max-w-3xl">
-        <Pill>Servicios · Growth con reparto de ingresos</Pill>
+        <Pill>Revenue Share · Socios Estratégicos</Pill>
         <h1 className="mt-3 text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
           Programa Socios <span className="text-emerald-600">(Revenue Share)</span>
         </h1>
         <p className="p-muted mt-4">
-          Vendemos tus servicios con nuestro embudo, CRM y contenidos. Tú te enfocas en entregar; nosotros en captar,
-          nutrir y cerrar. El pago es por performance: porcentaje de cada venta acreditada.
+          Nos convertimos en tu partner comercial: diseñamos y operamos el embudo completo (landing, contenidos, CRM, 
+          campañas) para que vendas más. Tú entregas el servicio; nosotros captamos, nutrimos y cerramos. 
+          El pago es solo por ventas válidas, con reparto de ingresos.
         </p>
         <div className="mt-6 flex flex-wrap gap-2">
-          <Pill>Embudo + CRM + Contenido</Pill>
+          <Pill>Embudo + CRM</Pill>
+          <Pill>Ventas validadas</Pill>
           <Pill>Liquidación mensual</Pill>
-          <Pill>Atribución 30 días</Pill>
-          <Pill>Compliance & Opt-out</Pill>
+          <Pill>Métricas claras</Pill>
         </div>
         <div className="mt-8 flex gap-3">
-          <a href="/contacto" className="btn btn-primary">Quiero evaluar mi fit</a>
-          <a href="/servicios" className="btn btn-secondary">Ver todos los servicios</a>
+          <a href="/contacto" className="btn btn-primary">Evaluar mi fit</a>
+          <a href="/servicios" className="btn btn-secondary">Otros servicios</a>
         </div>
       </div>
 
-      {/* QUÉ HACEMOS */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+      {/* QUÉ INCLUYE */}
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card title="Activos de conversión">
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Video/reel comercial y landing con copy orientado a conversión</li>
-            <li>Formularios con etiquetado de origen y doble validación</li>
-            <li>Pixel/UTM + medición GA4/GTM</li>
+          <ul className="space-y-2">
+            <li className="flex items-start gap-2">
+              <CheckCircle2 size={16} className="text-emerald-600 mt-0.5" />
+              Video/reel comercial y landing optimizada
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle2 size={16} className="text-emerald-600 mt-0.5" />
+              Formularios con tracking y validación
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle2 size={16} className="text-emerald-600 mt-0.5" />
+              GA4/GTM para medición de conversiones
+            </li>
           </ul>
         </Card>
         <Card title="Operación de demanda">
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Email marketing (Zoho/HubSpot): diseño, copy y envíos personalizados</li>
-            <li>Base B2B segmentada con opt-out y cumplimiento</li>
-            <li>Campañas (Google · Meta · LinkedIn) cuando aplica</li>
+          <ul className="space-y-2">
+            <li className="flex items-start gap-2">
+              <Users size={16} className="text-emerald-600 mt-0.5" />
+              Email marketing segmentado (Zoho/HubSpot)
+            </li>
+            <li className="flex items-start gap-2">
+              <Workflow size={16} className="text-emerald-600 mt-0.5" />
+              Base B2B con opt-out y cumplimiento
+            </li>
+            <li className="flex items-start gap-2">
+              <TrendingUp size={16} className="text-emerald-600 mt-0.5" />
+              Ads en Google · Meta · LinkedIn
+            </li>
           </ul>
         </Card>
         <Card title="Cierre & reporting">
-          <ul className="list-disc pl-5 space-y-1">
-            <li>CRM y automatizaciones: scoring, pipelines y SLAs</li>
-            <li>Seguimiento, coordinación y liquidación por venta válida</li>
-            <li>Reporte mensual consolidado (ventas, devoluciones, ROAS/CAC)</li>
+          <ul className="space-y-2">
+            <li className="flex items-start gap-2">
+              <Workflow size={16} className="text-emerald-600 mt-0.5" />
+              CRM: scoring, pipelines y SLAs
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle2 size={16} className="text-emerald-600 mt-0.5" />
+              Liquidación mensual por venta válida
+            </li>
+            <li className="flex items-start gap-2">
+              <BarChart3 size={16} className="text-emerald-600 mt-0.5" />
+              Reporte de ventas, CAC y ROAS
+            </li>
           </ul>
         </Card>
       </div>
 
       {/* MODELO ECONÓMICO */}
-      <div className="mt-12 card p-6 border border-slate-200 rounded-2xl bg-white">
+      <div className="mt-12 card p-6 border border-slate-200 bg-white">
         <h2 className="text-xl font-bold text-slate-900">Modelo económico</h2>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-sm border border-slate-200 rounded-lg overflow-hidden">
@@ -104,66 +133,46 @@ export default function Page() {
             </tbody>
           </table>
         </div>
-        <ul className="mt-4 text-sm text-slate-700 list-disc pl-5 space-y-1">
-          <li><strong>Venta válida:</strong> pago acreditado y sin chargeback (a 14 días)</li>
-          <li><strong>Liquidación:</strong> mensual, con reporte de ventas y devoluciones</li>
-          <li><strong>Atribución:</strong> ventana estándar 30 días (UTM/CRM)</li>
-        </ul>
+        <p className="mt-4 text-sm text-slate-600">
+          <strong>Liquidación:</strong> mensual, con reporte consolidado · 
+          <strong> Atribución:</strong> estándar 30 días · 
+          <strong> Venta válida:</strong> pago acreditado sin devoluciones.
+        </p>
       </div>
 
-      {/* QUÉ INCLUYE / QUÉ APORTA EL SOCIO */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-        <Card title="Qué incluye Tronx">
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Landing optimizada + video/reel comercial</li>
-            <li>Copy para web/email + secuencias de outreach</li>
-            <li>Setup de CRM (Zoho u otro) + automatizaciones</li>
-            <li>Base B2B segmentada y cumplimiento (opt-out, privacidad)</li>
-            <li>Panel de métricas y reporte mensual</li>
-          </ul>
-        </Card>
-        <Card title="Qué aporta el Socio">
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Propuesta de valor, precios mínimos y materiales base</li>
-            <li>Disponibilidad para demos/reuniones y entrega del servicio</li>
-            <li>SLA de respuesta y política de devoluciones definidas</li>
-          </ul>
-        </Card>
-      </div>
-
-      {/* ELEGIBILIDAD Y PROCESO */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
+      {/* PROCESO */}
+      <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card title="Elegibilidad (fit rápido)">
           <ul className="list-disc pl-5 space-y-1">
-            <li>Oferta clara y repetible (no “one-off” 100% a medida)</li>
-            <li>Capacidad de entrega (cupos/agenda y equipo disponibles)</li>
-            <li>Ticket y márgenes acordes a Revenue Share</li>
+            <li>Oferta clara y repetible</li>
+            <li>Capacidad de entrega real</li>
+            <li>Ticket y márgenes acordes</li>
           </ul>
         </Card>
         <Card title="Proceso">
           <ol className="list-decimal pl-5 space-y-1">
-            <li>Alineación & oferta: catálogo, precios y metas</li>
-            <li>Embudo & datos: video + landing + lista B2B + CRM</li>
-            <li>Activación: email/ads, nurturing y calificación</li>
-            <li>Cierre & cobro: registro en CRM y liquidación del %</li>
-            <li>Optimización: métricas y mejoras continuas</li>
+            <li>Definimos oferta y metas</li>
+            <li>Embudo + CRM + contenidos</li>
+            <li>Activación con email/ads</li>
+            <li>Cierre en CRM + cobro</li>
+            <li>Optimización continua</li>
           </ol>
         </Card>
         <Card title="Métricas que seguimos">
           <ul className="list-disc pl-5 space-y-1">
-            <li>CAC por canal y payback</li>
-            <li>Apertura, clic y reply en email</li>
-            <li>MQL → SQL y tasa de cierre</li>
+            <li>CAC y payback</li>
+            <li>Apertura/clic en email</li>
+            <li>MQL → SQL → Venta</li>
             <li>Ticket promedio y LTV</li>
           </ul>
         </Card>
       </div>
 
       {/* CTA FINAL */}
-      <div className="mt-12 card p-6 border border-slate-200 rounded-2xl bg-gradient-to-br from-emerald-50 to-white">
+      <div className="mt-12 card p-6 border border-slate-200 bg-gradient-to-br from-emerald-50 to-white">
         <h2 className="text-xl font-bold text-slate-900">¿Crees que tu oferta calza con el programa?</h2>
         <p className="mt-2 text-sm text-slate-700">
-          Agenda una evaluación de fit. Si avanzamos, salimos a vender en semanas, no meses.
+          Agenda una evaluación gratuita. Si avanzamos, en pocas semanas tendremos tu embudo listo y saldremos a vender.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
           <a href="/contacto" className="btn btn-primary">Evaluar mi fit</a>
