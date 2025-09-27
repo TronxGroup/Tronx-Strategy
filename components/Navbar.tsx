@@ -18,7 +18,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 bg-white/70 backdrop-blur border-b border-slate-200">
       <div className="section flex items-center justify-between py-3">
         <Link href="/" className="flex items-center gap-3">
-          <Image src="/logo.svg" width={120} height={30} alt="Tronx Strategy" />
+          <Image src="/Logo_TronxStrategy_v2025.png" width={120} height={30} alt="Tronx Strategy" />
         </Link>
         <nav className="hidden md:flex items-center gap-6 text-sm">
           {links.map((l) => (
