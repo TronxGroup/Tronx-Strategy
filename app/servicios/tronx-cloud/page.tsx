@@ -1,49 +1,33 @@
 // app/servicios/tronx-cloud/page.tsx
 import Section from "@/components/Section";
-import Link from "next/link";
-import {
-  Server,
-  BarChart3,
-  Bot,
-  Megaphone,
-  ShieldCheck,
-  LifeBuoy,
-  ArrowRight,
-} from "lucide-react";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Tronx Cloud Suite – Tronx Strategy",
   description:
     "Plataforma unificada para operar tu embudo digital: WebOps, Data & Analytics, CRM & Automation, Ads Ops y Security/Compliance.",
 };
 
-function Pill({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center rounded-full bg-brand-50 text-brand-700 border border-brand-200 px-3 py-1 text-xs font-medium">
-      {children}
-    </span>
-  );
-}
-
 function Card({
   title,
-  icon,
   children,
 }: {
   title: string;
-  icon: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
-    <div className="card p-6 border border-slate-200 shadow-soft rounded-2xl bg-white">
-      <div className="flex items-center gap-2">
-        <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
-          {icon}
-        </span>
-        <h3 className="text-base font-semibold text-slate-900">{title}</h3>
-      </div>
+    <div className="card p-6 border border-slate-200 shadow-sm rounded-2xl bg-white">
+      <h3 className="text-base font-semibold text-slate-900">{title}</h3>
       <div className="mt-3 text-sm text-slate-700">{children}</div>
     </div>
+  );
+}
+
+function Pill({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-flex items-center rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 text-xs font-medium">
+      {children}
+    </span>
   );
 }
 
@@ -54,14 +38,12 @@ export default function Page() {
       <div className="max-w-3xl">
         <Pill>Plataforma Operativa · SaaS</Pill>
         <h1 className="mt-3 text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
-          Tronx <span className="px-1 rounded-md bg-[rgba(27,197,214,0.08)]">Cloud Suite</span>
+          Tronx <span className="text-brand-600">Cloud Suite</span>
         </h1>
         <p className="p-muted mt-4">
-          Tu operación digital, en un solo lugar: infraestructura web, datos y analítica,
-          CRM & automatizaciones, Ads, seguridad y cumplimiento. Integrado, medible y
-          administrado por Tronx Strategy.
+          Tu operación digital en un solo lugar: infraestructura web, datos y analítica, CRM & automatizaciones,
+          Ads, seguridad y cumplimiento. Integrado, medible y administrado por Tronx Strategy.
         </p>
-
         <div className="mt-6 flex flex-wrap gap-2">
           <Pill>WebOps</Pill>
           <Pill>Data & Analytics</Pill>
@@ -70,67 +52,54 @@ export default function Page() {
           <Pill>Security & Compliance</Pill>
           <Pill>SLA & Soporte</Pill>
         </div>
-
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/contacto" className="btn btn-primary">
-            Solicitar demo <ArrowRight size={18} />
-          </Link>
-          <Link href="/servicios" className="btn btn-ghost">
-            Ver servicios
-          </Link>
-          <Link href="/servicios/programa-socios" className="btn btn-secondary">
-            Conocer Programa Socios
-          </Link>
+        <div className="mt-8 flex gap-3">
+          <a href="/contacto" className="btn btn-primary">Solicitar demo</a>
+          <a href="/servicios" className="btn btn-secondary">Ver servicios</a>
         </div>
       </div>
 
       {/* MÓDULOS */}
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card title="WebOps" icon={<Server size={18} />}>
+        <Card title="WebOps">
           <ul className="list-disc pl-5 space-y-1">
-            <li>Dominios, DNS, SSL (Cloudflare)</li>
+            <li>Dominios, DNS y SSL (Cloudflare)</li>
             <li>Hosting serverless (Vercel) + CI/CD desde GitHub</li>
             <li>Hardening básico y WAF/CDN</li>
           </ul>
         </Card>
-
-        <Card title="Data & Analytics" icon={<BarChart3 size={18} />}>
+        <Card title="Data & Analytics">
           <ul className="list-disc pl-5 space-y-1">
             <li>GA4, Tag Manager, Search Console</li>
             <li>Eventos y conversiones unificadas</li>
             <li>Dashboards ejecutivos (CAC, CVR, LTV)</li>
           </ul>
         </Card>
-
-        <Card title="CRM & Automation" icon={<Bot size={18} />}>
+        <Card title="CRM & Automation">
           <ul className="list-disc pl-5 space-y-1">
             <li>Zoho CRM (o HubSpot si aplica)</li>
             <li>Scoring, pipelines y nurturing</li>
-            <li>Formularios con etiquetado de origen + respuestas</li>
+            <li>Formularios etiquetados + auto-respuestas</li>
           </ul>
         </Card>
-
-        <Card title="Ads Ops" icon={<Megaphone size={18} />}>
+        <Card title="Ads Ops">
           <ul className="list-disc pl-5 space-y-1">
-            <li>Google / Meta / LinkedIn Ads conectados al CRM</li>
+            <li>Google / Meta / LinkedIn conectados al CRM</li>
             <li>UTM y lead gen con atribución 30 días</li>
             <li>Reporting de CAC/ROAS y payback</li>
           </ul>
         </Card>
-
-        <Card title="Security & Compliance" icon={<ShieldCheck size={18} />}>
+        <Card title="Security & Compliance">
           <ul className="list-disc pl-5 space-y-1">
-            <li>Privacidad & cookies, opt-out</li>
+            <li>Privacidad & cookies (opt-out)</li>
             <li>SPF/DKIM/DMARC en correo corporativo</li>
             <li>Backups, control de accesos y 2FA</li>
           </ul>
         </Card>
-
-        <Card title="SLA & Soporte" icon={<LifeBuoy size={18} />}>
+        <Card title="SLA & Soporte">
           <ul className="list-disc pl-5 space-y-1">
             <li>Sprints quincenales y tickets priorizados</li>
             <li>Roadmap de mejora continua</li>
-            <li>Revisión trimestral (QBR) con KPIs</li>
+            <li>Revisión ejecutiva trimestral (QBR) con KPIs</li>
           </ul>
         </Card>
       </div>
@@ -145,23 +114,22 @@ export default function Page() {
           <li>Handover documentado + plan de sprints y KPIs.</li>
         </ol>
         <div className="mt-4 text-xs text-slate-500">
-          * Para APCC, los leads entran a Zoho y se sincronizan automáticamente con HubSpot del equipo APCC.
+          * Para APCC, los leads entran a Zoho y se sincronizan con HubSpot del equipo APCC.
         </div>
       </div>
 
       {/* INTEGRACIONES */}
       <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card title="Integraciones nativas" icon={<Bot size={18} />}>
-          <p>
-            Zoho CRM, HubSpot (si aplica), Google Workspace, GA4, GTM, Search Console,
-            Vercel, Cloudflare, Make/Zapier.
+        <Card title="Integraciones nativas">
+          <p className="text-sm">
+            Zoho CRM, HubSpot (si aplica), Google Workspace, GA4, GTM, Search Console, Vercel, Cloudflare, Make/Zapier.
           </p>
-        <Card title="Operación centralizada" icon={<ShieldCheck size={18} />}>
-  <p>
-    Consolida tu operación digital en un solo lugar: analítica, campañas, CRM y activos
-    conectados. Accesos con mínimo privilegio y controlados para mayor seguridad.
-  </p>
-</Card>
+        </Card>
+        <Card title="Operación estandarizada">
+          <p className="text-sm">
+            Accesos por rol, mínimo privilegio y documentación de procesos. Gobernanza y auditoría de cambios.
+          </p>
+        </Card>
       </div>
 
       {/* FAQ */}
@@ -189,8 +157,7 @@ export default function Page() {
               ¿Cómo se miden resultados?
             </summary>
             <p className="mt-2 text-sm text-slate-700">
-              Configuramos eventos/conversiones en GA4 y conectamos campañas al CRM para calcular CAC, ROAS y tasa de
-              cierre (MQL→SQL→Venta).
+              Configuramos eventos/conversiones en GA4 y conectamos campañas al CRM para calcular CAC, ROAS y tasa de cierre.
             </p>
           </details>
           <details className="group rounded-lg border p-4">
@@ -205,21 +172,14 @@ export default function Page() {
       </div>
 
       {/* CTA FINAL */}
-      <div className="mt-12 card p-6 border border-slate-200 rounded-2xl bg-gradient-to-br from-brand-50 to-white">
+      <div className="mt-12 card p-6 border border-slate-200 rounded-2xl bg-gradient-to-br from-emerald-50 to-white">
         <h2 className="text-xl font-bold text-slate-900">¿Listo para operar en la nube con métricas claras?</h2>
         <p className="mt-2 text-sm text-slate-700">
           Te mostramos cómo Tronx Cloud Suite integra tus activos para acelerar resultados.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
-          <Link href="/contacto" className="btn btn-primary">
-            Hablar con un especialista
-          </Link>
-          <Link href="/casos" className="btn btn-secondary">
-            Ver casos de éxito
-          </Link>
-          <Link href="/servicios/programa-socios" className="btn btn-ghost">
-            Explorar Programa Socios
-          </Link>
+          <a href="/contacto" className="btn btn-primary">Hablar con un especialista</a>
+          <a href="/casos" className="btn btn-secondary">Ver casos de éxito</a>
         </div>
       </div>
     </Section>
