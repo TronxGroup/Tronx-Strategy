@@ -23,8 +23,10 @@ export default function Page() {
         <p className="p-muted mt-4">
           Entregables claros en semanas: implementamos y operamos tu embudo con
           sitios/landings, performance marketing, CRM y automatizaciones. Además,
-          el Programa Socios (Revenue Share) y nuestra plataforma unificada{" "}
-          <a href="/tronx-cloud" className="underline decoration-emerald-500 underline-offset-2">
+          el <a href="/servicios/programa-socios" className="font-semibold underline decoration-emerald-500 underline-offset-2">
+            Programa Socios (Revenue Share)
+          </a> y nuestra plataforma unificada{" "}
+          <a href="/servicios/tronx-cloud" className="font-semibold underline decoration-emerald-500 underline-offset-2">
             Tronx Cloud Suite
           </a>.
         </p>
@@ -34,46 +36,89 @@ export default function Page() {
           <Pill>Revenue Share</Pill>
           <Pill>Dashboards & KPIs</Pill>
         </div>
-        <div className="mt-8 flex gap-3">
-          <a href="/tronx-cloud" className="btn btn-primary">Conocer Tronx Cloud Suite</a>
-          <a href="/servicios/programa-socios" className="btn btn-secondary">Programa Socios</a>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <a href="/servicios/programa-socios" className="btn btn-primary">Conocer Programa Socios</a>
+          <a href="/servicios/tronx-cloud" className="btn btn-secondary">Ver Tronx Cloud Suite</a>
         </div>
       </div>
 
-      {/* TRONX CLOUD SUITE (destacado) */}
-      <div className="mt-12 card p-6 border border-slate-200 rounded-2xl bg-gradient-to-br from-emerald-50 to-white">
-        <div className="flex flex-col lg:flex-row gap-6 items-start">
-          <div className="flex-1">
-            <h2 className="text-xl font-bold text-slate-900">Tronx Cloud Suite</h2>
+      {/* BLOQUE DESTACADO: PROGRAMA SOCIOS */}
+      <div className="mt-12 card p-6 border border-slate-200 rounded-2xl bg-gradient-to-br from-white to-emerald-50">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+          <div className="lg:col-span-2">
+            <h2 className="text-xl font-bold text-slate-900">Programa Socios (Revenue Share)</h2>
             <p className="text-sm text-slate-700 mt-2 max-w-3xl">
-              Tu operación digital unificada: infraestructura web, datos y analítica, CRM & automatizaciones,
-              ads y seguridad — todo integrado y administrado por Tronx Strategy.
+              Vendemos tus servicios con nuestro embudo, CRM y contenidos. Tú te enfocas en entregar; nosotros en captar,
+              nutrir y cerrar. Pagas sólo por performance (porcentaje sobre venta válida).
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-              <FeatureCard title="WebOps">
-                Dominios, DNS, SSL, hosting serverless (Vercel) y protección CDN/WAF (Cloudflare). CI/CD desde GitHub.
-              </FeatureCard>
-              <FeatureCard title="Data & Analytics">
-                GA4, Tag Manager y Search Console centralizados. Eventos, conversiones y dashboards ejecutivos (CAC, CVR, LTV).
-              </FeatureCard>
-              <FeatureCard title="CRM & Automation">
-                Zoho CRM (o HubSpot si aplica), scoring, pipelines, nurturing, formularios con etiquetado y respuestas automáticas.
-              </FeatureCard>
-              <FeatureCard title="Ads Ops">
-                Google / Meta / LinkedIn Ads conectados al CRM. UTM, lead gen, atribución 30 días y reporting de CAC/ROAS.
-              </FeatureCard>
-              <FeatureCard title="Security & Compliance">
-                Privacidad & cookies, SPF/DKIM/DMARC, backups, control de accesos y 2FA.
-              </FeatureCard>
-              <FeatureCard title="SLA & Soporte">
-                Sprints quincenales, tickets priorizados, QBR y roadmap de mejora continua.
-              </FeatureCard>
+            <ul className="mt-3 text-sm text-slate-700 list-disc pl-5 space-y-1">
+              <li><strong>Activos de conversión:</strong> video comercial, landing y copy.</li>
+              <li><strong>CRM & automatización:</strong> Zoho (o HubSpot), scoring, pipelines, secuencias.</li>
+              <li><strong>Base B2B segmentada</strong> (opt-out y compliance) + campañas cuando aplica.</li>
+              <li><strong>Cierre & reporting:</strong> registro en CRM, liquidación mensual por venta.</li>
+            </ul>
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="card p-4">
+                <p className="text-xs uppercase tracking-wide text-slate-500">Servicios</p>
+                <p className="text-sm font-medium">15–25% neto</p>
+              </div>
+              <div className="card p-4">
+                <p className="text-xs uppercase tracking-wide text-slate-500">Productos/licencias</p>
+                <p className="text-sm font-medium">20–35%</p>
+              </div>
+              <div className="card p-4">
+                <p className="text-xs uppercase tracking-wide text-slate-500">Suscripciones</p>
+                <p className="text-sm font-medium">10–20% (3–6 meses)</p>
+              </div>
             </div>
-            <div className="mt-6 flex gap-3">
-              <a href="/tronx-cloud" className="btn btn-primary">Ver detalle de Tronx Cloud Suite</a>
-              <a href="/contacto" className="btn btn-ghost">Solicitar demo</a>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="/servicios/programa-socios" className="btn btn-primary">Cómo funciona</a>
+              <a href="/contacto" className="btn btn-ghost">Postular como Socio</a>
             </div>
           </div>
+          <div className="card p-5 bg-white border border-emerald-200 rounded-2xl">
+            <h3 className="text-base font-semibold text-slate-900">Elegibilidad (fit rápido)</h3>
+            <ul className="mt-2 text-sm text-slate-700 list-disc pl-5 space-y-1">
+              <li>Oferta clara y repetible (no 100% a medida cada vez).</li>
+              <li>Capacidad de entrega (agenda/equipo disponible).</li>
+              <li>Ticket y márgenes acordes a revenue share.</li>
+              <li>SLA de respuesta y devoluciones definidos.</li>
+            </ul>
+            <a href="/servicios/programa-socios" className="btn btn-secondary mt-4 w-full">Ver requisitos</a>
+          </div>
+        </div>
+      </div>
+
+      {/* TRONX CLOUD SUITE (SEGUNDO DESTACADO) */}
+      <div className="mt-12 card p-6 border border-slate-200 rounded-2xl bg-gradient-to-br from-emerald-50 to-white">
+        <h2 className="text-xl font-bold text-slate-900">Tronx Cloud Suite</h2>
+        <p className="text-sm text-slate-700 mt-2 max-w-3xl">
+          Tu operación digital unificada: infraestructura web, datos & analítica, CRM & automatizaciones, Ads y seguridad.
+          Integrado, medible y administrado por Tronx Strategy.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+          <FeatureCard title="WebOps">
+            Dominios, DNS, SSL (Cloudflare), hosting serverless (Vercel) y CI/CD desde GitHub.
+          </FeatureCard>
+          <FeatureCard title="Data & Analytics">
+            GA4, Tag Manager y Search Console. Eventos, conversiones y dashboards CAC/CVR/LTV.
+          </FeatureCard>
+          <FeatureCard title="CRM & Automation">
+            Zoho CRM (o HubSpot), scoring, pipelines, nurturing, formularios etiquetados y auto-respuestas.
+          </FeatureCard>
+          <FeatureCard title="Ads Ops">
+            Google / Meta / LinkedIn Ads conectados a CRM. UTM, atribución 30 días y ROAS.
+          </FeatureCard>
+          <FeatureCard title="Security & Compliance">
+            Privacidad & cookies, SPF/DKIM/DMARC, backups y control de accesos.
+          </FeatureCard>
+          <FeatureCard title="SLA & Soporte">
+            Sprints quincenales, tickets priorizados, QBR y roadmap continuo.
+          </FeatureCard>
+        </div>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a href="/servicios/tronx-cloud" className="btn btn-secondary">Ver detalle de Tronx Cloud Suite</a>
+          <a href="/contacto" className="btn btn-ghost">Solicitar demo</a>
         </div>
       </div>
 
@@ -81,7 +126,7 @@ export default function Page() {
       <div className="mt-12">
         <h2 className="h3">Servicios core</h2>
         <p className="p-muted mt-2 max-w-3xl">
-          Implementamos la base, operamos el crecimiento y te acompañamos con estrategia aplicable.
+          Implementamos la base, operamos el crecimiento y acompañamos con estrategia aplicable.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
@@ -97,42 +142,17 @@ export default function Page() {
         </div>
       </div>
 
-      {/* REVENUE SHARE + STACK */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-        <div className="card p-6 border border-slate-200 rounded-2xl bg-white">
-          <h3 className="text-base font-semibold text-slate-900">Programa Socios (Revenue Share)</h3>
-          <p className="text-sm text-slate-700 mt-2">
-            Vendemos tus servicios con nuestro embudo, CRM y contenidos. Tú entregas; nosotros captamos, nutrimos y cerramos.
-          </p>
-          <ul className="mt-3 text-sm text-slate-700 list-disc pl-5 space-y-1">
-            <li>Servicios: 15–25% neto</li>
-            <li>Productos/licencias: 20–35%</li>
-            <li>Suscripciones: 10–20% (primeros 3–6 meses)</li>
-            <li>Liquidación mensual con reporte validado</li>
-          </ul>
-          <a href="/servicios/programa-socios" className="btn btn-secondary mt-4">Conocer el programa</a>
-        </div>
-
-        <div className="card p-6 border border-slate-200 rounded-2xl bg-white">
-          <h3 className="text-base font-semibold text-slate-900">Stack Tecnológico</h3>
-          <p className="text-sm text-slate-700 mt-2">
-            Zoho CRM, HubSpot (si aplica APCC), Google Workspace, GA4, GTM, Search Console, Vercel, Cloudflare, Make/Zapier.
-          </p>
-          <div className="mt-3">
-            <a href="/tronx-cloud" className="btn btn-ghost">Cómo opera Tronx Cloud Suite</a>
-          </div>
-        </div>
-      </div>
-
       {/* CTA FINAL */}
       <div className="card p-6 mt-12 border border-slate-200 rounded-2xl bg-white">
-        <h4 className="font-semibold text-slate-900">¿Listo para operar en la nube con claridad y métricas?</h4>
+        <h4 className="font-semibold text-slate-900">¿Listo para acelerar captación y cerrar con métricas claras?</h4>
         <p className="text-sm text-slate-700 mt-2">
-          Te mostramos cómo Tronx Cloud Suite integra tus activos digitales para acelerar resultados — y si calzas, sumamos Revenue Share.
+          Si tu oferta calza, partimos con <strong>Programa Socios</strong>. Si necesitas base tecnológica sólida,
+          activamos <strong>Tronx Cloud Suite</strong> y tus <strong>Servicios Core</strong>.
         </p>
-        <div className="mt-4 flex gap-3">
-          <a href="/contacto" className="btn btn-primary">Hablar con un especialista</a>
-          <a href="/casos" className="btn btn-secondary">Ver casos de éxito</a>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <a href="/servicios/programa-socios" className="btn btn-primary">Programa Socios</a>
+          <a href="/servicios/tronx-cloud" className="btn btn-secondary">Tronx Cloud Suite</a>
+          <a href="/casos" className="btn btn-ghost">Ver casos de éxito</a>
         </div>
       </div>
     </Section>
