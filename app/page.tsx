@@ -1,6 +1,7 @@
 import Section from "@/components/Section";
 import FeatureCard from "@/components/FeatureCard";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   LineChart,
@@ -12,6 +13,7 @@ import {
   Building2,
   CheckCircle2,
   Play,
+  ExternalLink,
 } from "lucide-react";
 
 function Pill({ children }: { children: React.ReactNode }) {
@@ -49,6 +51,67 @@ function Step({
         <h4 className="font-semibold text-slate-900">{title}</h4>
       </div>
       <p className="text-sm text-slate-700 mt-2">{children}</p>
+    </div>
+  );
+}
+
+function CaseCard({
+  logoSrc,
+  logoAlt,
+  title,
+  subtitle,
+  bullets,
+  kpis,
+  href,
+  pill,
+}: {
+  logoSrc: string;
+  logoAlt: string;
+  title: string;
+  subtitle: string;
+  bullets: string[];
+  kpis: { k: string; l: string }[];
+  href: string;
+  pill?: string;
+}) {
+  return (
+    <div className="card p-6 border border-slate-200 rounded-2xl bg-white hover:shadow-lg transition-shadow">
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="relative h-10 w-10 rounded-md overflow-hidden ring-1 ring-slate-200 bg-white">
+            <Image src={logoSrc} alt={logoAlt} fill className="object-contain p-1.5" />
+          </div>
+          <div>
+            <h3 className="text-base font-semibold text-slate-900">{title}</h3>
+            <p className="text-xs text-slate-600">{subtitle}</p>
+          </div>
+        </div>
+        {pill ? <Pill>{pill}</Pill> : null}
+      </div>
+
+      <ul className="mt-4 space-y-2 text-sm text-slate-700">
+        {bullets.map((b, i) => (
+          <li key={i} className="inline-flex items-start gap-2">
+            <CheckCircle2 size={16} className="text-brand-600 mt-0.5" />
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="grid grid-cols-3 gap-3 mt-5">
+        {kpis.map(({ k, l }, i) => (
+          <div key={i} className="rounded-lg border border-slate-200 p-3 text-center">
+            <p className="text-sm font-bold text-slate-900">{k}</p>
+            <p className="text-[11px] text-slate-600 mt-0.5">{l}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-5">
+        <Link href={href} className="btn btn-secondary inline-flex items-center">
+          Ver caso <ArrowRight size={18} />
+        </Link>
+      </div>
     </div>
   );
 }
@@ -102,6 +165,58 @@ export default function Page() {
           <FeatureCard title="Revenue Share">
             Nosotros captamos, nutrimos y cerramos; tú entregas. Comisión sobre ventas efectivas.
           </FeatureCard>
+        </div>
+      </Section>
+
+      {/* Casos destacados */}
+      <Section className="py-14">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-bold text-slate-900">Casos destacados</h2>
+          <Link href="/casos" className="text-sm inline-flex items-center text-brand-700 hover:underline">
+            Ver todos <ExternalLink size={16} className="ml-1" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <CaseCard
+            logoSrc="/logos/apcc.svg" // reemplazar si usas otra ruta
+            logoAlt="APCC"
+            title="APCC – Cámara de Comercio Asia Pacífico"
+            subtitle="Operación unificada con Tronx Cloud Suite"
+            pill="Tronx Cloud Suite"
+            bullets={[
+              "WebOps: dominios, DNS, CDN y Vercel con CI/CD",
+              "CRM & Automatización: Zoho → HubSpot (sync selectivo)",
+              "Embudo de membresías + eventos con slug único",
+              "Analytics: GA4/GTM con eventos y reporting de CAC/ROAS",
+            ]}
+            kpis={[
+              { k: "2–4 sem", l: "Time-to-value" },
+              { k: "Sprints 15d", l: "Operación continua" },
+              { k: "100%", l: "Captura trazable" },
+            ]}
+            href="/casos/apcc"
+          />
+
+          <CaseCard
+            logoSrc="/logos/echevensko.svg" // reemplazar si usas otra ruta
+            logoAlt="Echevensko"
+            title="Echevensko × Shure"
+            subtitle="Producción de charla/vodcast y captación B2B"
+            pill="Contenido & Performance"
+            bullets={[
+              "Audio profesional con microfonía Shure",
+              "Landing + video trailer orientado a conversión",
+              "CRM y nurturing para equipos de RR.HH. & Cultura",
+              "Medición de leads calificados y cierre en pipeline",
+            ]}
+            kpis={[
+              { k: "CVR ↑", l: "Optimización de landing" },
+              { k: "SLA", l: "Soporte en rodaje" },
+              { k: "KPIs", l: "CAC · LTV · Win-rate" },
+            ]}
+            href="/casos/echevensko"
+          />
         </div>
       </Section>
 
