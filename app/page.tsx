@@ -169,56 +169,58 @@ export default function Page() {
       </Section>
 
       {/* Casos destacados */}
-      <Section className="py-14">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-slate-900">Casos destacados</h2>
-          <Link href="/casos" className="text-sm inline-flex items-center text-brand-700 hover:underline">
-            Ver todos <ExternalLink size={16} className="ml-1" />
-          </Link>
-        </div>
+<Section className="py-14">
+  <div className="flex items-center justify-between mb-6">
+    <h2 className="text-xl font-bold text-slate-900">Casos destacados</h2>
+    <Link href="/casos" className="text-sm inline-flex items-center text-brand-700 hover:underline">
+      Ver todos <ExternalLink size={16} className="ml-1" />
+    </Link>
+  </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <CaseCard
-            logoSrc="/logos/apcc.svg" // reemplazar si usas otra ruta
-            logoAlt="APCC"
-            title="APCC – Cámara de Comercio Asia Pacífico"
-            subtitle="Operación unificada con Tronx Cloud Suite"
-            pill="Tronx Cloud Suite"
-            bullets={[
-              "WebOps: dominios, DNS, CDN y Vercel con CI/CD",
-              "CRM & Automatización: Zoho → HubSpot (sync selectivo)",
-              "Embudo de membresías + eventos con slug único",
-              "Analytics: GA4/GTM con eventos y reporting de CAC/ROAS",
-            ]}
-            kpis={[
-              { k: "2–4 sem", l: "Time-to-value" },
-              { k: "Sprints 15d", l: "Operación continua" },
-              { k: "100%", l: "Captura trazable" },
-            ]}
-            href="/casos/apcc"
-          />
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    {/* APCC → Tronx Cloud Suite */}
+    <CaseCard
+      logoSrc="/logos/apcc.svg"
+      logoAlt="APCC"
+      title="APCC – Cámara de Comercio Asia Pacífico"
+      subtitle="Operación unificada con Tronx Cloud Suite"
+      pill="Tronx Cloud Suite"
+      bullets={[
+        "Web institucional + CRM conectado a Zoho y HubSpot",
+        "Formularios maestros y automatizaciones de eventos",
+        "Embudo de membresías con seguimiento y reporting",
+        "Infraestructura cloud: DNS, Vercel, Cloudflare, GA4, GTM",
+      ]}
+      kpis={[
+        { k: "2–4 sem", l: "Implementación completa" },
+        { k: "6 x", l: "Mejor velocidad de carga" },
+        { k: "100 %", l: "Flujo de leads trazable" },
+      ]}
+      href="/casos/apcc"
+    />
 
-          <CaseCard
-            logoSrc="/logos/echevensko.svg" // reemplazar si usas otra ruta
-            logoAlt="Echevensko"
-            title="Echevensko × Shure"
-            subtitle="Producción de charla/vodcast y captación B2B"
-            pill="Contenido & Performance"
-            bullets={[
-              "Audio profesional con microfonía Shure",
-              "Landing + video trailer orientado a conversión",
-              "CRM y nurturing para equipos de RR.HH. & Cultura",
-              "Medición de leads calificados y cierre en pipeline",
-            ]}
-            kpis={[
-              { k: "CVR ↑", l: "Optimización de landing" },
-              { k: "SLA", l: "Soporte en rodaje" },
-              { k: "KPIs", l: "CAC · LTV · Win-rate" },
-            ]}
-            href="/casos/echevensko"
-          />
-        </div>
-      </Section>
+    {/* Echevensko → Programa Socios (Revenue Share) */}
+    <CaseCard
+      logoSrc="/logos/echevensko.svg"
+      logoAlt="Echevensko"
+      title="Echevensko"
+      subtitle="Charlas corporativas · Revenue Share B2B"
+      pill="Programa Socios"
+      bullets={[
+        "Embudo gestionado por Tronx Strategy: landing, CRM y nurturing",
+        "Campañas Meta & Google Ads con segmentación RR.HH. y Cultura",
+        "Cierre comercial y seguimiento automático de ventas válidas",
+        "Reporting de conversiones y liquidación mensual transparente",
+      ]}
+      kpis={[
+        { k: "+240 %", l: "Incremento de leads calificados" },
+        { k: "15 d", l: "Primer cierre de venta" },
+        { k: "29 %", l: "Comisión Tronx (Revenue Share)" },
+      ]}
+      href="/casos/echevensko"
+    />
+  </div>
+</Section>
 
       {/* Banda de confianza */}
       <Section className="py-6">
