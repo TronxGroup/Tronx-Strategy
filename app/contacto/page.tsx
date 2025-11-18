@@ -113,7 +113,7 @@ export default function ContactoPage() {
 
             <p className="text-xs text-slate-500">
               También puedes escribir directamente a{" "}
-              <span className="text-slate-200">contacto@tronxstrategy.com</span>.
+              <span className="text-slate-200">info@tronxstrategy.com</span>.
             </p>
           </form>
 
@@ -125,7 +125,7 @@ export default function ContactoPage() {
               <ul className="mt-3 space-y-2">
                 <li>
                   <span className="text-slate-400">Correo: </span>
-                  contacto@tronxstrategy.com
+                  info@tronxstrategy.com
                 </li>
                 <li>
                   <span className="text-slate-400">Ubicación: </span>
