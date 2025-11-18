@@ -32,7 +32,7 @@ export default function ContactoPage() {
             </div>
             <div>
               <label className="block text-xs font-semibold text-slate-300 uppercase tracking-[0.16em]">
-                Empresa
+                Empresa / institución
               </label>
               <input
                 name="empresa"
@@ -75,7 +75,7 @@ export default function ContactoPage() {
               <option>Sitio web corporativo</option>
               <option>Landing page</option>
               <option>Portal o directorio</option>
-              <option>Rediseño de sitio existente</option>
+              <option>Rediseño de sitio actual</option>
               <option>Otro</option>
             </select>
           </div>
@@ -95,12 +95,10 @@ export default function ContactoPage() {
           <button type="submit" className="btn-primary">
             Enviar mensaje
           </button>
+
           <p className="text-xs text-slate-500">
             También puedes escribir directamente a{" "}
-            <span className="text-slate-200">
-              contacto@tronxstrategy.com
-            </span>{" "}
-            o coordinar por WhatsApp.
+            <span className="text-slate-200">contacto@tronxstrategy.com</span>.
           </p>
         </form>
 
@@ -120,7 +118,7 @@ export default function ContactoPage() {
               </li>
               <li>
                 <span className="text-slate-400">Horario: </span>
-                Lunes a viernes, 9:00 a 18:00 (GMT-3).
+                Lunes a viernes, 9:00–18:00 (GMT-3).
               </li>
             </ul>
           </div>
@@ -130,9 +128,9 @@ export default function ContactoPage() {
               Cómo trabajamos
             </h2>
             <ol className="mt-3 list-decimal list-inside space-y-2">
-              <li>Reunión breve para entender alcance y plazos.</li>
-              <li>Propuesta y presupuesto cerrado.</li>
-              <li>Diseño, desarrollo y ajustes.</li>
+              <li>Reunión inicial para definir objetivos y plazos.</li>
+              <li>Propuesta clara con presupuesto cerrado.</li>
+              <li>Diseño, desarrollo y revisión con el cliente.</li>
               <li>Salida a producción + soporte inicial.</li>
             </ol>
           </div>
