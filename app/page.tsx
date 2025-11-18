@@ -2,11 +2,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HomePage() {
   return (
     <>
-      {/* HERO FULL SCREEN FUERA DEL CONTENEDOR .section */}
+      {/* HERO FULL SCREEN */}
       <section
         className="relative overflow-hidden min-h-screen flex items-center w-full"
         style={{
@@ -16,7 +17,7 @@ export default function HomePage() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        {/* Overlay para legibilidad */}
+        {/* Overlay */}
         <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
 
         <div className="relative w-full max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] gap-10 items-center px-4 lg:px-8 py-24">
@@ -84,9 +85,8 @@ export default function HomePage() {
                 Paquetes claros, lista de precios simple.
               </h2>
               <p className="mt-3 text-sm text-slate-200">
-                Tres niveles de servicio para adaptarnos a tu etapa: presencia
-                profesional, sitio corporativo completo o solución premium
-                integrada con CRM y campañas.
+                Tres niveles: presencia profesional, sitio corporativo completo,
+                o solución premium con CRM y WebOps.
               </p>
               <ul className="mt-4 space-y-2 text-sm text-slate-100">
                 <li>• Plan Básico — Presencia profesional.</li>
@@ -94,40 +94,39 @@ export default function HomePage() {
                 <li>• Plan Premium — Sitio + CRM + WebOps.</li>
               </ul>
               <p className="mt-4 text-xs text-slate-400">
-                Incluyen diseño, desarrollo, SEO base, configuración de dominio
-                y SSL. Opcional: mantención y hosting administrado.
+                Incluyen diseño, desarrollo, SEO base, dominio y SSL.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CONTENIDO RESTANTE DENTRO DE .section */}
+      {/* CONTENIDO */}
       <div className="section">
+        {/* QUÉ PODEMOS CONSTRUIR */}
         <section className="mt-16">
           <p className="section-title">Qué podemos construir</p>
           <h2 className="section-heading">
             Desde una landing en 48 horas hasta un portal institucional completo.
           </h2>
           <p className="section-subtitle">
-            Tronx Strategy se integra con Tronx Group y Dekaelo Media para
-            entregar una solución digital coherente: web, contenido, campañas y
-            reporting.
+            Tronx Strategy integra diseño, contenido y tecnología para entregar
+            sitios modernos preparados para crecer.
           </p>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {[
               {
                 title: "Sitios corporativos",
-                body: "Páginas completas para empresas, gremios, estudios y proyectos con necesidades de comunicación claras y reporting."
+                body: "Páginas completas para empresas, gremios, estudios y organizaciones."
               },
               {
                 title: "Landing pages y campañas",
-                body: "Páginas de alta conversión para lanzamientos, eventos, cursos y campañas con medición real."
+                body: "Páginas de alta conversión para lanzamientos, cursos o eventos."
               },
               {
                 title: "Portales y directorios",
-                body: "Arquitecturas escalables para cámaras, asociaciones y proyectos territoriales."
+                body: "Arquitecturas escalables para cámaras, instituciones y territorios."
               }
             ].map((card) => (
               <div key={card.title} className="card-surface p-6">
@@ -137,6 +136,86 @@ export default function HomePage() {
                 <p className="mt-2 text-sm text-slate-300">{card.body}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* LOGOS DE CLIENTES */}
+        <section className="mt-24">
+          <p className="section-title">Clientes y proyectos</p>
+          <h2 className="section-heading">
+            Confían en el ecosistema Tronx Group.
+          </h2>
+          <p className="section-subtitle">
+            Empresas, cámaras, asociaciones y marcas personales ejecutivas.
+          </p>
+
+          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-8 place-items-center opacity-80">
+            <Image
+              src="/logos/bice.png"
+              alt="Banco BICE"
+              width={120}
+              height={50}
+              className="object-contain opacity-90"
+            />
+            <Image
+              src="/logos/apcc.png"
+              alt="APCC"
+              width={120}
+              height={50}
+              className="object-contain opacity-90"
+            />
+            <Image
+              src="/logos/echevensko.png"
+              alt="Echevensko Empresas"
+              width={120}
+              height={50}
+              className="object-contain opacity-90"
+            />
+            <Image
+              src="/logos/citylube.png"
+              alt="CityLube"
+              width={120}
+              height={50}
+              className="object-contain opacity-90"
+            />
+          </div>
+        </section>
+
+        {/* CTA FINAL */}
+        <section className="mt-24 mb-20 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight">
+              ¿Listo para modernizar tu sitio web?
+            </h2>
+            <p className="mt-4 text-slate-300 text-base md:text-lg">
+              Revisemos juntos el proyecto y definamos el plan adecuado para tu
+              institución, empresa o cámara.
+            </p>
+
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Link href="/contacto" className="btn-primary text-base px-6 py-3">
+                Agenda una llamada
+              </Link>
+
+              <Link
+                href="/servicios"
+                className="btn-ghost bg-white/10 backdrop-blur hover:bg-white/20 text-base px-6 py-3"
+              >
+                Ver planes y servicios
+              </Link>
+            </div>
+
+            <p className="mt-6 text-xs text-slate-500">
+              También puedes escribir a{" "}
+              <a
+                href="mailto:info@tronxgroup.com"
+                className="text-sky-400 hover:text-sky-300"
+              >
+                info@tronxgroup.com
+              </a>{" "}
+              o enviar un WhatsApp al{" "}
+              <span className="text-sky-300 font-medium">+56 9 2008 0031</span>.
+            </p>
           </div>
         </section>
       </div>
