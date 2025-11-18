@@ -1,7 +1,7 @@
 <footer className="border-t border-slate-800/70 mt-12">
   <div className="section py-10 flex flex-col sm:flex-row items-center justify-between gap-6 text-slate-400 text-xs">
     
-    {/* LOGO */}
+    {/* LOGO + SUBMARCA */}
     <div className="flex items-center gap-3">
       <div className="relative h-10 w-10">
         <Image
@@ -20,9 +20,11 @@
       </div>
     </div>
 
-    {/* INFO */}
-    <div className="text-center sm:text-right space-y-1">
-      <p>© {new Date().getFullYear()} Tronx Strategy. Todos los derechos reservados.</p>
+    {/* INFO + REDES */}
+    <div className="text-center sm:text-right space-y-2">
+      <p>
+        © {new Date().getFullYear()} Tronx Strategy. Todos los derechos reservados.
+      </p>
       <p>
         <a
           href="mailto:info@tronxstrategy.com"
@@ -32,6 +34,41 @@
         </a>{" "}
         · +56 9 2008 0031
       </p>
+
+      {/* Instagram */}
+      <div className="flex sm:justify-end justify-center mt-1">
+        <a
+          href="https://www.instagram.com/tronx-strategy"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 text-slate-400 hover:text-sky-300 transition-colors"
+        >
+          {/* Ícono IG (SVG minimal) */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.4"
+            stroke="currentColor"
+            className="opacity-80"
+          >
+            <rect
+              x="3"
+              y="3"
+              width="18"
+              height="18"
+              rx="5"
+              ry="5"
+            ></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17" cy="7" r="1.2"></circle>
+          </svg>
+
+          <span>@tronx-strategy</span>
+        </a>
+      </div>
     </div>
   </div>
 </footer>
