@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+  background: radial-gradient(circle at top, #111827 0, #020617 55%, #000000 100%);
+  color: #F9FAFB;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Roboto", "Segoe UI", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.gradient-border {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: radial-gradient(circle at top left, rgba(0, 216, 255, 0.18), transparent 55%);
+}
+
+.card-surface {
+  @apply gradient-border rounded-3xl bg-black/40 backdrop-blur-xl;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-full px-6 py-2 text-sm font-medium
+    bg-tronx-accent text-slate-950 hover:bg-cyan-300 transition shadow-soft-glow;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center rounded-full px-6 py-2 text-sm font-medium
+    border border-slate-600/70 text-slate-100 hover:bg-slate-800/60 transition;
+}
+
+.section {
+  @apply w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16;
+}
+
+.section-title {
+  @apply text-sm font-semibold tracking-[0.22em] text-slate-400 uppercase;
+}
+
+.section-heading {
+  @apply mt-2 text-3xl md:text-4xl font-semibold text-slate-50;
+}
+
+.section-subtitle {
+  @apply mt-3 text-slate-300 max-w-2xl;
+}
