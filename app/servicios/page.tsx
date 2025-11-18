@@ -1,3 +1,7 @@
+"use client";
+
+import Image from "next/image";
+
 const planos = [
   {
     name: "Plan Básico — Presencia profesional",
@@ -37,11 +41,11 @@ const planos = [
       "Para instituciones, cámaras y empresas grandes que necesitan una solución integrada.",
     features: [
       "8 a 12 páginas + blog avanzado",
-      "Animaciones, secciones interactivas y componentes personalizados",
-      "Producción básica de contenido (textos + ajuste de imágenes)",
-      "Integraciones avanzadas con CRM y campañas digitales",
+      "Animaciones y secciones interactivas",
+      "Producción básica de contenido (textos + imágenes)",
+      "Integraciones avanzadas con CRM y campañas",
       "Manual Web Corporativo en PDF",
-      "1 mes de soporte y ajustes incluidos",
+      "1 mes de soporte incluido",
       "Entrega en 3 a 4 semanas"
     ]
   }
@@ -57,13 +61,13 @@ const extras = [
   {
     title: "Optimización web (velocidad + SEO + UX)",
     description:
-      "Mejoramos rendimiento, estructura y contenido de tu sitio actual para que funcione mejor.",
+      "Mejoramos rendimiento, estructura y contenido de tu sitio actual.",
     price: "$80.000 – $200.000"
   },
   {
     title: "Rediseño express",
     description:
-      "Actualizamos el diseño de tu sitio sin cambiar la base de contenido, en una semana.",
+      "Actualizamos el diseño sin cambiar la base de contenido, en 1 semana.",
     price: "$250.000 – $400.000"
   },
   {
@@ -82,13 +86,12 @@ const recurrentes = [
   },
   {
     title: "Hosting administrado",
-    details:
-      "Infraestructura Vercel + Cloudflare con monitoreo, SSL y respaldos.",
+    details: "Infraestructura Vercel + Cloudflare con monitoreo y SSL.",
     price: "Desde $10.000 mensual"
   },
   {
     title: "Soporte prioritario",
-    details: "Atención vía correo/WhatsApp con tiempos de respuesta definidos.",
+    details: "Atención con tiempos de respuesta definidos.",
     price: "Desde $19.990 mensual"
   },
   {
@@ -100,88 +103,105 @@ const recurrentes = [
 
 export default function ServiciosPage() {
   return (
-    <div className="section">
-      <section>
-        <p className="section-title">Servicios y planes</p>
-        <h1 className="section-heading">
-          Planes claros, servicios modulares y operación continua.
-        </h1>
-        <p className="section-subtitle">
-          Puedes partir con una landing en 48 horas, un sitio corporativo o una
-          solución premium. Todos los proyectos comparten el mismo estándar
-          tecnológico y de diseño.
-        </p>
+    <>
+      {/* 🔹 BACKGROUND FULL SCREEN */}
+      <section
+        className="relative w-full min-h-screen flex items-center justify-center text-center overflow-hidden"
+        style={{
+          backgroundImage: "url('/BG_servicios_strategy.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 py-32">
+          <p className="section-title text-sky-300">Servicios y planes</p>
+          <h1 className="text-4xl md:text-5xl font-semibold text-white tracking-tight">
+            Planes claros, servicios modulares y operación continua.
+          </h1>
+          <p className="mt-4 text-slate-300 text-base md:text-lg">
+            Puedes partir con una landing en 48 horas, un sitio corporativo o una
+            solución premium. Todos los proyectos comparten el mismo estándar
+            tecnológico y de diseño.
+          </p>
+        </div>
       </section>
 
-      <section className="mt-10 grid gap-6 lg:grid-cols-3">
-        {planos.map((plan) => (
-          <article
-            key={plan.name}
-            className={`card-surface p-6 flex flex-col h-full border ${
-              plan.popular
-                ? "border-tronx-accent/60 shadow-soft-glow"
-                : "border-slate-700/70"
-            }`}
-          >
-            <div className="mb-4">
-              <h2 className="text-lg font-semibold text-slate-50">
-                {plan.name}
-              </h2>
-              <p className="mt-1 text-tronx-accent text-base font-semibold">
-                {plan.price}
-              </p>
-              <p className="mt-3 text-sm text-slate-300">{plan.description}</p>
+      {/* 🔹 CONTENIDO */}
+      <div className="section mt-20">
+        {/* PLANES */}
+        <section className="grid gap-6 lg:grid-cols-3">
+          {planos.map((plan) => (
+            <article
+              key={plan.name}
+              className={`card-surface p-6 flex flex-col h-full border ${
+                plan.popular
+                  ? "border-tronx-accent/60 shadow-soft-glow"
+                  : "border-slate-700/70"
+              }`}
+            >
+              <div className="mb-4">
+                <h2 className="text-lg font-semibold text-slate-50">
+                  {plan.name}
+                </h2>
+                <p className="mt-1 text-tronx-accent text-base font-semibold">
+                  {plan.price}
+                </p>
+                <p className="mt-3 text-sm text-slate-300">{plan.description}</p>
+              </div>
+              <ul className="mt-3 space-y-2 text-sm text-slate-200 flex-1">
+                {plan.features.map((f) => (
+                  <li key={f}>• {f}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </section>
+
+        {/* EXTRAS */}
+        <section className="mt-16 grid gap-10 lg:grid-cols-[1.4fr_minmax(0,1fr)] items-start">
+          <div>
+            <h2 className="text-xl font-semibold text-slate-50">
+              Servicios adicionales
+            </h2>
+            <p className="mt-2 text-sm text-slate-300 max-w-2xl">
+              Productos rápidos y de alto impacto para campañas, lanzamientos o mejoras puntuales.
+            </p>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {extras.map((extra) => (
+                <article key={extra.title} className="card-surface p-4 text-sm">
+                  <h3 className="font-semibold text-slate-50">{extra.title}</h3>
+                  <p className="mt-1 text-slate-300">{extra.description}</p>
+                  <p className="mt-2 text-tronx-accent font-medium">
+                    {extra.price}
+                  </p>
+                </article>
+              ))}
             </div>
-            <ul className="mt-3 space-y-2 text-sm text-slate-200 flex-1">
-              {plan.features.map((feature) => (
-                <li key={feature}>• {feature}</li>
+          </div>
+
+          {/* RECURRENTES */}
+          <div className="card-surface p-5">
+            <h2 className="text-lg font-semibold text-slate-50">
+              Servicios recurrentes
+            </h2>
+            <p className="mt-2 text-sm text-slate-300">
+              Mantén tu sitio seguro, actualizado y alineado a tus campañas.
+            </p>
+            <ul className="mt-4 space-y-3 text-sm text-slate-200">
+              {recurrentes.map((srv) => (
+                <li key={srv.title}>
+                  <p className="font-semibold text-slate-50">{srv.title}</p>
+                  <p className="text-slate-300">{srv.details}</p>
+                  <p className="text-tronx-accent text-xs mt-1">{srv.price}</p>
+                </li>
               ))}
             </ul>
-          </article>
-        ))}
-      </section>
-
-      <section className="mt-14 grid gap-10 lg:grid-cols-[1.4fr_minmax(0,1fr)] items-start">
-        <div>
-          <h2 className="text-xl font-semibold text-slate-50">
-            Servicios adicionales
-          </h2>
-          <p className="mt-2 text-sm text-slate-300 max-w-2xl">
-            Productos rápidos y de alto impacto que puedes combinar con cualquier
-            plan: perfectos para campañas, lanzamientos o mejoras puntuales.
-          </p>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {extras.map((extra) => (
-              <article key={extra.title} className="card-surface p-4 text-sm">
-                <h3 className="font-semibold text-slate-50">{extra.title}</h3>
-                <p className="mt-1 text-slate-300">{extra.description}</p>
-                <p className="mt-2 text-tronx-accent font-medium">
-                  {extra.price}
-                </p>
-              </article>
-            ))}
           </div>
-        </div>
-
-        <div className="card-surface p-5">
-          <h2 className="text-lg font-semibold text-slate-50">
-            Servicios recurrentes
-          </h2>
-          <p className="mt-2 text-sm text-slate-300">
-            Para que tu sitio se mantenga vivo, seguro y alineado a tus
-            campañas, ofrecemos servicios que se renuevan mes a mes.
-          </p>
-          <ul className="mt-4 space-y-3 text-sm text-slate-200">
-            {recurrentes.map((srv) => (
-              <li key={srv.title}>
-                <p className="font-semibold text-slate-50">{srv.title}</p>
-                <p className="text-slate-300">{srv.details}</p>
-                <p className="text-tronx-accent text-xs mt-1">{srv.price}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 }
