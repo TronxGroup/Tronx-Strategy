@@ -21,7 +21,7 @@ export function Navbar() {
         <Link href="/" className="flex items-center gap-3">
           <div className="relative h-9 w-9 md:h-10 md:w-10">
             <Image
-              src="/logo-tronxstrategy.png"
+              src="/logo_Tronx_Stretegy.png"
               alt="Tronx Strategy"
               fill
               sizes="40px"
