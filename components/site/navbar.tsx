@@ -18,23 +18,17 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-slate-800/60 bg-black/40 backdrop-blur-xl">
       <div className="section py-3 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="relative h-9 w-9 md:h-10 md:w-10">
+        
+        {/* SOLO LOGO, MÁS GRANDE */}
+        <Link href="/" className="flex items-center">
+          <div className="relative h-12 w-12 md:h-14 md:w-14">
             <Image
               src="/logo_Tronx_Stretegy.png"
               alt="Tronx Strategy"
               fill
-              sizes="40px"
-              className="object-contain drop-shadow-[0_0_28px_rgba(0,216,255,0.65)]"
+              sizes="56px"
+              className="object-contain drop-shadow-[0_0_36px_rgba(0,216,255,0.55)]"
             />
-          </div>
-          <div className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold tracking-[0.22em] text-slate-400 uppercase">
-              Tronx
-            </span>
-            <span className="text-sm md:text-base font-semibold text-slate-50">
-              Strategy
-            </span>
           </div>
         </Link>
 
@@ -44,14 +38,15 @@ export function Navbar() {
               item.href === "/"
                 ? pathname === "/"
                 : pathname.startsWith(item.href);
+
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={`transition-colors ${
                   active
-                    ? "text-tronx-accent"
-                    : "text-slate-300 hover:text-slate-50"
+                    ? "text-sky-300 font-semibold"
+                    : "text-slate-300 hover:text-white"
                 }`}
               >
                 {item.label}
