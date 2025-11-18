@@ -5,7 +5,8 @@ const projects = [
     description:
       "Sitio institucional, motor de contenidos y formularios conectados a Zoho CRM y HubSpot para membresías, cursos y misiones comerciales.",
     status: "En operación",
-    tags: ["Gremios", "CRM", "Eventos"]
+    tags: ["Gremios", "CRM", "Eventos"],
+    url: "https://www.asiapacific-chamber.com"
   },
   {
     name: "MagiaImaginacion.cl — Echevensko",
@@ -13,7 +14,8 @@ const projects = [
     description:
       "Sitio de posicionamiento para charlas corporativas, con landings para programas y embudo de leads preparado para campañas pagadas.",
     status: "En operación",
-    tags: ["Branding", "Charlas", "Landing"]
+    tags: ["Branding", "Charlas", "Landing"],
+    url: "https://www.magiaimaginacion.cl"
   },
   {
     name: "Dekaelo Media",
@@ -21,7 +23,8 @@ const projects = [
     description:
       "Sitio para estudio audiovisual con foco en vodcasts, contenido corporativo y proyectos cinematográficos.",
     status: "En desarrollo",
-    tags: ["Audiovisual", "Portafolio"]
+    tags: ["Audiovisual", "Portafolio"],
+    url: "https://www.dekaelomedia.com"
   },
   {
     name: "SANRAVAL",
@@ -29,7 +32,26 @@ const projects = [
     description:
       "Guía digital del eje Santiago–Rancagua–Valparaíso, con directorio de empresas, noticias y enfoque territorial.",
     status: "Beta",
-    tags: ["Directorio", "Territorio"]
+    tags: ["Directorio", "Territorio"],
+    url: "https://www.sanraval.cl"
+  },
+  {
+    name: "CityLube — Serviteca en Peñaflor",
+    type: "Sitio corporativo · SEO local · Servicios automotrices",
+    description:
+      "Sitio web optimizado para servicios automotrices locales, incluyendo posicionamiento SEO, servicios, precios estratégicos y contacto directo.",
+    status: "En operación",
+    tags: ["SEO Local", "Servicios", "Comercio"],
+    url: "https://www.citylube.cl"
+  },
+  {
+    name: "Asociación Funcionarios MINVU–SERVIU Tarapacá",
+    type: "Sitio institucional · Información pública · Comunicaciones",
+    description:
+      "Sitio informativo moderno para la Asociación, con historia, directorio, servicios, documentos y formulario de contacto. Diseño claro y estructura simple.",
+    status: "En desarrollo",
+    tags: ["Instituciones", "Informativo"],
+    url: "#"
   }
 ];
 
@@ -43,8 +65,8 @@ export default function PortafolioPage() {
         </h1>
         <p className="section-subtitle">
           Algunos de los sistemas y sitios que hemos diseñado e implementado
-          desde Tronx Group para cámaras, marcas personales, estudios y proyectos
-          territoriales.
+          desde Tronx Group para cámaras, marcas personales, estudios,
+          instituciones y proyectos territoriales.
         </p>
       </section>
 
@@ -54,14 +76,22 @@ export default function PortafolioPage() {
             <p className="text-xs font-semibold tracking-[0.22em] text-slate-400 uppercase">
               {project.type}
             </p>
-            <h2 className="mt-2 text-lg font-semibold text-slate-50">
+
+            <a
+              href={project.url}
+              target="_blank"
+              className="mt-2 text-lg font-semibold text-tronx-accent hover:underline inline-block"
+            >
               {project.name}
-            </h2>
+            </a>
+
             <p className="mt-3 text-sm text-slate-300">{project.description}</p>
+
             <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-slate-300">
               <span className="rounded-full border border-slate-600/70 px-2 py-1">
                 {project.status}
               </span>
+
               {project.tags.map((tag) => (
                 <span
                   key={tag}
