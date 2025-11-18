@@ -44,7 +44,7 @@ export default function Footer() {
 
           <div className="flex sm:justify-end justify-center mt-1">
             <a
-              href="https://www.instagram.com/tronx-strategy"
+              href="https://www.instagram.com/tronxstrategy"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 text-slate-400 hover:text-sky-300 transition-colors"
@@ -64,7 +64,7 @@ export default function Footer() {
                 <circle cx="12" cy="12" r="4" />
                 <circle cx="17" cy="7" r="1.2" />
               </svg>
-              <span>@tronx-strategy</span>
+              <span>@tronxstrategy</span>
             </a>
           </div>
         </div>
