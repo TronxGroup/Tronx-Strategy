@@ -181,43 +181,56 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* CTA FINAL */}
-        <section className="mt-24 mb-20 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight">
-              ¿Listo para modernizar tu sitio web?
-            </h2>
-            <p className="mt-4 text-slate-300 text-base md:text-lg">
-              Revisemos juntos el proyecto y definamos el plan adecuado para tu
-              institución, empresa o cámara.
-            </p>
+        {/* CTA FINAL FULL SCREEN */}
+<section
+  className="relative w-full min-h-[70vh] md:min-h-[80vh] flex items-center justify-center text-center mt-24 mb-0 overflow-hidden rounded-2xl"
+  style={{
+    backgroundImage: "url('/BG_CTA_strategy.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
+>
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-black/65 backdrop-blur-[2px]" />
 
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link href="/contacto" className="btn-primary text-base px-6 py-3">
-                Agenda una llamada
-              </Link>
+  {/* Contenido */}
+  <div className="relative z-10 max-w-3xl mx-auto px-6 py-20">
+    <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight">
+      ¿Listo para modernizar tu sitio web?
+    </h2>
 
-              <Link
-                href="/servicios"
-                className="btn-ghost bg-white/10 backdrop-blur hover:bg-white/20 text-base px-6 py-3"
-              >
-                Ver planes y servicios
-              </Link>
-            </div>
+    <p className="mt-4 text-slate-300 text-base md:text-lg">
+      Revisemos juntos el proyecto y definamos el plan adecuado para tu
+      institución, empresa o cámara.
+    </p>
 
-            <p className="mt-6 text-xs text-slate-500">
-              También puedes escribir a{" "}
-              <a
-                href="mailto:info@tronxgroup.com"
-                className="text-sky-400 hover:text-sky-300"
-              >
-                info@tronxgroup.com
-              </a>{" "}
-              o enviar un WhatsApp al{" "}
-              <span className="text-sky-300 font-medium">+56 9 2008 0031</span>.
-            </p>
-          </div>
-        </section>
+    <div className="mt-8 flex flex-wrap justify-center gap-3">
+      <Link href="/contacto" className="btn-primary text-base px-6 py-3">
+        Agenda una llamada
+      </Link>
+
+      <Link
+        href="/servicios"
+        className="btn-ghost bg-white/10 backdrop-blur hover:bg-white/20 text-base px-6 py-3"
+      >
+        Ver planes y servicios
+      </Link>
+    </div>
+
+    <p className="mt-6 text-xs text-slate-400">
+      También puedes escribir a{" "}
+      <a
+        href="mailto:info@tronxstrategy.com"
+        className="text-sky-400 hover:text-sky-300"
+      >
+        info@tronxstrategy.com
+      </a>{" "}
+      o enviar un WhatsApp al{" "}
+      <span className="text-sky-300 font-medium">+56 9 2008 0031</span>.
+    </p>
+  </div>
+</section>
       </div>
     </>
   );
