@@ -1,7 +1,8 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "../components/site/navbar";
-import Footer from "../components/site/footer"; // 👈 default import
+import Footer from "../components/site/footer"; // default import
 
 export const metadata: Metadata = {
   title: {
@@ -25,6 +26,11 @@ export const metadata: Metadata = {
     title: "Tronx Strategy",
     description:
       "Sitios web modernos para empresas que quieren crecer de verdad.",
+  },
+  icons: {
+    icon: "/favicon_TronxStrategy.png",
+    shortcut: "/favicon_TronxStrategy.png",
+    apple: "/favicon_TronxStrategy.png",
   },
 };
 
