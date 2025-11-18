@@ -101,7 +101,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CONTENIDO */}
+      {/* CONTENIDO PRINCIPAL EN CONTENEDOR */}
       <div className="section">
         {/* QUÉ PODEMOS CONSTRUIR */}
         <section className="mt-16">
@@ -118,16 +118,16 @@ export default function HomePage() {
             {[
               {
                 title: "Sitios corporativos",
-                body: "Páginas completas para empresas, gremios, estudios y organizaciones."
+                body: "Páginas completas para empresas, gremios, estudios y organizaciones.",
               },
               {
                 title: "Landing pages y campañas",
-                body: "Páginas de alta conversión para lanzamientos, cursos o eventos."
+                body: "Páginas de alta conversión para lanzamientos, cursos o eventos.",
               },
               {
                 title: "Portales y directorios",
-                body: "Arquitecturas escalables para cámaras, instituciones y territorios."
-              }
+                body: "Arquitecturas escalables para cámaras, instituciones y territorios.",
+              },
             ].map((card) => (
               <div key={card.title} className="card-surface p-6">
                 <h3 className="text-lg font-semibold text-slate-50">
@@ -180,58 +180,58 @@ export default function HomePage() {
             />
           </div>
         </section>
-
-        {/* CTA FINAL FULL SCREEN */}
-<section
-  className="relative w-full min-h-[70vh] md:min-h-[80vh] flex items-center justify-center text-center mt-24 mb-0 overflow-hidden rounded-2xl"
-  style={{
-    backgroundImage: "url('/BG_CTA_strategy.jpg')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-  }}
->
-  {/* Overlay */}
-  <div className="absolute inset-0 bg-black/65 backdrop-blur-[2px]" />
-
-  {/* Contenido */}
-  <div className="relative z-10 max-w-3xl mx-auto px-6 py-20">
-    <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight">
-      ¿Listo para modernizar tu sitio web?
-    </h2>
-
-    <p className="mt-4 text-slate-300 text-base md:text-lg">
-      Revisemos juntos el proyecto y definamos el plan adecuado para tu
-      institución, empresa o cámara.
-    </p>
-
-    <div className="mt-8 flex flex-wrap justify-center gap-3">
-      <Link href="/contacto" className="btn-primary text-base px-6 py-3">
-        Agenda una llamada
-      </Link>
-
-      <Link
-        href="/servicios"
-        className="btn-ghost bg-white/10 backdrop-blur hover:bg-white/20 text-base px-6 py-3"
-      >
-        Ver planes y servicios
-      </Link>
-    </div>
-
-    <p className="mt-6 text-xs text-slate-400">
-      También puedes escribir a{" "}
-      <a
-        href="mailto:info@tronxstrategy.com"
-        className="text-sky-400 hover:text-sky-300"
-      >
-        info@tronxstrategy.com
-      </a>{" "}
-      o enviar un WhatsApp al{" "}
-      <span className="text-sky-300 font-medium">+56 9 2008 0031</span>.
-    </p>
-  </div>
-</section>
       </div>
+
+      {/* CTA FINAL FULL SCREEN (FUERA DEL CONTENEDOR) */}
+      <section
+        className="relative w-full min-h-screen flex items-center justify-center text-center mt-24"
+        style={{
+          backgroundImage: "url('/BG_CTA_strategy.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Overlay más claro */}
+        <div className="absolute inset-0 bg-black/45 md:bg-black/40 backdrop-blur-[1px]" />
+
+        {/* Contenido */}
+        <div className="relative z-10 max-w-3xl mx-auto px-6 py-20">
+          <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight">
+            ¿Listo para modernizar tu sitio web?
+          </h2>
+
+          <p className="mt-4 text-slate-200 text-base md:text-lg">
+            Revisemos juntos el proyecto y definamos el plan adecuado para tu
+            institución, empresa o cámara.
+          </p>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Link href="/contacto" className="btn-primary text-base px-6 py-3">
+              Agenda una llamada
+            </Link>
+
+            <Link
+              href="/servicios"
+              className="btn-ghost bg-white/10 backdrop-blur hover:bg-white/20 text-base px-6 py-3"
+            >
+              Ver planes y servicios
+            </Link>
+          </div>
+
+          <p className="mt-6 text-xs text-slate-300">
+            También puedes escribir a{" "}
+            <a
+              href="mailto:info@tronxstrategy.com"
+              className="text-sky-300 hover:text-sky-200"
+            >
+              contacto@tronxstrategy.com
+            </a>{" "}
+            o enviar un WhatsApp al{" "}
+            <span className="text-sky-200 font-medium">+56 9 2008 0031</span>.
+          </p>
+        </div>
+      </section>
     </>
   );
 }
