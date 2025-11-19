@@ -165,7 +165,7 @@ export default function HomePage() {
               className="object-contain opacity-90"
             />
             <Image
-              src="/logos/echevensko.png"
+              src="/logos/exploflex.png"
               alt="Echevensko Empresas"
               width={120}
               height={50}
