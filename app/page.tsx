@@ -166,7 +166,7 @@ export default function HomePage() {
             />
             <Image
               src="/logos/exploflex.png"
-              alt="Echevensko Empresas"
+              alt="Exhibidores Exploflex"
               width={120}
               height={50}
               className="object-contain opacity-90"
