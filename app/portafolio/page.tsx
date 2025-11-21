@@ -54,15 +54,15 @@ const projects = [
     url: "https://www.citylube.cl",
   },
   {
-    name: "Asociación Funcionarios MINVU–SERVIU Tarapacá",
-    img: "/portafolio/minvu.jpg",
-    type: "Sitio institucional · Información pública · Comunicaciones",
-    description:
-      "Sitio informativo moderno para la Asociación, con historia, directorio, servicios, documentos y formulario de contacto.",
-    status: "En desarrollo",
-    tags: ["Instituciones", "Informativo"],
-    url: "#",
-  },
+  name: "Exploflex Ltda.",
+  img: "/portafolio/minvu.jpg",
+  type: "Sitio corporativo · Industria · Catálogo de productos",
+  description:
+    "Sitio web informativo y corporativo para Exploflex Ltda., con presentación de la empresa, líneas de productos, servicios, contacto y contenidos actualizados.",
+  status: "En desarrollo",
+  tags: ["Industria", "Corporativo"],
+  url: "https://exploflex.cl/",
+},
 ];
 
 export default function PortafolioPage() {
