@@ -120,13 +120,12 @@ export default function NosotrosPage() {
         {/* Bloque extra inferior */}
         <section className="mt-12 grid gap-6 md:grid-cols-3 text-xs md:text-sm text-slate-300">
           <div>
-            <p className="font-semibold text-slate-100">Base en Chile Central</p>
-            <p className="mt-1">
-              Proyectos con foco en empresas y organizaciones del eje
-              Santiago–Rancagua–Valparaíso, con capacidad remota para otros
-              territorios.
-            </p>
-          </div>
+  <p className="font-semibold text-slate-100">Cobertura nacional</p>
+  <p className="mt-1">
+    Proyectos para empresas, cámaras e instituciones de todo Chile, con
+    operación 100% remota y procesos formales de trabajo.
+  </p>
+</div>
           <div>
             <p className="font-semibold text-slate-100">Estándar corporativo</p>
             <p className="mt-1">
