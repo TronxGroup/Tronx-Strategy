@@ -1,5 +1,4 @@
-"use client";
-
+// app/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,7 +14,8 @@ export const metadata: Metadata = {
     canonical: "https://www.tronxstrategy.com/",
   },
   openGraph: {
-    title: "Tronx Strategy — Sitios web modernos, rápidos y orientados a resultados",
+    title:
+      "Tronx Strategy — Sitios web modernos, rápidos y orientados a resultados",
     description:
       "Sitios web corporativos en Next.js para empresas, cámaras e instituciones. Infraestructura GitHub + Vercel + Cloudflare conectada a CRM.",
     url: "https://www.tronxstrategy.com/",
@@ -126,7 +126,8 @@ export default function HomePage() {
               </h2>
               <p className="mt-3 text-sm text-slate-200">
                 Tres niveles pensados para empresas, instituciones y cámaras:
-                presencia profesional, sitio corporativo completo o solución premium.
+                presencia profesional, sitio corporativo completo o solución
+                premium con CRM y WebOps.
               </p>
               <ul className="mt-4 space-y-2 text-sm text-slate-100">
                 <li>• Plan Básico — Presencia profesional.</li>
@@ -134,10 +135,14 @@ export default function HomePage() {
                 <li>• Plan Premium — Sitio + CRM + WebOps.</li>
               </ul>
               <p className="mt-4 text-xs text-slate-400">
-                Incluyen diseño, desarrollo, SEO base, dominio y SSL.
+                Incluyen diseño, desarrollo, SEO base, dominio y SSL. Entrega
+                documentada y lista para seguir creciendo.
               </p>
               <div className="mt-5">
-                <Link href="/servicios#planes" className="btn-primary w-full text-center">
+                <Link
+                  href="/servicios#planes"
+                  className="btn-primary w-full text-center"
+                >
                   Ver lista de precios →
                 </Link>
               </div>
@@ -156,36 +161,37 @@ export default function HomePage() {
           </h2>
           <p className="section-subtitle">
             Tronx Strategy integra diseño, contenido y tecnología para entregar
-            sitios modernos, medibles y preparados para crecer por capas.
+            sitios modernos, medibles y preparados para crecer por capas, no por
+            peso.
           </p>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-4">
-            {[
-              {
-                title: "Sitios corporativos",
-                body: "Para empresas, gremios, estudios y organizaciones que necesitan presencia sólida y confiable.",
-              },
-              {
-                title: "Landing pages",
-                body: "Páginas de alta conversión para campañas, cursos, eventos o lanzamientos.",
-              },
-              {
-                title: "Portales y directorios",
-                body: "Arquitecturas escalables para instituciones, cámaras y proyectos territoriales.",
-              },
-              {
-                title: "Sitios con CRM",
-                body: "Formularios conectados a Zoho, HubSpot y reporting ejecutivo.",
-              },
-            ].map((card) => (
-              <div key={card.title} className="card-surface p-6">
-                <h3 className="text-lg font-semibold text-slate-50">
-                  {card.title}
-                </h3>
-                <p className="mt-2 text-sm text-slate-300">{card.body}</p>
-              </div>
-            ))}
-          </div>
+        <div className="mt-10 grid gap-6 md:grid-cols-4">
+          {[
+            {
+              title: "Sitios corporativos",
+              body: "Páginas completas para empresas, gremios, estudios y organizaciones que necesitan presencia sólida y confiable.",
+            },
+            {
+              title: "Landing pages y campañas",
+              body: "Páginas de alta conversión para lanzamientos, cursos, eventos o productos específicos.",
+            },
+            {
+              title: "Portales y directorios",
+              body: "Arquitecturas escalables para cámaras, instituciones y proyectos territoriales.",
+            },
+            {
+              title: "Sitios con CRM integrado",
+              body: "Formularios conectados a Zoho, HubSpot u otros CRM, con flujos internos y reporting ejecutivo.",
+            },
+          ].map((card) => (
+            <div key={card.title} className="card-surface p-6">
+              <h3 className="text-lg font-semibold text-slate-50">
+                {card.title}
+              </h3>
+              <p className="mt-2 text-sm text-slate-300">{card.body}</p>
+            </div>
+          ))}
+        </div>
         </section>
 
         {/* Logos clientes */}
@@ -193,19 +199,44 @@ export default function HomePage() {
           <p className="section-title">Clientes y proyectos</p>
           <h2 className="section-heading">Confían en el ecosistema Tronx Group.</h2>
           <p className="section-subtitle">
-            Experiencia con bancos, cámaras, colegios, instituciones y pymes.
+            Experiencia con bancos, cámaras, asociaciones, colegios y marcas
+            personales ejecutivas.
           </p>
 
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-8 place-items-center opacity-80">
-            <Image src="/logos/bice.png" alt="Banco BICE" width={120} height={50} />
-            <Image src="/logos/apcc.png" alt="APCC" width={120} height={50} />
-            <Image src="/logos/exploflex.png" alt="Exploflex" width={120} height={50} />
-            <Image src="/logos/citylube.png" alt="CityLube" width={120} height={50} />
+            <Image
+              src="/logos/bice.png"
+              alt="Banco BICE"
+              width={120}
+              height={50}
+              className="object-contain opacity-90"
+            />
+            <Image
+              src="/logos/apcc.png"
+              alt="Cámara de Comercio Asia Pacífico"
+              width={120}
+              height={50}
+              className="object-contain opacity-90"
+            />
+            <Image
+              src="/logos/exploflex.png"
+              alt="Exhibidores Exploflex"
+              width={120}
+              height={50}
+              className="object-contain opacity-90"
+            />
+            <Image
+              src="/logos/citylube.png"
+              alt="CityLube"
+              width={120}
+              height={50}
+              className="object-contain opacity-90"
+            />
           </div>
 
           <p className="mt-6 text-center text-xs text-slate-400 max-w-2xl mx-auto">
             Proyectos que combinan desarrollo web moderno, infraestructura cloud y
-            contenido claro, alineado con estándares corporativos.
+            contenido claro, alineado con los estándares del mundo corporativo.
           </p>
         </section>
       </div>
@@ -220,6 +251,7 @@ export default function HomePage() {
           backgroundRepeat: "no-repeat",
         }}
       >
+        {/* Overlay más claro */}
         <div className="absolute inset-0 bg-black/45 md:bg-black/40 backdrop-blur-[1px]" />
 
         <div className="relative z-10 max-w-3xl mx-auto px-6 py-20">
@@ -228,14 +260,16 @@ export default function HomePage() {
           </h2>
 
           <p className="mt-4 text-slate-200 text-base md:text-lg">
-            Revisemos juntos tu sitio actual, definamos objetivos claros y armemos un
-            plan acorde a tu empresa o institución.
+            Revisemos juntos tu sitio actual, definamos objetivos claros y
+            armemos un plan acorde a tu empresa, institución o cámara. Entrega
+            típica: 2–4 semanas.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link href="/contacto#form" className="btn-primary text-base px-6 py-3">
               Agenda una llamada
             </Link>
+
             <Link
               href="/servicios"
               className="btn-ghost bg-white/10 backdrop-blur hover:bg-white/20 text-base px-6 py-3"
@@ -246,7 +280,10 @@ export default function HomePage() {
 
           <p className="mt-6 text-xs text-slate-300">
             También puedes escribir a{" "}
-            <a href="mailto:info@tronxstrategy.com" className="text-sky-300 hover:text-sky-200">
+            <a
+              href="mailto:info@tronxstrategy.com"
+              className="text-sky-300 hover:text-sky-200"
+            >
               info@tronxstrategy.com
             </a>{" "}
             o enviar un WhatsApp al{" "}
