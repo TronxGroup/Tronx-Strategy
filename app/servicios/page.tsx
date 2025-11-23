@@ -1,276 +1,143 @@
-import type { Metadata } from "next";
+"use client";
 
-const planos = [
-  {
-    name: "Plan Básico — Presencia profesional",
-    price: "$290.000",
-    description:
-      "Para profesionales, emprendedores y negocios locales que necesitan una presencia clara, moderna y funcional.",
-    features: [
-      "Sitio de 1 a 3 secciones",
-      "Diseño responsive moderno",
-      "Formulario de contacto + WhatsApp",
-      "SEO básico y carga rápida",
-      "Configuración de dominio y SSL",
-      "Entrega en 7 días hábiles",
-    ],
-  },
-  {
-    name: "Plan Medio — Sitio corporativo",
-    price: "$590.000 – $690.000",
-    description:
-      "Para empresas y organizaciones que requieren un sitio completo, con páginas, contenidos, blog y medición.",
-    popular: true,
-    features: [
-      "5 a 7 páginas completas",
-      "Blog o sección de noticias",
-      "Integración con Google Analytics + Tag Manager",
-      "Optimización SEO On-Page",
-      "Configuración de correo corporativo",
-      "Integración con CRM (Zoho / HubSpot)",
-      "Capacitación de uso (1 hora)",
-      "Entrega en 2 a 3 semanas",
-    ],
-  },
-  {
-    name: "Plan Premium — Todo incluido",
-    price: "$990.000 – $1.500.000",
-    description:
-      "Para instituciones, cámaras y empresas grandes que necesitan una solución integrada y de alto estándar.",
-    features: [
-      "8 a 12 páginas + blog avanzado",
-      "Animaciones y secciones interactivas",
-      "Producción básica de contenido (textos + imágenes)",
-      "Integraciones avanzadas con CRM y campañas",
-      "Manual Web Corporativo en PDF",
-      "1 mes de soporte incluido",
-      "Entrega en 3 a 4 semanas",
-    ],
-  },
-];
-
-const extras = [
-  {
-    title: "Landing page 48 horas",
-    description:
-      "Página de alta conversión para campañas, lanzamientos o eventos, lista en 2 días hábiles.",
-    price: "$120.000 – $180.000",
-  },
-  {
-    title: "Optimización web (velocidad + SEO + UX)",
-    description:
-      "Mejoramos rendimiento, estructura y contenido de tu sitio actual.",
-    price: "$80.000 – $200.000",
-  },
-  {
-    title: "Rediseño express",
-    description:
-      "Actualizamos el diseño sin cambiar la base de contenido, en solo 1 semana.",
-    price: "$250.000 – $400.000",
-  },
-  {
-    title: "Migración a Vercel + Cloudflare",
-    description:
-      "Movemos tu sitio desde hosting tradicional o WordPress a una infraestructura moderna y rápida.",
-    price: "$150.000 – $300.000",
-  },
-];
-
-const recurrentes = [
-  {
-    title: "Mantención web",
-    details: "Actualizaciones de contenido, respaldos y pequeños cambios.",
-    price: "Desde $29.990 mensual",
-  },
-  {
-    title: "Hosting administrado",
-    details: "Infraestructura Vercel + Cloudflare con monitoreo y SSL.",
-    price: "Desde $10.000 mensual",
-  },
-  {
-    title: "Soporte prioritario",
-    details: "Atención con tiempos de respuesta definidos.",
-    price: "Desde $19.990 mensual",
-  },
-  {
-    title: "Gestión de contenidos",
-    details: "Publicación mensual de noticias, blog o actualizaciones.",
-    price: "Desde $80.000 mensual",
-  },
-];
-
-export const metadata: Metadata = {
-  title: "Servicios y planes | Tronx Strategy",
-  description:
-    "Planes web claros para empresas, cámaras e instituciones: sitios corporativos en Next.js, landing pages rápidas, migraciones a Vercel + Cloudflare y servicios recurrentes de mantención.",
-  alternates: {
-    canonical: "/servicios",
-  },
-  openGraph: {
-    title: "Servicios y planes | Tronx Strategy",
-    description:
-      "Plan Básico, Medio y Premium para sitios corporativos modernos, más servicios adicionales y recurrentes para mantener tu web siempre al día.",
-    url: "https://www.tronxstrategy.com/servicios",
-    type: "website",
-    images: [
-      {
-        url: "/og_tronxstrategy.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Tronx Strategy — Servicios web corporativos",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Servicios y planes | Tronx Strategy",
-    description:
-      "Sitios web corporativos modernos, landing pages, migraciones y mantención continua para tu organización.",
-    images: ["/og_tronxstrategy.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
-
-export default function ServiciosPage() {
+export default function NosotrosPage() {
   return (
-    <>
-      {/* 🔹 HERO FULL SCREEN */}
-      <section
-        className="relative w-full min-h-screen flex items-center justify-center text-center overflow-hidden"
-        style={{
-          backgroundImage: "url('/BG_servicios_strategy.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
+    <section
+      className="relative min-h-screen w-full flex items-center"
+      style={{
+        backgroundImage: "url('/BG_nosotros_strategy.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {/* Overlay para legibilidad */}
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-[1px]" />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6 py-32">
-          <p className="section-title text-sky-300">Servicios y planes</p>
-          <h1 className="text-4xl md:text-5xl font-semibold text-white tracking-tight">
-            Planes claros, servicios modulares y operación continua.
+      {/* Contenido */}
+      <div className="relative section py-20 lg:py-24">
+        {/* Intro */}
+        <header className="max-w-4xl">
+          <p className="section-title text-sky-300/90">Nosotros</p>
+
+          <h1 className="section-heading text-white">
+            Tronx Strategy es el estudio web de Tronx Group.
           </h1>
-          <p className="mt-4 text-slate-300 text-base md:text-lg">
-            Elige el plan que necesitas: landing rápida, sitio corporativo o una
-            solución premium con CRM. Todos los proyectos comparten el mismo
-            estándar tecnológico, de diseño y de soporte.
+
+          <p className="section-subtitle text-slate-200">
+            Unimos diseño, desarrollo y operación digital bajo un modelo 100% cloud.
+            Creamos sitios web que se ven bien, cargan rápido y funcionan como un
+            verdadero activo de negocio: apoyan ventas, reputación, captación de leads
+            y comunicación con clientes.
           </p>
-        </div>
-      </section>
+        </header>
 
-      {/* CONTENIDO PRINCIPAL */}
-      <div className="section mt-20">
-        {/* 🔹 PLANES */}
-        <section id="planes" className="grid gap-6 lg:grid-cols-3">
-          {planos.map((plan) => (
-            <article
-              key={plan.name}
-              className={`card-surface p-6 flex flex-col h-full border ${
-                plan.popular
-                  ? "border-sky-400/60 shadow-soft-glow"
-                  : "border-slate-700/70"
-              }`}
-            >
-              <div className="mb-4">
-                {plan.popular && (
-                  <div className="inline-block px-3 py-1 mb-3 rounded-full text-xs font-semibold bg-sky-400/20 text-sky-300 border border-sky-400/30">
-                    Más elegido
-                  </div>
-                )}
-                <h2 className="text-lg font-semibold text-slate-50">
-                  {plan.name}
-                </h2>
-                <p className="mt-1 text-sky-400 text-base font-semibold">
-                  {plan.price}
-                </p>
-                <p className="mt-3 text-sm text-slate-300">
-                  {plan.description}
-                </p>
-              </div>
-
-              <ul className="mt-3 space-y-2 text-sm text-slate-200 flex-1">
-                {plan.features.map((f) => (
-                  <li key={f}>• {f}</li>
-                ))}
-              </ul>
-
-              <a
-                href="/contacto#form"
-                className="btn-primary w-full text-center mt-6"
-              >
-                Cotizar →
-              </a>
-            </article>
-          ))}
-        </section>
-
-        {/* 🔹 SERVICIOS ADICIONALES + RECURRENTES */}
-        <section className="mt-20 grid gap-10 lg:grid-cols-[1.4fr_minmax(0,1fr)] items-start">
-          {/* EXTRAS */}
-          <div>
-            <h2 className="text-xl font-semibold text-slate-50">
-              Servicios adicionales
-            </h2>
-            <p className="mt-2 text-sm text-slate-300 max-w-2xl">
-              Productos rápidos y de alto impacto para campañas, lanzamientos o
-              mejoras puntuales en tu sitio actual.
+        {/* Contenido principal */}
+        <div className="mt-12 grid gap-8 lg:grid-cols-[1.3fr_minmax(0,1fr)] items-start">
+          
+          {/* Texto */}
+          <div className="space-y-6 text-sm md:text-base text-slate-300 leading-relaxed">
+            <p>
+              Tronx Strategy nace como la unidad digital de{" "}
+              <strong>Tronx Group SpA</strong>, holding creativo–tecnológico con base
+              en Providencia, Santiago de Chile. Formamos parte de un ecosistema que
+              integra producción audiovisual (<strong>Dekaelo Media</strong>), medios
+              editoriales (<strong>Tronx TV</strong>) y plataformas territoriales
+              (<strong>SANRAVAL</strong>).
             </p>
 
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
-              {extras.map((extra) => (
-                <article key={extra.title} className="card-surface p-4 text-sm">
-                  <h3 className="font-semibold text-slate-50">
-                    {extra.title}
-                  </h3>
-                  <p className="mt-1 text-slate-300">{extra.description}</p>
-                  <p className="mt-2 text-sky-400 font-medium">{extra.price}</p>
-                </article>
-              ))}
-            </div>
+            <p>
+              Nuestra especialidad es el <strong>desarrollo web moderno</strong> para
+              empresas, cámaras, asociaciones, colegios y negocios de servicios.
+              Combinamos <em>Next.js</em>, <em>Vercel</em>, <em>Cloudflare</em>,
+              analítica y CRM para que tu sitio no sea solo una vitrina, sino una
+              pieza clave de tu operación digital.
+            </p>
+
+            <p>
+              A diferencia de una agencia tradicional, trabajamos sobre una{" "}
+              <strong>arquitectura tecnológica definida</strong>:{" "}
+              <strong>GitHub</strong> para el código, <strong>Vercel</strong> para
+              despliegue continuo y <strong>Cloudflare</strong> para rendimiento y
+              seguridad. Esto nos permite operar con eficiencia, reducir tiempos y
+              entregar resultados medibles desde el primer día.
+            </p>
+
+            <p>
+              Diseñamos pensando en la experiencia del usuario, en los flujos de
+              negocio y en la facilidad de actualización para equipos internos.
+            </p>
+
+            <p>
+              Trabajamos con una lógica de <strong>capas</strong>: partimos por una
+              base sólida (sitio rápido y claro) y vamos sumando funcionalidades —
+              blog, CRM, directorios, portales, integraciones— a medida que tu
+              organización lo necesita.
+            </p>
           </div>
 
-          {/* RECURRENTES */}
-          <div className="card-surface p-5">
-            <h2 className="text-lg font-semibold text-slate-50">
-              Servicios recurrentes
+          {/* Tarjeta lateral */}
+          <aside className="card-surface p-6 bg-black/55 backdrop-blur border border-white/10">
+            <h2 className="text-lg font-semibold text-white">
+              Principios de trabajo
             </h2>
-            <p className="mt-2 text-sm text-slate-300">
-              Mantén tu sitio seguro, actualizado y alineado a tus campañas y
-              a tu operación comercial.
-            </p>
-            <ul className="mt-4 space-y-3 text-sm text-slate-200">
-              {recurrentes.map((srv) => (
-                <li key={srv.title}>
-                  <p className="font-semibold text-slate-50">{srv.title}</p>
-                  <p className="text-slate-300">{srv.details}</p>
-                  <p className="text-sky-400 text-xs mt-1">{srv.price}</p>
-                </li>
-              ))}
+
+            <ul className="mt-4 space-y-3 text-sm text-slate-300">
+              <li>
+                <strong className="text-white">Simple primero.</strong>{" "}
+                Menos capas, menos fricción, más claridad.
+              </li>
+
+              <li>
+                <strong className="text-white">Tecnología comprensible.</strong>{" "}
+                Infraestructura moderna explicada en lenguaje claro.
+              </li>
+
+              <li>
+                <strong className="text-white">Diseño con propósito.</strong>{" "}
+                Cada sección responde a una necesidad real.
+              </li>
+
+              <li>
+                <strong className="text-white">Operación continua.</strong>{" "}
+                No entregamos un archivo: dejamos un sistema vivo.
+              </li>
+
+              <li>
+                <strong className="text-white">Visión de holding.</strong>{" "}
+                Coordinación con todas las unidades de Tronx Group.
+              </li>
             </ul>
-          </div>
-        </section>
+          </aside>
+        </div>
 
-        {/* CTA FINAL CORTA */}
-        <section className="mt-16 text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">
-            ¿No sabes qué plan elegir?
-          </h2>
-          <p className="mt-3 text-sm md:text-base text-slate-300 max-w-2xl mx-auto">
-            Revisamos tu situación actual y te recomendamos la combinación justa
-            entre plan, extras y servicios recurrentes para tu organización.
-          </p>
-          <a
-            href="/contacto#form"
-            className="btn-primary mt-6 inline-flex items-center justify-center px-8 py-3"
-          >
-            Hablar con Tronx Strategy →
-          </a>
+        {/* Bloque extra inferior */}
+        <section className="mt-12 grid gap-6 md:grid-cols-3 text-xs md:text-sm text-slate-300">
+          
+          <div>
+            <p className="font-semibold text-slate-100">Cobertura nacional</p>
+            <p className="mt-1">
+              Proyectos para empresas, cámaras e instituciones de todo Chile, con
+              operación remota y procesos formales.
+            </p>
+          </div>
+
+          <div>
+            <p className="font-semibold text-slate-100">Estándar corporativo</p>
+            <p className="mt-1">
+              Experiencia con bancos, cámaras, colegios y empresas industriales.
+            </p>
+          </div>
+
+          <div>
+            <p className="font-semibold text-slate-100">Preparado para crecer</p>
+            <p className="mt-1">
+              Sitios listos para directorios, CRM e infraestructura cloud.
+            </p>
+          </div>
+
         </section>
       </div>
-    </>
+    </section>
   );
 }
