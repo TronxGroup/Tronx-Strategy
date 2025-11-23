@@ -1,4 +1,3 @@
-// app/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -23,20 +22,20 @@ export default function HomePage() {
         <div className="relative w-full max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] gap-10 items-center px-4 lg:px-8 py-24">
           <div>
             <p className="text-xs font-semibold tracking-[0.26em] uppercase text-sky-300/90">
-              Estudio digital Tronx Group
+              WebOps · Sitios Web · Infraestructura Cloud
             </p>
             <h1 className="mt-3 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white">
-              Sitios web modernos para empresas que quieren crecer.
+              Sitios web modernos, rápidos y orientados a resultados.
             </h1>
             <p className="mt-4 text-base md:text-lg text-slate-200 max-w-xl">
-              Diseñamos y desarrollamos sitios web rápidos, seguros y listos
-              para vender: desde emprendedores hasta instituciones y gremios.
-              Infraestructura GitHub + Vercel + Cloudflare, contenido claro y
-              tiempos de entrega ágiles.
+              Desarrollamos sitios web de nivel empresarial: rápidos, seguros y
+              preparados para captar más leads. Operamos con GitHub, Vercel y
+              Cloudflare, conectando tu web a CRM y analítica para tomar
+              mejores decisiones comerciales.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/contacto" className="btn-primary">
+              <Link href="/contacto#form" className="btn-primary">
                 Agenda una llamada
               </Link>
               <Link
@@ -70,7 +69,7 @@ export default function HomePage() {
                 <p className="text-white text-base md:text-lg font-semibold">
                   100% cloud
                 </p>
-                <p>Operación remota y escalable.</p>
+                <p>Operación remota, liviana y escalable.</p>
               </div>
             </div>
           </div>
@@ -82,11 +81,12 @@ export default function HomePage() {
                 Planes Tronx Strategy
               </p>
               <h2 className="mt-3 text-2xl font-semibold text-white">
-                Paquetes claros, lista de precios simple.
+                Sitios web con precios claros. Sin sorpresas.
               </h2>
               <p className="mt-3 text-sm text-slate-200">
-                Tres niveles: presencia profesional, sitio corporativo completo,
-                o solución premium con CRM y WebOps.
+                Tres niveles pensados para empresas, instituciones y cámaras:
+                presencia profesional, sitio corporativo completo o solución
+                premium con CRM y WebOps.
               </p>
               <ul className="mt-4 space-y-2 text-sm text-slate-100">
                 <li>• Plan Básico — Presencia profesional.</li>
@@ -94,8 +94,14 @@ export default function HomePage() {
                 <li>• Plan Premium — Sitio + CRM + WebOps.</li>
               </ul>
               <p className="mt-4 text-xs text-slate-400">
-                Incluyen diseño, desarrollo, SEO base, dominio y SSL.
+                Incluyen diseño, desarrollo, SEO base, dominio y SSL. Entrega
+                documentada y lista para seguir creciendo.
               </p>
+              <div className="mt-5">
+                <Link href="/servicios#planes" className="btn-primary w-full text-center">
+                  Ver lista de precios →
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -111,22 +117,27 @@ export default function HomePage() {
           </h2>
           <p className="section-subtitle">
             Tronx Strategy integra diseño, contenido y tecnología para entregar
-            sitios modernos preparados para crecer.
+            sitios modernos, medibles y preparados para crecer por capas, no por
+            peso.
           </p>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-4">
             {[
               {
                 title: "Sitios corporativos",
-                body: "Páginas completas para empresas, gremios, estudios y organizaciones.",
+                body: "Páginas completas para empresas, gremios, estudios y organizaciones que necesitan presencia sólida y confiable.",
               },
               {
                 title: "Landing pages y campañas",
-                body: "Páginas de alta conversión para lanzamientos, cursos o eventos.",
+                body: "Páginas de alta conversión para lanzamientos, cursos, eventos o productos específicos.",
               },
               {
                 title: "Portales y directorios",
-                body: "Arquitecturas escalables para cámaras, instituciones y territorios.",
+                body: "Arquitecturas escalables para cámaras, instituciones y proyectos territoriales.",
+              },
+              {
+                title: "Sitios con CRM integrado",
+                body: "Formularios conectados a Zoho, HubSpot u otros CRM, con flujos internos y reporting ejecutivo.",
               },
             ].map((card) => (
               <div key={card.title} className="card-surface p-6">
@@ -146,7 +157,8 @@ export default function HomePage() {
             Confían en el ecosistema Tronx Group.
           </h2>
           <p className="section-subtitle">
-            Empresas, cámaras, asociaciones y marcas personales ejecutivas.
+            Experiencia con bancos, cámaras, asociaciones, colegios y marcas
+            personales ejecutivas.
           </p>
 
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-8 place-items-center opacity-80">
@@ -159,7 +171,7 @@ export default function HomePage() {
             />
             <Image
               src="/logos/apcc.png"
-              alt="APCC"
+              alt="Cámara de Comercio Asia Pacífico"
               width={120}
               height={50}
               className="object-contain opacity-90"
@@ -179,6 +191,11 @@ export default function HomePage() {
               className="object-contain opacity-90"
             />
           </div>
+
+          <p className="mt-6 text-center text-xs text-slate-400 max-w-2xl mx-auto">
+            Proyectos que combinan desarrollo web moderno, infraestructura cloud y
+            contenido claro, alineado con los estándares del mundo corporativo.
+          </p>
         </section>
       </div>
 
@@ -202,12 +219,13 @@ export default function HomePage() {
           </h2>
 
           <p className="mt-4 text-slate-200 text-base md:text-lg">
-            Revisemos juntos el proyecto y definamos el plan adecuado para tu
-            institución, empresa o cámara.
+            Revisemos juntos tu sitio actual, definamos objetivos claros y
+            armemos un plan acorde a tu empresa, institución o cámara. Entrega
+            típica: 2–4 semanas.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/contacto" className="btn-primary text-base px-6 py-3">
+            <Link href="/contacto#form" className="btn-primary text-base px-6 py-3">
               Agenda una llamada
             </Link>
 
