@@ -31,37 +31,73 @@ a {
   text-decoration: none;
 }
 
+/* Borde con leve glow */
 .gradient-border {
   border: 1px solid rgba(148, 163, 184, 0.35);
   background: radial-gradient(circle at top left, rgba(0, 216, 255, 0.18), transparent 55%);
 }
 
+/* Superficie base de tarjetas */
 .card-surface {
   @apply rounded-3xl bg-black/40 backdrop-blur-xl border border-slate-800/70;
 }
 
+/* Botón principal */
 .btn-primary {
   @apply inline-flex items-center justify-center rounded-full px-6 py-2 text-sm font-medium
     bg-tronx-accent text-slate-950 hover:bg-cyan-300 transition shadow-soft-glow;
 }
 
+/* Botón ghost / secundario */
 .btn-ghost {
   @apply inline-flex items-center justify-center rounded-full px-6 py-2 text-sm font-medium
     border border-slate-600/70 text-slate-100 hover:bg-slate-800/60 transition;
 }
 
+/* Contenedor de secciones */
 .section {
   @apply w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16;
 }
 
+/* Titular pequeño de sección */
 .section-title {
   @apply text-sm font-semibold tracking-[0.22em] text-slate-400 uppercase;
 }
 
+/* Heading principal de sección */
 .section-heading {
   @apply mt-2 text-3xl md:text-4xl font-semibold text-slate-50;
 }
 
+/* Subtítulo / párrafo de apoyo */
 .section-subtitle {
   @apply mt-3 text-slate-300 max-w-2xl;
+}
+
+/* ---------- Formularios Tronx Strategy ---------- */
+
+/* Input base (text, email, tel, etc.) */
+.input-base {
+  @apply mt-1 w-full rounded-xl border border-slate-700/70 bg-black/60
+    px-3 py-2 text-sm text-slate-50 outline-none
+    focus:border-tronx-accent/70;
+}
+
+/* Select con mismo look que input */
+.input-select {
+  @apply mt-1 w-full rounded-xl border border-slate-700/70 bg-black/60
+    px-3 py-2 text-sm text-slate-50 outline-none
+    focus:border-tronx-accent/70;
+}
+
+/* Textarea */
+.input-area {
+  @apply mt-1 w-full rounded-xl border border-slate-700/70 bg-black/60
+    px-3 py-2 text-sm text-slate-50 outline-none
+    focus:border-tronx-accent/70;
+}
+
+/* Glow suave usado en algunos botones / cards */
+.shadow-soft-glow {
+  box-shadow: 0 0 25px rgba(34, 211, 238, 0.25);
 }
