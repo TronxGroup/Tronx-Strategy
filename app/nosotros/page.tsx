@@ -1,4 +1,41 @@
-"use client";
+}"use client";
+
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Nosotros | Tronx Strategy — Estudio web de Tronx Group",
+  description:
+    "Tronx Strategy es la unidad digital de Tronx Group. Desarrollamos sitios web modernos para empresas, cámaras e instituciones usando Next.js, Vercel y Cloudflare. Enfoque corporativo, capas escalables y operación 100% cloud.",
+  alternates: {
+    canonical: "/nosotros",
+  },
+  openGraph: {
+    title: "Nosotros | Tronx Strategy — Estudio web de Tronx Group",
+    description:
+      "Unidad digital de Tronx Group orientada al desarrollo web corporativo. Sitios rápidos, seguros, escalables y preparados para crecer.",
+    url: "https://www.tronxstrategy.com/nosotros",
+    type: "website",
+    images: [
+      {
+        url: "/og_tronxstrategy.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Tronx Strategy — Estudio web",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nosotros | Tronx Strategy",
+    description:
+      "Estudio web corporativo basado en tecnología moderna: Next.js, GitHub, Vercel y Cloudflare.",
+    images: ["/og_tronxstrategy.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function NosotrosPage() {
   return (
@@ -27,8 +64,7 @@ export default function NosotrosPage() {
           <p className="section-subtitle text-slate-200">
             Unimos diseño, desarrollo y operación digital bajo un modelo 100% cloud.
             Creamos sitios web que se ven bien, cargan rápido y funcionan como un
-            verdadero activo de negocio: apoyan ventas, reputación, captación de leads
-            y comunicación con clientes.
+            activo real del negocio: ventas, reputación, leads y comunicación.
           </p>
         </header>
 
@@ -49,32 +85,27 @@ export default function NosotrosPage() {
               Nuestra especialidad es el <strong>desarrollo web moderno</strong> para
               empresas, cámaras, asociaciones, colegios y negocios de servicios.
               Combinamos <em>Next.js</em>, <em>Vercel</em>, <em>Cloudflare</em>,
-              analítica y CRM para que tu sitio no sea solo una vitrina, sino una
-              pieza clave de tu operación digital.
+              analítica y CRM para transformar tu sitio en una pieza clave de tu
+              operación digital.
             </p>
 
             <p>
-              A diferencia de una agencia tradicional, trabajamos sobre una{" "}
-              <strong>arquitectura tecnológica definida</strong>:{" "}
-              <strong>GitHub</strong> para el código, <strong>Vercel</strong> para
-              despliegue continuo y <strong>Cloudflare</strong> para rendimiento y
-              seguridad. Esto nos permite operar con eficiencia, reducir tiempos y
-              entregar resultados medibles desde el primer día.
+              Trabajamos sobre una <strong>arquitectura tecnológica definida</strong>:
+              GitHub para el código, Vercel para despliegue y Cloudflare para
+              rendimiento y seguridad. Esto asegura velocidad, estabilidad y
+              escalabilidad sin complejidad innecesaria.
             </p>
 
             <p>
-              Para nosotros, un sitio web es una plataforma que debe sostener
-              campañas, contenido, posicionamiento y relación con clientes. Diseñamos
-              pensando en la experiencia del usuario, en los flujos de negocio y en
-              la facilidad de actualización para equipos internos de marketing y
-              comunicaciones.
+              Diseñamos considerando experiencia de usuario, flujos de negocio y
+              facilidad de actualización. Un sitio debe sostener campañas,
+              posicionamiento, contenido y relación con clientes.
             </p>
 
             <p>
-              Trabajamos con una lógica de <strong>capas</strong>: partimos por una
-              base sólida (sitio rápido y claro) y vamos sumando funcionalidades —
-              blog, CRM, directorios, portales, integraciones— a medida que tu
-              organización lo necesita, sin sobrecargar el proyecto desde el inicio.
+              Nuestra metodología se basa en <strong>capas</strong>: partimos con una
+              base rápida y clara, sumando blog, CRM, directorios, portales o
+              integraciones a medida que tu organización crece.
             </p>
           </div>
 
@@ -87,31 +118,27 @@ export default function NosotrosPage() {
             <ul className="mt-4 space-y-3 text-sm text-slate-300">
               <li>
                 <strong className="text-white">Simple primero.</strong>{" "}
-                Menos capas, menos fricción, más claridad para el usuario.
+                Menos capas, menos fricción, más claridad.
               </li>
 
               <li>
                 <strong className="text-white">Tecnología comprensible.</strong>{" "}
-                Infraestructura moderna explicada en lenguaje claro para equipos
-                que no viven en el código, pero toman decisiones.
+                Infraestructura moderna explicada en lenguaje claro.
               </li>
 
               <li>
                 <strong className="text-white">Diseño con propósito.</strong>{" "}
-                Cada sección responde a una necesidad real del negocio: informar,
-                captar, explicar o derivar.
+                Cada sección resuelve una necesidad real del negocio.
               </li>
 
               <li>
                 <strong className="text-white">Operación continua.</strong>{" "}
-                No entregamos un archivo: dejamos funcionando un sistema vivo, con
-                documentación y opciones de mantención.
+                No entregamos un archivo: entregamos un sistema vivo.
               </li>
 
               <li>
                 <strong className="text-white">Visión de holding.</strong>{" "}
-                Podemos coordinar web, contenido y medios con las demás unidades de
-                Tronx Group cuando el proyecto lo requiere.
+                Web + contenido + medios cuando el proyecto lo requiere.
               </li>
             </ul>
           </aside>
@@ -120,24 +147,26 @@ export default function NosotrosPage() {
         {/* Bloque extra inferior */}
         <section className="mt-12 grid gap-6 md:grid-cols-3 text-xs md:text-sm text-slate-300">
           <div>
-  <p className="font-semibold text-slate-100">Cobertura nacional</p>
-  <p className="mt-1">
-    Proyectos para empresas, cámaras e instituciones de todo Chile, con
-    operación 100% remota y procesos formales de trabajo.
-  </p>
-</div>
+            <p className="font-semibold text-slate-100">Cobertura nacional</p>
+            <p className="mt-1">
+              Proyectos para empresas, cámaras e instituciones de todo Chile.
+              Operación 100% remota y procesos formales.
+            </p>
+          </div>
+
           <div>
             <p className="font-semibold text-slate-100">Estándar corporativo</p>
             <p className="mt-1">
-              Experiencia con bancos, cámaras, colegios, empresas industriales y
-              pymes de servicios que requieren procesos formales.
+              Experiencia con bancos, gremios, colegios, empresas industriales y
+              servicios profesionales.
             </p>
           </div>
+
           <div>
             <p className="font-semibold text-slate-100">Preparado para crecer</p>
             <p className="mt-1">
-              Sitios listos para escalar a portales, directorios, integración con
-              CRM y proyectos territoriales junto a otras unidades del holding.
+              Listos para escalar a portales, directorios, CRM e infraestructura
+              avanzada.
             </p>
           </div>
         </section>
