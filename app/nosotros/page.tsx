@@ -1,41 +1,4 @@
-}"use client";
-
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Nosotros | Tronx Strategy — Estudio web de Tronx Group",
-  description:
-    "Tronx Strategy es la unidad digital de Tronx Group. Desarrollamos sitios web modernos para empresas, cámaras e instituciones usando Next.js, Vercel y Cloudflare. Enfoque corporativo, capas escalables y operación 100% cloud.",
-  alternates: {
-    canonical: "/nosotros",
-  },
-  openGraph: {
-    title: "Nosotros | Tronx Strategy — Estudio web de Tronx Group",
-    description:
-      "Unidad digital de Tronx Group orientada al desarrollo web corporativo. Sitios rápidos, seguros, escalables y preparados para crecer.",
-    url: "https://www.tronxstrategy.com/nosotros",
-    type: "website",
-    images: [
-      {
-        url: "/og_tronxstrategy.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Tronx Strategy — Estudio web",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Nosotros | Tronx Strategy",
-    description:
-      "Estudio web corporativo basado en tecnología moderna: Next.js, GitHub, Vercel y Cloudflare.",
-    images: ["/og_tronxstrategy.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+"use client";
 
 export default function NosotrosPage() {
   return (
