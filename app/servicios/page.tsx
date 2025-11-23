@@ -1,6 +1,4 @@
-"use client";
-
-import Image from "next/image";
+import type { Metadata } from "next";
 
 const planos = [
   {
@@ -101,6 +99,41 @@ const recurrentes = [
   },
 ];
 
+export const metadata: Metadata = {
+  title: "Servicios y planes | Tronx Strategy",
+  description:
+    "Planes web claros para empresas, cámaras e instituciones: sitios corporativos en Next.js, landing pages rápidas, migraciones a Vercel + Cloudflare y servicios recurrentes de mantención.",
+  alternates: {
+    canonical: "/servicios",
+  },
+  openGraph: {
+    title: "Servicios y planes | Tronx Strategy",
+    description:
+      "Plan Básico, Medio y Premium para sitios corporativos modernos, más servicios adicionales y recurrentes para mantener tu web siempre al día.",
+    url: "https://www.tronxstrategy.com/servicios",
+    type: "website",
+    images: [
+      {
+        url: "/og_tronxstrategy.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Tronx Strategy — Servicios web corporativos",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Servicios y planes | Tronx Strategy",
+    description:
+      "Sitios web corporativos modernos, landing pages, migraciones y mantención continua para tu organización.",
+    images: ["/og_tronxstrategy.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 export default function ServiciosPage() {
   return (
     <>
@@ -117,14 +150,14 @@ export default function ServiciosPage() {
         <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-32">
-          <p className="section-title text-sky-300">Servicios y Planes</p>
+          <p className="section-title text-sky-300">Servicios y planes</p>
           <h1 className="text-4xl md:text-5xl font-semibold text-white tracking-tight">
             Planes claros, servicios modulares y operación continua.
           </h1>
           <p className="mt-4 text-slate-300 text-base md:text-lg">
             Elige el plan que necesitas: landing rápida, sitio corporativo o una
             solución premium con CRM. Todos los proyectos comparten el mismo
-            estándar tecnológico y de diseño.
+            estándar tecnológico, de diseño y de soporte.
           </p>
         </div>
       </section>
@@ -132,7 +165,7 @@ export default function ServiciosPage() {
       {/* CONTENIDO PRINCIPAL */}
       <div className="section mt-20">
         {/* 🔹 PLANES */}
-        <section className="grid gap-6 lg:grid-cols-3">
+        <section id="planes" className="grid gap-6 lg:grid-cols-3">
           {planos.map((plan) => (
             <article
               key={plan.name}
@@ -184,7 +217,7 @@ export default function ServiciosPage() {
             </h2>
             <p className="mt-2 text-sm text-slate-300 max-w-2xl">
               Productos rápidos y de alto impacto para campañas, lanzamientos o
-              mejoras puntuales.
+              mejoras puntuales en tu sitio actual.
             </p>
 
             <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -206,7 +239,8 @@ export default function ServiciosPage() {
               Servicios recurrentes
             </h2>
             <p className="mt-2 text-sm text-slate-300">
-              Mantén tu sitio seguro, actualizado y alineado a tus campañas.
+              Mantén tu sitio seguro, actualizado y alineado a tus campañas y
+              a tu operación comercial.
             </p>
             <ul className="mt-4 space-y-3 text-sm text-slate-200">
               {recurrentes.map((srv) => (
@@ -218,6 +252,23 @@ export default function ServiciosPage() {
               ))}
             </ul>
           </div>
+        </section>
+
+        {/* CTA FINAL CORTA */}
+        <section className="mt-16 text-center">
+          <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">
+            ¿No sabes qué plan elegir?
+          </h2>
+          <p className="mt-3 text-sm md:text-base text-slate-300 max-w-2xl mx-auto">
+            Revisamos tu situación actual y te recomendamos la combinación justa
+            entre plan, extras y servicios recurrentes para tu organización.
+          </p>
+          <a
+            href="/contacto#form"
+            className="btn-primary mt-6 inline-flex items-center justify-center px-8 py-3"
+          >
+            Hablar con Tronx Strategy →
+          </a>
         </section>
       </div>
     </>
