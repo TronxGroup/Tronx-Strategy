@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* --------- Tema base --------- */
+
 :root {
   color-scheme: dark;
 }
@@ -11,8 +13,13 @@ body {
   padding: 0;
   margin: 0;
   min-height: 100%;
-  background: radial-gradient(circle at top, #111827 0, #020617 55%, #000000 100%);
-  color: #F9FAFB;
+  background: radial-gradient(
+    circle at top,
+    #111827 0,
+    #020617 55%,
+    #000000 100%
+  );
+  color: #f9fafb;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
     "Roboto", "Segoe UI", sans-serif;
 }
@@ -31,10 +38,16 @@ a {
   text-decoration: none;
 }
 
+/* --------- Utilidades visuales --------- */
+
 /* Borde con leve glow */
 .gradient-border {
   border: 1px solid rgba(148, 163, 184, 0.35);
-  background: radial-gradient(circle at top left, rgba(0, 216, 255, 0.18), transparent 55%);
+  background: radial-gradient(
+    circle at top left,
+    rgba(0, 216, 255, 0.18),
+    transparent 55%
+  );
 }
 
 /* Superficie base de tarjetas */
@@ -42,17 +55,26 @@ a {
   @apply rounded-3xl bg-black/40 backdrop-blur-xl border border-slate-800/70;
 }
 
+/* Glow suave usado en algunos botones / cards */
+.shadow-soft-glow {
+  box-shadow: 0 0 25px rgba(34, 211, 238, 0.25);
+}
+
+/* --------- Botones --------- */
+
 /* Botón principal */
 .btn-primary {
   @apply inline-flex items-center justify-center rounded-full px-6 py-2 text-sm font-medium
     bg-tronx-accent text-slate-950 hover:bg-cyan-300 transition shadow-soft-glow;
 }
 
-/* Botón ghost / secundario */
+/* Botón ghost / secundario ligero */
 .btn-ghost {
   @apply inline-flex items-center justify-center rounded-full px-6 py-2 text-sm font-medium
     border border-slate-600/70 text-slate-100 hover:bg-slate-800/60 transition;
 }
+
+/* --------- Layout secciones --------- */
 
 /* Contenedor de secciones */
 .section {
@@ -74,7 +96,7 @@ a {
   @apply mt-3 text-slate-300 max-w-2xl;
 }
 
-/* ---------- Formularios Tronx Strategy ---------- */
+/* --------- Formularios Tronx Strategy --------- */
 
 /* Input base (text, email, tel, etc.) */
 .input-base {
@@ -95,9 +117,4 @@ a {
   @apply mt-1 w-full rounded-xl border border-slate-700/70 bg-black/60
     px-3 py-2 text-sm text-slate-50 outline-none
     focus:border-tronx-accent/70;
-}
-
-/* Glow suave usado en algunos botones / cards */
-.shadow-soft-glow {
-  box-shadow: 0 0 25px rgba(34, 211, 238, 0.25);
 }
