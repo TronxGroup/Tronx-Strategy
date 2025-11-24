@@ -1,5 +1,6 @@
 // app/layout.tsx
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { Navbar } from "../components/site/navbar";
 import Footer from "../components/site/footer";
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     locale: "es_CL",
     images: [
       {
-        url: "/og_tronxstrategy.jpg", // asegúrate de subirla a /public
+        url: "/og_tronxstrategy.jpg",
         width: 1200,
         height: 630,
         alt: "Tronx Strategy — Estudio digital de Tronx Group",
@@ -125,15 +126,25 @@ export default function RootLayout({
         {/* JSON-LD para SEO (inline, sin hidratar) */}
         <script
           type="application/ld+json"
-          // evita warnings de hidratación si Next reordena nodos
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLdJson) }}
         />
-
-        {/* Aquí podrías añadir preconnect o analytics si quieres más adelante */}
-        {/* <link rel="preconnect" href="https://www.googletagmanager.com" /> */}
       </head>
       <body className="bg-transparent text-slate-100">
+        {/* Google Analytics (GA4) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-MZLLPKCM1Q"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-MZLLPKCM1Q');
+          `}
+        </Script>
+
         <Navbar />
         <main>{children}</main>
         <Footer />
