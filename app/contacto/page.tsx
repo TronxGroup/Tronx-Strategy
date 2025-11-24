@@ -1,6 +1,8 @@
 // app/contacto/page.tsx
 "use client";
 
+import Script from "next/script";
+
 export default function ContactoPage() {
   return (
     <section
@@ -14,6 +16,14 @@ export default function ContactoPage() {
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
+
+      {/* Script reCAPTCHA */}
+      <Script
+        src="https://www.google.com/recaptcha/api.js"
+        async
+        defer
+        strategy="lazyOnload"
+      />
 
       {/* Contenido */}
       <div className="relative section py-16 lg:py-24 flex-1">
@@ -31,57 +41,149 @@ export default function ContactoPage() {
 
         {/* Formulario + Aside */}
         <section className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] items-start">
-
-          {/* FORMULARIO */}
+          {/* FORMULARIO (Zoho WebToLead, mismo diseño Tronx) */}
           <form
+            id="webform6988454000001329111"
+            name="WebToLeads6988454000001329111"
+            method="POST"
+            action="https://crm.zoho.com/crm/WebToLeadForm"
+            acceptCharset="UTF-8"
             className="card-surface p-6 space-y-5 bg-black/70 border border-slate-700/70 backdrop-blur-sm rounded-2xl"
-            action="mailto:contacto@tronxstrategy.com"
-            method="post"
-            encType="text/plain"
+            onSubmit={() => {
+              // Requerido por Zoho
+              document.charset = "UTF-8";
+            }}
           >
-            {/* Nombre + Empresa */}
+            {/* --- HIDDEN ZOHO (NO TOCAR) --- */}
+            <input
+              type="hidden"
+              name="xnQsjsdp"
+              value="c0dc3ffa504f6e87c28e87d1f635554b975ade794041575b3f5b48f48329d5dd"
+            />
+            <input type="hidden" name="zc_gad" id="zc_gad" value="" />
+            <input
+              type="hidden"
+              name="xmIwtLD"
+              value="413078008e8a3bcce6d97d6302b548f90a53ed4e7ce073494598ea7007edd4d3fee6a18c3f509e526a14298bd390f08e"
+            />
+            <input
+              type="hidden"
+              name="actionType"
+              value="TGVhZHM="
+            />
+            <input
+              type="hidden"
+              name="returnURL"
+              value="https://www.tronxstrategy.com/confirm"
+            />
+            {/* Marca (LEADCF5) */}
+            <input
+              type="hidden"
+              name="LEADCF5"
+              value="Tronx-Strategy"
+            />
+            {/* Lead_Origen (LEADCF9) */}
+            <input
+              type="hidden"
+              name="LEADCF9"
+              value="tronxstrategy.com/contacto"
+            />
+            {/* aG9uZXlwb3Q (honeypot) */}
+            <input
+              type="hidden"
+              name="aG9uZXlwb3Q"
+              style={{ display: "none" }}
+              value=""
+            />
+
+            {/* Nombre + Empresa (Zoho: Last Name, Company) */}
             <div className="grid gap-5 md:grid-cols-2">
-              <Field label="Nombre" name="nombre" required />
-              <Field label="Empresa / institución" name="empresa" />
+              <Field
+                label="Nombre y Apellido"
+                name="Last Name"
+                required
+              />
+              <Field
+                label="Empresa / institución"
+                name="Company"
+                required
+              />
             </div>
 
-            {/* Correo + Teléfono */}
+            {/* Correo + Teléfono (Zoho: Email, Mobile) */}
             <div className="grid gap-5 md:grid-cols-2">
-              <Field label="Correo electrónico" type="email" name="correo" required />
-              <Field label="Teléfono / WhatsApp" name="telefono" />
+              <Field
+                label="Correo electrónico"
+                type="email"
+                name="Email"
+                required
+              />
+              <Field
+                label="Teléfono / WhatsApp"
+                name="Mobile"
+              />
             </div>
 
-            {/* Tipo de proyecto */}
+            {/* Tipo de proyecto (Zoho: LEADCF32) */}
             <div>
               <Label>Tipo de proyecto</Label>
               <select
-                name="tipo_proyecto"
+                name="LEADCF32"
+                required
                 className="input-select"
+                defaultValue="Sitio web corporativo"
               >
-                <option>Sitio web corporativo</option>
-                <option>Landing page</option>
-                <option>Portal o directorio</option>
-                <option>Rediseño de sitio actual</option>
-                <option>Otro</option>
+                <option value="-None-">Selecciona una opción</option>
+                <option value="Sitio web corporativo">
+                  Sitio web corporativo
+                </option>
+                <option value="Landing page">Landing page</option>
+                <option value="Portal o directorio">Portal o directorio</option>
+                <option value="Rediseño de sitio actual">
+                  Rediseño de sitio actual
+                </option>
+                <option value="Otro">Otro</option>
               </select>
             </div>
 
-            {/* Mensaje */}
+            {/* Mensaje (Zoho: LEADCF3) */}
             <div>
               <Label>Mensaje</Label>
               <textarea
-                name="mensaje"
+                name="LEADCF3"
                 rows={5}
                 className="input-area"
                 placeholder="Cuéntanos brevemente qué necesitas, plazos y si tienes un sitio actual."
               />
             </div>
 
-            <button type="submit" className="btn-primary w-full md:w-auto">
-              Enviar mensaje
-            </button>
+            {/* reCAPTCHA */}
+            <div className="mt-4">
+              <div
+                className="g-recaptcha"
+                data-sitekey="6LfP4RYsAAAAAHgL1XFwZogFNns_cLHZwKhEmcB6"
+                data-theme="light"
+              />
+            </div>
 
-            <p className="text-xs text-slate-500">
+            {/* Botones */}
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <button
+                type="submit"
+                id="formsubmit"
+                className="btn-primary w-full md:w-auto formsubmit"
+              >
+                Enviar mensaje
+              </button>
+              <button
+                type="reset"
+                className="btn-secondary w-full md:w-auto"
+              >
+                Restablecer
+              </button>
+            </div>
+
+            <p className="text-xs text-slate-500 mt-3">
               También puedes escribir directamente a{" "}
               <span className="text-slate-200 font-medium">
                 info@tronxstrategy.com
@@ -91,7 +193,6 @@ export default function ContactoPage() {
 
           {/* ASIDE DERECHO */}
           <aside className="space-y-5 text-sm text-slate-300">
-
             {/* Datos de contacto */}
             <div className="card-surface p-5 bg-black/70 border border-slate-700/70 backdrop-blur-sm rounded-2xl">
               <h2 className="text-base font-semibold text-white">
@@ -166,9 +267,7 @@ function Field({
   );
 }
 
-/* ---------- CLASES GLOBALES SUGERIDAS (agregar a globals.css) ---------- */
-
-/*
+/* ---------- CLASES GLOBALES SUGERIDAS (globals.css) ----------
 .input-base {
   @apply mt-1 w-full rounded-xl border border-slate-700/70 bg-black/60
          px-3 py-2 text-sm text-slate-50 outline-none
@@ -186,4 +285,4 @@ function Field({
          px-3 py-2 text-sm text-slate-50 outline-none
          focus:border-tronx-accent/70;
 }
-*/
+----------------------------------------------------------------*/
