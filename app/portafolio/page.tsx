@@ -44,7 +44,7 @@ const projects: Project[] = [
     type: "Estudio audiovisual · Portafolio",
     description:
       "Sitio para estudio audiovisual con foco en videos corporativos, vodcasts y proyectos del holding Tronx Group, con estructura clara para crecer en contenido.",
-    status: "En desarrollo",
+    status: "En operación",
     tags: ["Audiovisual", "Portafolio"],
     url: "https://www.dekaelomedia.com",
     service: "Plan Medio",
@@ -77,7 +77,7 @@ const projects: Project[] = [
     type: "Portal institucional · Noticias · Contenidos",
     description:
       "Sitio institucional para asociación de funcionarios, con secciones informativas, noticias/beneficios y módulos administrables para mantener el contenido actualizado.",
-    status: "En operación",
+    status: "En desarrollo",
     tags: ["Institucional", "Noticias", "Comunidad"],
     url: "https://www.afminvuserviutarapaca.cl",
     service: "Plan Medio",
