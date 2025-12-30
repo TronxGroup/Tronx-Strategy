@@ -3,36 +3,66 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
+const SITE_URL = "https://www.tronxstrategy.com";
+const CANONICAL = `${SITE_URL}/`;
+
+// WhatsApp (mismo número que estás usando en el ecosistema)
+const WHATSAPP_NUMBER = "56920080031";
+
+/**
+ * 🎯 OBJETIVO HOME 2026:
+ * Vender 1 sitio web al mes (proyecto cerrado, rápido, con alcance claro).
+ *
+ * Ajustes aplicados:
+ * - Mensaje enfocado en “Sitio listo en 2–4 semanas” + “alcance cerrado” + “entrega documentada”.
+ * - CTA principal: “Cotizar mi sitio (sin llamada)” (Google Ads-friendly).
+ * - Oferta “Producto principal”: Sitio Web Corporativo (2–4 semanas) + add-ons.
+ * - Sección “Lo que incluye / lo que NO incluye” para filtrar y reducir fricción.
+ * - Copy directo a dueños/gerencias/marketing (menos WebOps abstracto, más resultado).
+ */
+
+const PRICING = {
+  starter: "$290.000",
+  business: "$590.000 – $690.000",
+  premium: "$990.000 – $1.500.000",
+} as const;
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.tronxstrategy.com"),
-  title: "Tronx Strategy — WebOps y sitios modernos en Next.js",
+  metadataBase: new URL(SITE_URL),
+  title: "Tronx Strategy — Sitios web corporativos modernos (Next.js) | Chile",
   description:
-    "Construimos sitios web corporativos e institucionales con infraestructura moderna (Next.js + Vercel + Cloudflare), analítica y CRM. Menos fricción técnica, más claridad y continuidad.",
-  alternates: { canonical: "/" },
+    "Construimos sitios web corporativos e institucionales rápidos y seguros (Next.js + Vercel + Cloudflare), con medición (GA4/GTM) y formularios conectados. Sitio listo en 2–4 semanas.",
+  alternates: { canonical: CANONICAL },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-snippet": -1, "max-image-preview": "large", "max-video-preview": -1 },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
   },
   keywords: [
     "desarrollo web",
+    "sitios web corporativos",
     "sitios web institucionales",
-    "sitios corporativos",
     "Next.js",
     "Vercel",
     "Cloudflare",
-    "WebOps",
     "GA4",
+    "Google Tag Manager",
     "Zoho CRM",
     "HubSpot",
     "Chile",
   ],
   authors: [{ name: "Tronx Strategy" }],
   openGraph: {
-    title: "Tronx Strategy — Web moderna, medible y gobernada",
+    title: "Tronx Strategy — Sitios web listos para operar (2–4 semanas)",
     description:
-      "Sitios web rápidos y seguros en Next.js para empresas, cámaras e instituciones. Infraestructura cloud, analítica y CRM conectados con continuidad operativa.",
-    url: "/",
+      "Sitios rápidos y seguros en Next.js para empresas e instituciones. Infraestructura cloud, analítica y formularios conectados para operar y medir desde el día 1.",
+    url: CANONICAL,
     type: "website",
     siteName: "Tronx Strategy",
     locale: "es_CL",
@@ -41,19 +71,35 @@ export const metadata: Metadata = {
         url: "/og_tronxstrategy.jpg",
         width: 1200,
         height: 630,
-        alt: "Tronx Strategy — WebOps y desarrollo web moderno",
+        alt: "Tronx Strategy — Sitios web modernos en Next.js",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tronx Strategy — WebOps y sitios modernos",
-    description: "Next.js + Vercel + Cloudflare + GA4 + CRM. Sitios listos para operar, medir y crecer.",
+    title: "Tronx Strategy — Sitios web modernos (Next.js)",
+    description: "Next.js + Vercel + Cloudflare + GA4 + Formularios/CRM. Sitios listos para operar y medir.",
     images: ["/og_tronxstrategy.jpg"],
   },
 };
 
+function buildWhatsAppLink() {
+  const text =
+    "Hola Tronx Strategy 👋 Quiero cotizar un sitio web.\n\n" +
+    "1) Empresa / institución:\n" +
+    "2) Objetivo del sitio (ventas / info / RRHH / comunidad):\n" +
+    "3) Tipo (corporativo / institucional / landing / portal):\n" +
+    "4) Fecha ideal de publicación:\n" +
+    "5) Secciones estimadas (Inicio, Nosotros, Servicios, Noticias, Contacto, etc.):\n" +
+    "6) Referencias (links):\n\n" +
+    "Gracias 🙌";
+
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
 export default function HomePage() {
+  const waLink = buildWhatsAppLink();
+
   return (
     <>
       {/* HERO */}
@@ -67,68 +113,76 @@ export default function HomePage() {
         }}
         aria-label="Hero Tronx Strategy"
       >
-        <div className="absolute inset-0 bg-black/65 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-[1px]" />
 
-        <div className="relative w-full max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] gap-10 items-center px-4 lg:px-8 py-24">
+        <div className="relative w-full max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-10 items-center px-4 lg:px-8 py-24">
           {/* Left */}
           <div>
             <p className="text-xs font-semibold tracking-[0.26em] uppercase text-sky-300/90">
-              WebOps · Sitios Web · Infraestructura Cloud
+              Sitios Web · Next.js · Infraestructura Cloud
             </p>
 
             <h1 className="mt-3 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white">
-              Web moderna, medible y <span className="text-sky-300">lista para operar</span>.
+              Tu sitio web{" "}
+              <span className="text-sky-300">listo para operar</span> en 2–4 semanas.
             </h1>
 
             <p className="mt-4 text-base md:text-lg text-slate-200 max-w-xl">
-              Construimos sitios de estándar empresarial con{" "}
-              <span className="text-white font-medium">Next.js</span>,{" "}
-              <span className="text-white font-medium">Vercel</span> y{" "}
-              <span className="text-white font-medium">Cloudflare</span>, conectados
-              a analítica y CRM cuando el proyecto lo requiere. Menos fricción técnica,
-              más claridad para vender, informar y decidir con datos.
+              Construimos <span className="text-white font-medium">sitios corporativos e institucionales</span> rápidos,
+              seguros y medibles con <span className="text-white font-medium">Next.js + Vercel + Cloudflare</span>.
+              Incluimos <span className="text-white font-medium">GA4 + Tag Manager</span> y formularios conectados para
+              que el sitio <span className="text-white font-medium">genere contactos</span> y{" "}
+              <span className="text-white font-medium">se pueda gestionar</span> sin dependencia eterna.
             </p>
 
-            {/* Value box */}
-            <div className="mt-6 rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-xs md:text-sm text-slate-200 max-w-xl">
-              <p className="font-medium text-slate-100">Lo que realmente entregamos</p>
+            {/* Offer strip */}
+            <div className="mt-6 rounded-xl border border-white/10 bg-black/45 px-4 py-3 text-xs md:text-sm text-slate-200 max-w-xl">
+              <p className="font-semibold text-slate-100">Producto principal</p>
               <p className="mt-1">
-                No es “una página”. Es una <span className="text-white">plataforma gobernada</span>: estructura,
-                propiedad y accesos claros, continuidad operativa, medición consistente y soporte opcional para
-                que el sitio funcione en el mundo real.
+                <span className="text-white font-medium">Sitio Web Corporativo</span> (alcance cerrado) + publicación +
+                entrega documentada. Si necesitas CRM, noticias administrables o portal, se agrega por etapa.
               </p>
             </div>
 
             {/* CTAs */}
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/contacto#form" className="btn-primary px-6 py-3 text-sm md:text-base">
-                Agenda una llamada sin costo
+              <Link
+                href="/contacto#form"
+                className="btn-primary px-6 py-3 text-sm md:text-base"
+                data-cta="hero_form"
+              >
+                Cotizar mi sitio (sin llamada)
               </Link>
+
+              <a
+                href={waLink}
+                className="btn-ghost bg-white/10 backdrop-blur hover:bg-white/20 px-6 py-3 text-sm md:text-base"
+                data-cta="hero_whatsapp"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp
+              </a>
+
               <Link
                 href="/servicios#planes"
-                className="btn-ghost bg-white/10 backdrop-blur hover:bg-white/20 px-6 py-3 text-sm md:text-base"
+                className="btn-ghost bg-white/5 backdrop-blur hover:bg-white/15 px-6 py-3 text-sm md:text-base"
+                data-cta="hero_plans"
               >
                 Ver planes y precios
-              </Link>
-              {/* Si tienes página de casos, deja esto. Si no, bórralo. */}
-              <Link
-                href="/proyectos"
-                className="btn-ghost bg-white/5 backdrop-blur hover:bg-white/15 px-6 py-3 text-sm md:text-base"
-              >
-                Ver proyectos
               </Link>
             </div>
 
             {/* Trust notes */}
             <div className="mt-6 flex flex-wrap items-center gap-3 text-[11px] text-slate-300">
-              <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">
+              <span className="px-3 py-1 rounded-full bg-black/45 border border-slate-700/80">
                 Entrega documentada
               </span>
-              <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">
+              <span className="px-3 py-1 rounded-full bg-black/45 border border-slate-700/80">
                 Propiedad y accesos claros
               </span>
-              <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">
-                Escalable por etapas
+              <span className="px-3 py-1 rounded-full bg-black/45 border border-slate-700/80">
+                Medición desde el día 1
               </span>
             </div>
 
@@ -139,68 +193,100 @@ export default function HomePage() {
                 <p>Tiempo típico de entrega.</p>
               </div>
               <div>
-                <p className="text-white text-base md:text-lg font-semibold">Infraestructura</p>
-                <p>Next.js · Vercel · Cloudflare.</p>
+                <p className="text-white text-base md:text-lg font-semibold">Rápido y seguro</p>
+                <p>Vercel + Cloudflare + SSL.</p>
+              </div>
+              <div>
+                <p className="text-white text-base md:text-lg font-semibold">Medible</p>
+                <p>GA4 + GTM + eventos.</p>
               </div>
               <div>
                 <p className="text-white text-base md:text-lg font-semibold">CRM opcional</p>
-                <p>Zoho / HubSpot según operación.</p>
-              </div>
-              <div>
-                <p className="text-white text-base md:text-lg font-semibold">Medición real</p>
-                <p>GA4 + Tag Manager configurados.</p>
+                <p>Zoho / HubSpot por etapa.</p>
               </div>
             </div>
 
             {/* Tech pills */}
             <div className="mt-6 flex flex-wrap items-center gap-3 text-[11px] text-slate-300">
-              <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">
+              <span className="px-3 py-1 rounded-full bg-black/45 border border-slate-700/80">
                 Next.js · React
               </span>
-              <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">
+              <span className="px-3 py-1 rounded-full bg-black/45 border border-slate-700/80">
                 GitHub · Vercel · Cloudflare
               </span>
-              <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">
-                Zoho · HubSpot · GA4
+              <span className="px-3 py-1 rounded-full bg-black/45 border border-slate-700/80">
+                GA4 · GTM · Search Console
               </span>
             </div>
           </div>
 
           {/* Right card */}
           <div className="relative">
-            <div className="card-surface p-6 md:p-8 shadow-2xl bg-black/60 backdrop-blur rounded-xl border border-white/10">
-              <p className="text-sm font-semibold tracking-[0.22em] text-sky-300 uppercase">
-                Planes Tronx Strategy
-              </p>
+            <div className="card-surface p-6 md:p-8 shadow-2xl bg-black/65 backdrop-blur rounded-xl border border-white/10">
+              <p className="text-sm font-semibold tracking-[0.22em] text-sky-300 uppercase">Sitios Web por Plan</p>
 
               <h2 className="mt-3 text-2xl font-semibold text-white">
-                Precios claros. Alcance definido. Sin sorpresas.
+                Precios claros. Alcance definido. Sin proyecto eterno.
               </h2>
 
               <p className="mt-3 text-sm text-slate-200">
-                Tres niveles para adaptarse a tu contexto: presencia profesional, sitio corporativo completo
-                o solución premium con WebOps e integraciones avanzadas.
+                Si tu meta es publicar un sitio sólido y que funcione (no solo “bonito”), parte con un plan y escala por
+                etapas cuando haga sentido.
               </p>
 
-              <ul className="mt-4 space-y-2 text-sm text-slate-100">
-                <li>• Plan Básico — Presencia profesional.</li>
-                <li>• Plan Medio — Sitio corporativo + noticias administrables.</li>
-                <li>• Plan Premium — Sitio + CRM + flujos y automatización.</li>
-              </ul>
+              <div className="mt-5 grid gap-3 text-sm text-slate-100">
+                <div className="rounded-lg border border-white/10 bg-black/40 p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="font-semibold text-white">Plan Básico</p>
+                    <p className="text-slate-200">{PRICING.starter}</p>
+                  </div>
+                  <p className="mt-1 text-xs text-slate-300">
+                    Presencia profesional (1–3 secciones) + medición base.
+                  </p>
+                </div>
+
+                <div className="rounded-lg border border-sky-400/30 bg-black/40 p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="font-semibold text-white">Plan Medio</p>
+                    <p className="text-slate-200">{PRICING.business}</p>
+                  </div>
+                  <p className="mt-1 text-xs text-slate-300">
+                    Sitio corporativo completo + secciones + contacto optimizado.
+                  </p>
+                </div>
+
+                <div className="rounded-lg border border-white/10 bg-black/40 p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="font-semibold text-white">Plan Premium</p>
+                    <p className="text-slate-200">{PRICING.premium}</p>
+                  </div>
+                  <p className="mt-1 text-xs text-slate-300">
+                    WebOps + integraciones (CRM/automatizaciones) por etapa.
+                  </p>
+                </div>
+              </div>
 
               <p className="mt-4 text-xs text-slate-400">
-                Incluye diseño, desarrollo, SEO base, SSL y medición. Requerimientos fuera de alcance
-                (nuevas secciones, integraciones extra, cambios estructurales) se cotizan por separado.
+                Incluye diseño, desarrollo, SEO base, SSL y medición. Requerimientos fuera de alcance (nuevas secciones,
+                integraciones extra, cambios estructurales) se cotizan por separado.
               </p>
 
-              <div className="mt-5">
-                <Link href="/servicios#planes" className="btn-primary w-full text-center">
-                  Ver lista de precios →
+              <div className="mt-5 space-y-3">
+                <Link href="/contacto#form" className="btn-primary w-full text-center" data-cta="card_form">
+                  Cotizar mi sitio →
+                </Link>
+
+                <Link
+                  href="/servicios#planes"
+                  className="btn-ghost w-full text-center bg-white/10 hover:bg-white/20"
+                  data-cta="card_plans"
+                >
+                  Ver detalle de planes →
                 </Link>
               </div>
 
               <p className="mt-3 text-[11px] text-slate-400">
-                Facturamos a empresas, instituciones y personas con giro. Valores netos + IVA.
+                Facturamos a empresas e instituciones. Valores netos + IVA.
               </p>
             </div>
           </div>
@@ -211,16 +297,17 @@ export default function HomePage() {
       <section className="bg-slate-950 border-y border-slate-800" id="diferenciadores">
         <div className="section py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs md:text-sm text-slate-200">
           <div className="flex-1">
-            <p className="font-semibold text-slate-50">No vendemos “páginas bonitas”. Diseñamos operación digital.</p>
+            <p className="font-semibold text-slate-50">Lo simple que te evita dolores después</p>
             <p className="text-slate-300">
-              Web + CRM + analítica conectados para que el equipo reciba leads, gestione y mida resultados con continuidad.
+              Alcance cerrado + checklist técnico + entrega documentada. Menos “dependencia del desarrollador”, más
+              continuidad.
             </p>
           </div>
           <div className="flex-1 grid md:grid-cols-2 gap-2 text-slate-300">
-            <p>✔ Formularios conectados a Zoho / HubSpot.</p>
+            <p>✔ Formularios conectados (Zoho / HubSpot opcional).</p>
             <p>✔ Medición con GA4 + Google Tag Manager.</p>
-            <p>✔ Sitios listos para campañas y SEO base.</p>
-            <p>✔ Infraestructura moderna sin servidores que administrar.</p>
+            <p>✔ Sitio listo para campañas (conversiones/eventos).</p>
+            <p>✔ Infraestructura moderna (sin hosting lento).</p>
           </div>
         </div>
       </section>
@@ -229,19 +316,31 @@ export default function HomePage() {
       <div className="section">
         {/* WHAT WE BUILD */}
         <section className="mt-16" id="que-construimos">
-          <p className="section-title">Qué podemos construir</p>
-          <h2 className="section-heading">Desde una landing rápida hasta un portal institucional completo.</h2>
+          <p className="section-title">Qué construimos</p>
+          <h2 className="section-heading">Sitios corporativos que se entienden y convierten.</h2>
           <p className="section-subtitle">
-            Trabajamos por capas: partimos con una base sólida (infraestructura + medición) y escalamos con secciones,
-            contenidos, automatizaciones y reporting.
+            El sitio debe explicar rápido qué haces, generar confianza y guiar al contacto. Si después quieres portal,
+            noticias o CRM, lo escalamos por etapas sin botar lo ya construido.
           </p>
 
           <div className="mt-10 grid gap-6 md:grid-cols-4">
             {[
-              { title: "Sitios corporativos", body: "Páginas claras y confiables para empresas, estudios, gremios y organizaciones." },
-              { title: "Landing pages y campañas", body: "Páginas de alta conversión para lanzamientos, eventos o productos, listas para medir." },
-              { title: "Portales y directorios", body: "Arquitecturas escalables para cámaras, instituciones y proyectos con múltiples actores." },
-              { title: "Web + CRM", body: "Captura de leads con flujos, segmentación y reportes para el equipo comercial." },
+              {
+                title: "Sitio corporativo",
+                body: "Inicio + Nosotros + Servicios + Contacto. Enfocado en claridad y confianza.",
+              },
+              {
+                title: "Institucional / gremial",
+                body: "Estructura para organizaciones, cámaras y asociaciones, con navegación limpia.",
+              },
+              {
+                title: "Landing de campaña",
+                body: "Página de alta conversión lista para Google Ads con eventos/medición.",
+              },
+              {
+                title: "Etapa 2: Web + CRM",
+                body: "Captura de leads + pipeline + automatizaciones (Zoho/HubSpot) si la operación lo requiere.",
+              },
             ].map((card) => (
               <div key={card.title} className="card-surface p-6">
                 <h3 className="text-lg font-semibold text-slate-50">{card.title}</h3>
@@ -251,27 +350,52 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* GOVERNANCE */}
-        <section className="mt-24 grid gap-10 lg:grid-cols-[1.05fr_minmax(0,1fr)] items-start" id="gobierno-digital">
+        {/* WHAT'S INCLUDED (filtering section) */}
+        <section className="mt-24 grid gap-10 lg:grid-cols-[1.05fr_minmax(0,1fr)] items-start" id="incluye">
           <div>
-            <p className="section-title">Gobierno digital</p>
-            <h2 className="section-heading">La IA acelera. Tronx asegura continuidad.</h2>
+            <p className="section-title">Para evitar malentendidos</p>
+            <h2 className="section-heading">Qué incluye (y qué no incluye) el “sitio web”.</h2>
             <p className="section-subtitle">
-              Generar código es fácil. Lo difícil es operar con propiedad, accesos correctos, medición consistente y mantenimiento sostenible.
+              Esto filtra perfecto para vender 1 sitio al mes: menos desgaste, más cierres claros.
             </p>
 
             <div className="mt-6 grid gap-4 md:grid-cols-2 text-sm text-slate-200">
               {[
-                { title: "Propiedad y accesos", body: "Roles, usuarios y llaves claros. Sin dependencia de una persona." },
-                { title: "Operación y continuidad", body: "Documentación, checklist y soporte opcional para sostener el sitio." },
-                { title: "Infraestructura moderna", body: "Performance y seguridad con Vercel + Cloudflare, sin hosting lento." },
-                { title: "Medición y decisiones", body: "GA4 + GTM + conversiones. Menos opiniones, más datos para mejorar." },
-              ].map((item) => (
-                <div key={item.title} className="card-surface p-4">
+                { title: "Incluye", body: "Diseño + desarrollo + publicación + SSL + medición base." },
+                { title: "Incluye", body: "Estructura clara de secciones y navegación (UX simple)." },
+                { title: "Incluye", body: "GA4 + GTM configurados + eventos básicos (contacto/clicks)." },
+                { title: "Incluye", body: "Entrega documentada + capacitación breve (cambios simples)." },
+              ].map((item, idx) => (
+                <div key={idx} className="card-surface p-4">
                   <h3 className="font-semibold text-slate-50">{item.title}</h3>
                   <p className="mt-2 text-slate-300">{item.body}</p>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-6 rounded-xl border border-white/10 bg-black/30 p-5 text-sm text-slate-200">
+              <p className="font-semibold text-white">No incluye (se cotiza aparte)</p>
+              <div className="mt-2 grid md:grid-cols-2 gap-2 text-slate-300">
+                <p>• Rediseños completos posteriores</p>
+                <p>• Nuevas secciones no consideradas</p>
+                <p>• Integraciones avanzadas (CRM/ERP)</p>
+                <p>• Funcionalidades tipo “app”</p>
+              </div>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/contacto#form" className="btn-primary px-6 py-3 text-sm" data-cta="incluye_form">
+                Cotizar con alcance claro →
+              </Link>
+              <a
+                href={waLink}
+                className="btn-ghost bg-white/10 hover:bg-white/20 px-6 py-3 text-sm"
+                data-cta="incluye_whatsapp"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp →
+              </a>
             </div>
           </div>
 
@@ -280,12 +404,12 @@ export default function HomePage() {
             <ul className="mt-3 space-y-2">
               <li>• Alcance por escrito + calendario de hitos.</li>
               <li>• Arquitectura y estructura aprobadas antes de construir.</li>
-              <li>• Integración de formularios, analítica y eventos clave.</li>
+              <li>• Formularios + tracking + eventos clave.</li>
               <li>• Publicación + checklist técnico (DNS/SSL/performance).</li>
               <li>• Entrega documentada + capacitación breve.</li>
             </ul>
             <p className="mt-4 text-xs text-slate-400">
-              Fuera de alcance: nuevas secciones, integraciones extra, rediseños o cambios estructurales → cotización aparte.
+              Si el proyecto requiere CMS/noticias/roles, lo dejamos como Etapa 2 (para no alargar la entrega).
             </p>
           </aside>
         </section>
@@ -293,17 +417,31 @@ export default function HomePage() {
         {/* PROCESS */}
         <section className="mt-24" id="proceso">
           <p className="section-title">Cómo trabajamos</p>
-          <h2 className="section-heading">Proceso simple, con control y claridad.</h2>
-          <p className="section-subtitle">
-            Diseñado para que dirección, comunicaciones y TI puedan participar sin fricción.
-          </p>
+          <h2 className="section-heading">Proceso corto, sin reuniones eternas.</h2>
+          <p className="section-subtitle">Ideal para gerencias, marketing y equipos pequeños.</p>
 
           <div className="mt-10 grid gap-6 md:grid-cols-4">
             {[
-              { step: "01", title: "Alineación", body: "Objetivos, público, alcance y plazo. Cerramos plan y monto antes de construir." },
-              { step: "02", title: "Arquitectura", body: "Mapa del sitio, estructura y diseño base. Aprobación temprana." },
-              { step: "03", title: "Construcción", body: "Desarrollo + integraciones (GA4/GTM/CRM) + performance + seguridad." },
-              { step: "04", title: "Entrega", body: "Revisión, ajustes menores, publicación, documentación y capacitación." },
+              {
+                step: "01",
+                title: "Brief",
+                body: "Objetivo + secciones + referentes. Definimos alcance y valor.",
+              },
+              {
+                step: "02",
+                title: "Estructura",
+                body: "Mapa del sitio + wire simple. Aprobación rápida.",
+              },
+              {
+                step: "03",
+                title: "Construcción",
+                body: "Desarrollo + performance + seguridad + medición.",
+              },
+              {
+                step: "04",
+                title: "Publicación",
+                body: "Ajustes menores + deploy + documentación + capacitación.",
+              },
             ].map((p) => (
               <div key={p.step} className="card-surface p-6">
                 <p className="text-xs tracking-[0.25em] text-sky-300 font-semibold">{p.step}</p>
@@ -317,27 +455,27 @@ export default function HomePage() {
         {/* QUICK PRODUCTS */}
         <section className="mt-24" id="productos-rapidos">
           <p className="section-title">Productos rápidos</p>
-          <h2 className="section-heading">Impacto alto, sin proyecto eterno.</h2>
+          <h2 className="section-heading">Opciones “cerrables” para el mes.</h2>
           <p className="section-subtitle">
-            Ideal para campañas, lanzamientos o mejoras puntuales sobre tu sitio actual.
+            Si tu objetivo es vender 1 web al mes, estos 3 productos son perfectos para Google Ads.
           </p>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {[
               {
                 title: "Landing 48 horas",
-                body: "Página de alta conversión para campañas, eventos o lanzamientos, conectada a tu CRM.",
+                body: "Página de alta conversión para campañas/eventos, con medición y formularios.",
                 cta: { label: "Cotizar landing", href: "/contacto#form" },
               },
               {
-                title: "Optimización (velocidad + SEO + UX)",
-                body: "Mejoramos estructura, tiempos de carga y claridad del contenido para aumentar conversiones.",
+                title: "Optimización (velocidad + SEO + claridad)",
+                body: "Mejoramos performance, estructura y texto para aumentar conversiones.",
                 cta: { label: "Evaluar mi sitio", href: "/contacto#form" },
               },
               {
                 title: "Migración a Vercel + Cloudflare",
-                body: "Salida ordenada desde hosting tradicional a infraestructura moderna, con checklist técnico.",
-                cta: { label: "Verificar factibilidad", href: "/contacto#form" },
+                body: "Salida ordenada desde hosting tradicional a infraestructura moderna (con checklist).",
+                cta: { label: "Ver factibilidad", href: "/contacto#form" },
               },
             ].map((s) => (
               <div key={s.title} className="card-surface p-6">
@@ -377,13 +515,13 @@ export default function HomePage() {
         {/* FAQ */}
         <section className="mt-24" id="faq">
           <p className="section-title">Preguntas frecuentes</p>
-          <h2 className="section-heading">Lo que normalmente preguntan antes de contratar.</h2>
+          <h2 className="section-heading">Lo que preguntan antes de contratar.</h2>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {[
               {
                 q: "¿La IA no hace esto más barato?",
-                a: "La IA puede acelerar tareas, pero no reemplaza el gobierno digital: propiedad, accesos, continuidad, medición y responsabilidad. Tronx usa IA donde aporta valor, con criterio y control.",
+                a: "La IA acelera tareas, pero no reemplaza el gobierno digital: propiedad, accesos, continuidad, medición y responsabilidad. Tronx usa IA donde aporta valor, con criterio y control.",
               },
               {
                 q: "¿Incluye dominio y hosting?",
@@ -418,28 +556,38 @@ export default function HomePage() {
         }}
         aria-label="CTA Tronx Strategy"
       >
-        <div className="absolute inset-0 bg-black/50 md:bg-black/45 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-black/55 md:bg-black/50 backdrop-blur-[1px]" />
 
         <div className="relative z-10 max-w-3xl mx-auto px-6 py-20">
           <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight">
-            ¿Listo para modernizar tu sitio web?
+            Cotiza tu sitio web (sin llamada)
           </h2>
 
           <p className="mt-4 text-slate-200 text-base md:text-lg">
-            En una primera llamada revisamos tu situación, confirmamos alcance y te proponemos el plan más eficiente.
-            Sin compromiso y con plazos claros desde el inicio.
+            Envíanos secciones + objetivo + fecha ideal. Respondemos con una propuesta clara (alcance, valor y plazo).
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/contacto#form" className="btn-primary text-base px-6 py-3">
-              Agenda una llamada
+            <Link href="/contacto#form" className="btn-primary text-base px-6 py-3" data-cta="final_form">
+              Cotizar ahora
             </Link>
+
+            <a
+              href={waLink}
+              className="btn-ghost bg-white/10 backdrop-blur hover:bg-white/20 text-base px-6 py-3"
+              data-cta="final_whatsapp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp
+            </a>
 
             <Link
               href="/servicios#planes"
-              className="btn-ghost bg-white/10 backdrop-blur hover:bg-white/20 text-base px-6 py-3"
+              className="btn-ghost bg-white/5 backdrop-blur hover:bg-white/15 text-base px-6 py-3"
+              data-cta="final_plans"
             >
-              Ver planes y servicios
+              Ver planes
             </Link>
           </div>
 
@@ -448,8 +596,7 @@ export default function HomePage() {
             <a href="mailto:info@tronxstrategy.com" className="text-sky-300 hover:text-sky-200">
               info@tronxstrategy.com
             </a>{" "}
-            o enviar un WhatsApp al{" "}
-            <span className="text-sky-200 font-medium">+56 9 2008 0031</span>.
+            o enviar WhatsApp al <span className="text-sky-200 font-medium">+56 9 2008 0031</span>.
           </p>
         </div>
       </section>
