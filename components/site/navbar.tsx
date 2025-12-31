@@ -18,12 +18,12 @@ export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  // Cerrar menú al cambiar de ruta
+  // Cierra menú al cambiar de ruta
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
-  // Bloquear scroll cuando el menú está abierto
+  // Bloquea scroll
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
@@ -33,33 +33,31 @@ export function Navbar() {
     };
   }, [open]);
 
-  // Cerrar con ESC
+  // ESC para cerrar
   useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-800/60 bg-black/40 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-slate-800/60 bg-black/60 backdrop-blur-xl">
       <div className="section py-3 flex items-center justify-between gap-4">
-        {/* SOLO LOGO, MÁS GRANDE */}
-        <Link href="/" className="flex items-center" aria-label="Ir al inicio">
+        {/* Logo */}
+        <Link href="/" className="flex items-center" aria-label="Inicio">
           <div className="relative h-12 w-12 md:h-14 md:w-14">
             <Image
               src="/logo_Tronx_Stretegy.png"
               alt="Tronx Strategy"
               fill
               sizes="56px"
-              className="object-contain drop-shadow-[0_0_36px_rgba(0,216,255,0.55)]"
               priority
+              className="object-contain drop-shadow-[0_0_36px_rgba(0,216,255,0.55)]"
             />
           </div>
         </Link>
 
-        {/* NAV DESKTOP */}
+        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm">
           {navItems.map((item) => {
             const active =
@@ -81,36 +79,35 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* CTA DESKTOP */}
+        {/* CTA desktop */}
         <Link href="/contacto" className="hidden md:inline-flex btn-primary">
           Agenda una llamada
         </Link>
 
-        {/* HAMBURGUESA MOBILE */}
+        {/* Hamburguesa */}
         <button
-          type="button"
-          className="md:hidden inline-flex items-center justify-center rounded-xl border border-slate-700/70 bg-white/5 p-2 text-white hover:bg-white/10 transition"
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          className="md:hidden rounded-xl border border-slate-700/70 bg-white/5 p-2 text-white hover:bg-white/10"
+          aria-label="Abrir menú"
           aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpen(true)}
         >
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          <Menu className="w-5 h-5" />
         </button>
       </div>
 
-      {/* MENU MOBILE (DRAWER) */}
+      {/* ===== MOBILE MENU ===== */}
       {open && (
-        <div className="md:hidden">
-          {/* overlay */}
-          <button
-            className="fixed inset-0 z-40 bg-black/70"
-            aria-label="Cerrar menú"
+        <>
+          {/* OVERLAY OSCURO REAL */}
+          <div
+            className="fixed inset-0 z-40 bg-black/85 backdrop-blur-sm"
             onClick={() => setOpen(false)}
           />
 
-          {/* panel */}
-          <div className="fixed right-0 top-0 z-50 h-full w-[86%] max-w-sm border-l border-slate-800/70 bg-slate-950/95 backdrop-blur-xl">
-            <div className="p-5 border-b border-slate-800/70 flex items-center justify-between">
+          {/* PANEL */}
+          <aside className="fixed right-0 top-0 z-50 h-full w-[88%] max-w-sm bg-slate-950 border-l border-slate-800 shadow-2xl">
+            {/* Header panel */}
+            <div className="flex items-center justify-between p-5 border-b border-slate-800">
               <div className="flex items-center gap-3">
                 <div className="relative h-10 w-10">
                   <Image
@@ -118,25 +115,24 @@ export function Navbar() {
                     alt="Tronx Strategy"
                     fill
                     sizes="40px"
-                    className="object-contain drop-shadow-[0_0_28px_rgba(0,216,255,0.45)]"
+                    className="object-contain"
                   />
                 </div>
-                <div>
-                  <p className="text-sm font-semibold text-white leading-tight">Tronx Strategy</p>
-                  <p className="text-xs text-slate-400">Menú</p>
-                </div>
+                <span className="text-sm font-semibold text-white">
+                  Tronx Strategy
+                </span>
               </div>
 
               <button
-                type="button"
-                className="inline-flex items-center justify-center rounded-xl border border-slate-700/70 bg-white/5 p-2 text-white hover:bg-white/10 transition"
-                aria-label="Cerrar"
                 onClick={() => setOpen(false)}
+                aria-label="Cerrar menú"
+                className="rounded-xl border border-slate-700 bg-white/5 p-2 hover:bg-white/10"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 text-white" />
               </button>
             </div>
 
+            {/* Links */}
             <nav className="p-5 space-y-2">
               {navItems.map((item) => {
                 const active =
@@ -146,34 +142,35 @@ export function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`block rounded-xl border px-4 py-3 text-sm transition ${
+                    onClick={() => setOpen(false)}
+                    className={`block rounded-xl px-4 py-3 text-sm border transition ${
                       active
                         ? "border-sky-400/40 bg-sky-500/10 text-sky-200"
-                        : "border-slate-800/60 bg-white/5 text-white/90 hover:bg-white/10"
+                        : "border-slate-800 bg-slate-900 text-white hover:bg-slate-800"
                     }`}
-                    onClick={() => setOpen(false)}
                   >
                     {item.label}
                   </Link>
                 );
               })}
 
-              <div className="pt-3">
+              {/* CTA */}
+              <div className="pt-4">
                 <Link
                   href="/contacto"
-                  className="btn-primary w-full inline-flex items-center justify-center gap-2 px-4 py-3 text-sm"
                   onClick={() => setOpen(false)}
+                  className="btn-primary w-full inline-flex items-center justify-center gap-2"
                 >
                   Agenda una llamada <ArrowRight className="w-4 h-4" />
                 </Link>
 
                 <p className="mt-3 text-xs text-slate-400">
-                  Tip: si estás cotizando, envía objetivo + público + 1 referencia y te respondemos con propuesta.
+                  Sitios web corporativos, rápidos y medibles.
                 </p>
               </div>
             </nav>
-          </div>
-        </div>
+          </aside>
+        </>
       )}
     </header>
   );
