@@ -22,6 +22,10 @@ import {
   Sparkles,
   Wrench,
   BadgeCheck,
+  Building2,
+  Newspaper,
+  Users,
+  PhoneCall,
 } from "lucide-react";
 
 type Plan = {
@@ -35,8 +39,8 @@ type Plan = {
   note?: string;
   delivery?: string;
   ctaLabel?: string;
-  // 👇 NUEVO: para anclas del home
   anchorId?: string;
+  portfolioFocus?: "basico" | "medio" | "premium";
 };
 
 type Card = {
@@ -45,7 +49,6 @@ type Card = {
   price: string;
   icon?: React.ElementType;
   cta?: { label: string; href: string };
-  // 👇 NUEVO: para ancla landing-48h
   anchorId?: string;
 };
 
@@ -61,8 +64,6 @@ type Pillar = {
   description: string;
   icon: React.ElementType;
   bullets: string[];
-  // 👇 opcional (por si quieres anclar pilares)
-  anchorId?: string;
 };
 
 type Proof = {
@@ -77,29 +78,32 @@ type MiniCTA = {
   bullets: string[];
   price?: string;
   icon: React.ElementType;
-  // 👇 opcional
-  anchorHref?: string;
+  hrefPrimary: string;
+  hrefSecondary?: string;
+  primaryLabel?: string;
+  secondaryLabel?: string;
 };
 
 const PRIMARY_PLAN_ANCHOR_ID = "plan-medio";
 
-// ✅ IDs que tu Home ya está linkeando (o debería linkear)
 const ANCHORS = {
   planes: "planes",
   basico: "basico",
   medio: "medio",
   premium: "premium",
   planMedioCard: PRIMARY_PLAN_ANCHOR_ID,
+  ejemploEstructura: "ejemplo-estructura",
   extras: "extras",
   landing48h: "landing-48h",
   faq: "faq",
-  sitioCorporativo: "sitio-corporativo",
-  crm: "crm",
+  proceso: "proceso",
+  recurrente: "recurrente",
 } as const;
 
 const planos: Plan[] = [
   {
     anchorId: ANCHORS.basico,
+    portfolioFocus: "basico",
     name: "Plan Básico — Presencia profesional",
     price: "$290.000",
     badge: "Ideal para empezar",
@@ -117,16 +121,17 @@ const planos: Plan[] = [
     delivery: "Entrega en 7 días hábiles desde aprobación de contenido",
     idealFor: "Consultores, profesionales independientes, negocios locales y servicios.",
     note: "No incluye blog/noticias administrables ni panel de contenidos. CRM opcional como extra.",
-    ctaLabel: "Elegir Básico",
+    ctaLabel: "Cotizar Plan Básico",
   },
   {
     anchorId: ANCHORS.medio,
+    portfolioFocus: "medio",
     name: "Plan Medio — Sitio corporativo (recomendado)",
     price: "$590.000 – $690.000",
     badge: "Más elegido",
     popular: true,
     description:
-      "Para empresas e instituciones que necesitan un sitio completo, medible y listo para campañas. Es el plan más ‘cerrable’ para vender 1 web al mes.",
+      "Para empresas e instituciones que necesitan un sitio completo, medible y listo para campañas, con alcance definido por escrito.",
     features: [
       "5–7 páginas completas (Inicio, Empresa, Servicios, Equipo, Noticias/Blog, Contacto, etc.)",
       "Sección noticias administrable (comunicados / institucionalidad)",
@@ -141,15 +146,16 @@ const planos: Plan[] = [
     idealFor:
       "Empresas de servicios, clínicas, colegios, estudios, cámaras, equipos comerciales.",
     note: "Automatizaciones avanzadas, segmentación y flujos se cotizan aparte (Etapa 2).",
-    ctaLabel: "Elegir Plan Medio",
+    ctaLabel: "Cotizar Plan Medio",
   },
   {
     anchorId: ANCHORS.premium,
+    portfolioFocus: "premium",
     name: "Plan Premium — Plataforma institucional",
     price: "$990.000 – $1.500.000",
     badge: "Solución integral",
     description:
-      "Para organizaciones con múltiples áreas, stakeholders y continuidad: gobierno digital, secciones especiales y operación medible.",
+      "Para organizaciones con múltiples áreas, stakeholders y continuidad: gobierno digital, secciones especiales y operación medible, con alcance definido por escrito.",
     features: [
       "8–12 páginas + blog avanzado + secciones especiales (documentos, proyectos, directorio, áreas, etc.)",
       "UX mejorada con micro-interacciones orientadas a claridad y confianza",
@@ -164,64 +170,58 @@ const planos: Plan[] = [
     idealFor:
       "Instituciones, cámaras, gremios y organizaciones con comunicación interna/externa.",
     note: "Ideal cuando hay múltiples responsables y se necesita control, continuidad y medición.",
-    ctaLabel: "Elegir Premium",
+    ctaLabel: "Cotizar Plan Premium",
   },
 ];
 
 const pilares: Pillar[] = [
   {
-    title: "Estructura que convierte",
-    description:
-      "No es “una web bonita”: es un recorrido claro para que el usuario entienda y actúe.",
+    title: "Estructura clara",
+    description: "Arquitectura de contenidos para que el usuario entienda y avance.",
     icon: LayoutTemplate,
     bullets: [
       "Mensaje por intención (qué haces / por qué tú / cómo contactarte)",
       "Secciones orientadas a conversión",
-      "UI coherente + lectura rápida",
+      "Lectura rápida y jerarquía visual",
     ],
   },
   {
     title: "Performance + seguridad",
-    description:
-      "Base moderna para que cargue rápido, sea estable y no dependa de hosting frágil.",
+    description: "Base moderna para velocidad, estabilidad y continuidad.",
     icon: Lock,
-    bullets: ["SSL + CDN + DNS", "Buenas prácticas de despliegue", "Checklist técnico + continuidad"],
+    bullets: ["SSL + CDN + DNS", "Buenas prácticas de despliegue", "Checklist técnico"],
   },
   {
     title: "Medición real",
-    description:
-      "Medimos lo importante: contacto, interés, clicks y conversiones base. Lo demás es ruido.",
+    description: "Eventos y conversiones para campañas y mejora continua.",
     icon: BarChart3,
-    bullets: ["GA4 + GTM", "Eventos base", "Trazabilidad para campañas"],
+    bullets: ["GA4 + GTM", "Eventos base", "Trazabilidad para anuncios"],
   },
   {
     title: "Escalable por etapas",
-    description: "Partimos por lo esencial y escalamos. Sin rehacer todo cuando creces.",
+    description: "Crecimiento ordenado sin rehacer el sitio al avanzar.",
     icon: Layers,
-    bullets: ["Módulos por etapa", "Documentado", "Fácil de mantener"],
+    bullets: ["Módulos por etapa", "Documentación", "Operación simple"],
   },
 ];
 
-const pruebas = [
+const pruebas: Proof[] = [
   {
     title: "Entrega documentada",
-    description:
-      "Accesos, llaves y guía breve: el sitio no queda ‘amarrado’ a una persona.",
+    description: "Accesos, llaves y guía breve para continuidad operativa.",
     icon: FileText,
   },
   {
     title: "Propiedad y accesos claros",
-    description:
-      "Dominio, DNS, analítica y despliegue con roles y administración definida.",
+    description: "Dominio, DNS, analítica y despliegue con administración definida.",
     icon: BadgeCheck,
   },
   {
     title: "Checklist técnico",
-    description:
-      "DNS/SSL/performance/medición revisados antes de publicar. Menos sorpresas.",
+    description: "DNS/SSL/performance/medición revisados antes de publicar.",
     icon: ShieldCheck,
   },
-] satisfies Array<Proof>;
+];
 
 const extras: Card[] = [
   {
@@ -243,8 +243,7 @@ const extras: Card[] = [
   },
   {
     title: "Optimización performance (Core Web Vitals)",
-    description:
-      "Mejoras de velocidad, peso y carga para elevar experiencia y resultados.",
+    description: "Mejoras de velocidad, peso y carga para elevar experiencia y resultados.",
     price: "$100.000 – $280.000",
     icon: Clock,
     cta: { label: "Optimizar mi sitio", href: "/contacto#form" },
@@ -268,7 +267,7 @@ const extras: Card[] = [
   {
     title: "Rediseño express (sin rehacer todo)",
     description:
-      "Renovamos visual y claridad sin reescribir tu contenido: mejor UX, misma info.",
+      "Renovamos visual y claridad sin reescribir tu contenido: mejor UX, misma información.",
     price: "$250.000 – $450.000",
     icon: LayoutTemplate,
     cta: { label: "Evaluar rediseño", href: "/contacto#form" },
@@ -303,7 +302,7 @@ const steps = [
   {
     title: "1) Brief (20 min)",
     description:
-      "Objetivo, público, secciones y plazos. Cerramos alcance y valor antes de construir.",
+      "Objetivo, público, secciones y plazos. Definimos alcance y entregables por escrito antes de construir.",
     icon: Workflow,
   },
   {
@@ -356,26 +355,36 @@ const faqs = [
 
 const miniCTAs: MiniCTA[] = [
   {
-    title: "¿Necesitas cerrar algo rápido este mes?",
-    description:
-      "Producto ideal para campañas y para cumplir objetivo de “1 web al mes”.",
-    bullets: ["Landing + tracking", "CTA claro", "Entrega 48–72 hrs"],
+    title: "Landing lista para campañas",
+    description: "Alta conversión con tracking y CTAs claros.",
+    bullets: ["Tracking (GA4/GTM)", "CTA y formularios", "Entrega 48–72 hrs"],
     price: "Desde $120.000",
     icon: Zap,
-    anchorHref: `#${ANCHORS.landing48h}`,
+    hrefPrimary: "/contacto#form",
+    hrefSecondary: `#${ANCHORS.landing48h}`,
+    primaryLabel: "Cotizar",
+    secondaryLabel: "Ver detalle",
   },
   {
-    title: "¿Tu sitio existe pero no convierte?",
-    description: "Mejora “sin rehacer todo”: claridad + velocidad + medición.",
-    bullets: ["Core Web Vitals", "SEO On-Page", "Eventos base (GTM)"],
+    title: "Optimización de sitio existente",
+    description: "Mejoras de claridad, velocidad y medición sin rehacer todo.",
+    bullets: ["Core Web Vitals", "SEO On-Page", "Eventos base"],
     price: "Desde $100.000",
     icon: Wrench,
-    anchorHref: `#${ANCHORS.extras}`,
+    hrefPrimary: "/contacto#form",
+    hrefSecondary: `#${ANCHORS.extras}`,
+    primaryLabel: "Cotizar",
+    secondaryLabel: "Ver extras",
   },
 ];
 
 function cx(...classes: Array<string | false | undefined | null>) {
   return classes.filter(Boolean).join(" ");
+}
+
+function portfolioLink(focus?: "basico" | "medio" | "premium") {
+  if (!focus) return "/portafolio";
+  return `/portafolio?focus=${encodeURIComponent(focus)}`;
 }
 
 export default function ServiciosPage() {
@@ -400,13 +409,12 @@ export default function ServiciosPage() {
           </p>
 
           <h1 className="text-4xl md:text-5xl font-semibold text-white tracking-tight">
-            Planes de sitio web{" "}
-            <span className="text-sky-300">con alcance cerrado</span> y entrega clara.
+            Sitios web con{" "}
+            <span className="text-sky-300">alcance definido por escrito</span> y entrega clara.
           </h1>
 
           <p className="mt-4 text-slate-200 text-base md:text-lg max-w-3xl mx-auto">
-            Construimos tu web para operar desde el día uno: performance real, seguridad, medición con eventos y un
-            sistema de entrega documentado para que no dependas de “un técnico”.
+            Base moderna para rendimiento, seguridad y medición. Entrega documentada para operar con continuidad.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -429,23 +437,22 @@ export default function ServiciosPage() {
             </Link>
 
             <Link
-              href={`#${ANCHORS.landing48h}`}
+              href={`#${ANCHORS.ejemploEstructura}`}
               className="btn-ghost bg-white/10 backdrop-blur hover:bg-white/20 inline-flex items-center gap-2 px-6 py-3 text-sm md:text-base"
-              data-cta="hero_to_landing"
+              data-cta="hero_structure"
             >
-              Landing 48–72 hrs
+              Ver ejemplo de estructura
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
           <p className="mt-4 text-xs md:text-sm text-slate-300 max-w-xl mx-auto">
-            Respuesta típica: <span className="text-white font-medium">menos de 24h hábiles</span> con siguientes pasos y
-            propuesta.
+            Respuesta típica: <span className="text-white font-medium">menos de 24h hábiles</span>.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-[11px] text-slate-300">
             <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">Entrega documentada</span>
-            <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">Propiedad y accesos claros</span>
+            <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">Accesos claros</span>
             <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">Medición (GA4/GTM)</span>
             <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">Escalable por etapas</span>
           </div>
@@ -495,9 +502,9 @@ export default function ServiciosPage() {
         {/* PILARES */}
         <section aria-label="Qué incluye trabajar con Tronx Strategy">
           <header className="max-w-3xl">
-            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">Lo que incluye el plan (sin humo)</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">Lo que incluye el servicio</h2>
             <p className="mt-3 text-sm md:text-base text-slate-300">
-              Diseñamos y construimos sitios que se mantienen, escalan y se miden. Tu web como activo operativo.
+              Sitios que se entienden, cargan rápido y se pueden medir. Con entrega clara para operar.
             </p>
           </header>
 
@@ -529,129 +536,205 @@ export default function ServiciosPage() {
           </div>
         </section>
 
-        {/* QUICK NAV (para que tus anchors sean “descubribles”) */}
-        <section aria-label="Accesos rápidos servicios">
-          <div className="card-surface p-5 border border-slate-700/70 bg-black/20">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <div>
-                <p className="text-sm font-semibold text-slate-50">Accesos rápidos</p>
-                <p className="text-xs text-slate-400 mt-1">Planes, extras y atajos para cerrar (ideal para Ads).</p>
+        {/* EJEMPLO DE ESTRUCTURA */}
+        <section id={ANCHORS.ejemploEstructura} aria-label="Ejemplo de estructura" className="scroll-mt-24">
+          <header className="max-w-3xl">
+            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">Ejemplo de estructura (sitio corporativo)</h2>
+            <p className="mt-3 text-sm md:text-base text-slate-300">
+              Una estructura típica para explicar rápido, generar confianza y facilitar contacto.
+            </p>
+          </header>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            <article className="card-surface p-6 border border-slate-700/70">
+              <div className="flex items-center gap-2">
+                <Building2 className="w-4 h-4 text-sky-400" />
+                <h3 className="text-sm font-semibold text-slate-50">Inicio</h3>
               </div>
-              <div className="flex flex-wrap gap-2">
-                <Link className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm" href={`#${ANCHORS.basico}`}>
-                  Básico →
-                </Link>
-                <Link className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm" href={`#${ANCHORS.medio}`}>
-                  Medio →
-                </Link>
-                <Link className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm" href={`#${ANCHORS.premium}`}>
-                  Premium →
-                </Link>
-                <Link className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm" href={`#${ANCHORS.landing48h}`}>
-                  Landing 48h →
-                </Link>
-                <Link className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm" href={`#${ANCHORS.extras}`}>
-                  Extras →
-                </Link>
-                <Link className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm" href={`#${ANCHORS.faq}`}>
-                  FAQ →
-                </Link>
+              <ul className="mt-4 space-y-2 text-sm text-slate-200">
+                {[
+                  "Propuesta de valor (1 frase) + subtexto",
+                  "Servicios principales (3–6) con CTA",
+                  "Bloques de confianza (clientes/experiencia)",
+                  "Casos o proyectos destacados",
+                  "CTA final (formulario / WhatsApp)",
+                ].map((x) => (
+                  <li key={x} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 mt-[2px] text-sky-400" />
+                    <span>{x}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+
+            <article className="card-surface p-6 border border-slate-700/70">
+              <div className="flex items-center gap-2">
+                <Users className="w-4 h-4 text-sky-400" />
+                <h3 className="text-sm font-semibold text-slate-50">Empresa / Nosotros</h3>
               </div>
-            </div>
+              <ul className="mt-4 space-y-2 text-sm text-slate-200">
+                {[
+                  "Historia breve + enfoque",
+                  "Equipo / roles clave (si aplica)",
+                  "Metodología o forma de trabajo",
+                  "Cobertura y operación (remoto/presencial)",
+                  "Sellos: seguridad/medición/entrega",
+                ].map((x) => (
+                  <li key={x} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 mt-[2px] text-sky-400" />
+                    <span>{x}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+
+            <article className="card-surface p-6 border border-slate-700/70">
+              <div className="flex items-center gap-2">
+                <Newspaper className="w-4 h-4 text-sky-400" />
+                <h3 className="text-sm font-semibold text-slate-50">Servicios / Noticias / Contacto</h3>
+              </div>
+              <ul className="mt-4 space-y-2 text-sm text-slate-200">
+                {[
+                  "Servicios con estructura repetible (beneficio → proceso → CTA)",
+                  "Noticias/Blog (si aplica) con administración",
+                  "Contacto con formulario + WhatsApp + correo",
+                  "Eventos medibles (clicks, envío form, etc.)",
+                  "Preguntas frecuentes (opcional)",
+                ].map((x) => (
+                  <li key={x} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 mt-[2px] text-sky-400" />
+                    <span>{x}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/portafolio" className="btn-ghost bg-white/10 hover:bg-white/20 px-5 py-2 text-sm inline-flex items-center gap-2">
+              Ver portafolio
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link href="/contacto#form" className="btn-primary px-5 py-2 text-sm inline-flex items-center gap-2">
+              Pedir propuesta
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </section>
 
         {/* PLANES */}
         <section id={ANCHORS.planes} aria-label="Planes">
-          {/* Anclas adicionales para compatibilidad con links del home */}
-          <div id={ANCHORS.sitioCorporativo} />
-          <div id={ANCHORS.crm} />
-
           <header className="max-w-3xl mb-8">
             <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">Planes de desarrollo web</h2>
             <p className="mt-3 text-sm md:text-base text-slate-300">
-              Elige el plan según tu etapa. Todos incluyen base moderna, medición y entrega clara para operar sin
-              dolores de cabeza.
+              Elige el plan según tu etapa. Todos incluyen base moderna, medición y entrega documentada.
             </p>
           </header>
 
           <div className="grid gap-6 lg:grid-cols-3">
-            {planos.map((plan) => (
-              <article
-                key={plan.name}
-                // ✅ el home linkea #plan-medio, y además dejamos #basico/#medio/#premium
-                id={plan.popular ? ANCHORS.planMedioCard : plan.anchorId}
-                className={cx(
-                  "card-surface p-6 flex flex-col h-full border scroll-mt-24",
-                  plan.popular
-                    ? "border-sky-400/70 shadow-soft-glow shadow-sky-500/20"
-                    : "border-slate-700/70"
-                )}
-              >
-                <div className="mb-4">
-                  <div className="flex items-center justify-between gap-2">
-                    {plan.badge && (
-                      <span className="inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold bg-slate-900/80 border border-sky-500/40 text-sky-200">
-                        {plan.badge}
-                      </span>
-                    )}
-                    {plan.popular && (
-                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-sky-300">
-                        <Sparkles className="w-3.5 h-3.5" />
-                        Recomendado
-                      </span>
+            {planos.map((plan) => {
+              const planKey = plan.name.toLowerCase().replace(/[^\w]+/g, "_");
+              const portfolioHref = portfolioLink(plan.portfolioFocus);
+
+              return (
+                <article
+                  key={plan.name}
+                  id={plan.popular ? ANCHORS.planMedioCard : plan.anchorId}
+                  className={cx(
+                    "card-surface p-6 flex flex-col h-full border scroll-mt-24",
+                    plan.popular ? "border-sky-400/70 shadow-soft-glow shadow-sky-500/20" : "border-slate-700/70"
+                  )}
+                >
+                  {/* Head */}
+                  <div className="mb-4">
+                    <div className="flex items-center justify-between gap-2">
+                      {plan.badge && (
+                        <span className="inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold bg-slate-900/80 border border-sky-500/40 text-sky-200">
+                          {plan.badge}
+                        </span>
+                      )}
+                      {plan.popular && (
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-sky-300">
+                          <Sparkles className="w-3.5 h-3.5" />
+                          Recomendado
+                        </span>
+                      )}
+                    </div>
+
+                    <h3 className="mt-3 text-lg font-semibold text-slate-50">{plan.name}</h3>
+                    <p className="mt-1 text-sky-400 text-base font-semibold">{plan.price}</p>
+                    <p className="mt-3 text-sm text-slate-300">{plan.description}</p>
+
+                    {plan.idealFor && (
+                      <p className="mt-2 text-xs text-slate-400">
+                        <span className="font-semibold text-slate-200">Ideal para:</span> {plan.idealFor}
+                      </p>
                     )}
                   </div>
 
-                  <h3 className="mt-3 text-lg font-semibold text-slate-50">{plan.name}</h3>
-                  <p className="mt-1 text-sky-400 text-base font-semibold">{plan.price}</p>
-                  <p className="mt-3 text-sm text-slate-300">{plan.description}</p>
+                  {/* Features */}
+                  <ul className="mt-3 space-y-2 text-sm text-slate-200 flex-1">
+                    {plan.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 mt-[2px] text-sky-400 flex-shrink-0" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                  {plan.idealFor && (
-                    <p className="mt-2 text-xs text-slate-400">
-                      <span className="font-semibold text-slate-200">Ideal para:</span> {plan.idealFor}
+                  {/* Delivery + notes */}
+                  {plan.delivery && (
+                    <p className="mt-4 text-xs text-slate-300 border-t border-slate-800 pt-3">
+                      <span className="font-semibold text-slate-100">Plazo:</span> {plan.delivery}
                     </p>
                   )}
-                </div>
 
-                <ul className="mt-3 space-y-2 text-sm text-slate-200 flex-1">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 mt-[2px] text-sky-400 flex-shrink-0" />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
+                  {plan.note && <p className="mt-2 text-xs text-slate-400">{plan.note}</p>}
 
-                {plan.delivery && (
-                  <p className="mt-4 text-xs text-slate-300 border-t border-slate-800 pt-3">
-                    <span className="font-semibold text-slate-100">Plazo:</span> {plan.delivery}
+                  {/* Primary CTA */}
+                  <Link
+                    href="/contacto#form"
+                    className="btn-primary w-full text-center mt-6 inline-flex items-center justify-center gap-2"
+                    data-cta={`plan_${planKey}`}
+                  >
+                    {plan.ctaLabel ?? "Cotizar este plan"}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+
+                  {/* Internal CTAs */}
+                  <div className="mt-3 grid gap-2">
+                    <Link
+                      href={`#${ANCHORS.ejemploEstructura}`}
+                      className="btn-ghost bg-white/10 hover:bg-white/20 w-full text-center inline-flex items-center justify-center gap-2 px-4 py-2 text-sm"
+                      data-cta={`plan_${planKey}_estructura`}
+                    >
+                      Ver ejemplo de estructura
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+
+                    <Link
+                      href={portfolioHref}
+                      className="btn-ghost bg-white/5 hover:bg-white/15 w-full text-center inline-flex items-center justify-center gap-2 px-4 py-2 text-sm"
+                      data-cta={`plan_${planKey}_portafolio`}
+                    >
+                      Ver portafolio relacionado
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+
+                  <p className="mt-2 text-[11px] text-slate-400">
+                    Valores referenciales. Monto final por escrito según alcance y tiempos.
                   </p>
-                )}
-
-                {plan.note && <p className="mt-2 text-xs text-slate-400">{plan.note}</p>}
-
-                <Link
-                  href="/contacto#form"
-                  className="btn-primary w-full text-center mt-6 inline-flex items-center justify-center gap-2"
-                  data-cta={`plan_${plan.name.toLowerCase().replace(/[^\w]+/g, "_")}`}
-                >
-                  {plan.ctaLabel ?? "Quiero este plan"}
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-
-                <p className="mt-2 text-[11px] text-slate-400">
-                  Valores referenciales. Monto final por escrito según alcance y tiempos.
-                </p>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
 
           {/* FUERA DE ALCANCE */}
           <div className="mt-8 card-surface p-6 border border-slate-700/70">
             <div className="flex items-center gap-2">
               <Lock className="w-4 h-4 text-sky-400" />
-              <h3 className="text-sm font-semibold text-slate-50">Para evitar malentendidos (fuera de alcance)</h3>
+              <h3 className="text-sm font-semibold text-slate-50">Fuera de alcance</h3>
             </div>
             <p className="mt-2 text-sm text-slate-300">
               Nuevas secciones no consideradas, integraciones extra, rediseños completos o funcionalidades tipo “app”
@@ -663,7 +746,7 @@ export default function ServiciosPage() {
                 "Cambios estructurales posteriores al cierre de alcance",
                 "Integraciones avanzadas (ERP, pagos, sistemas internos)",
                 "Funcionalidades tipo plataforma/app",
-                "Carga recurrente de contenidos (eso es un plan mensual aparte)",
+                "Carga recurrente de contenidos (plan mensual aparte)",
               ].map((x) => (
                 <div key={x} className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 mt-[2px] text-slate-500" />
@@ -676,15 +759,14 @@ export default function ServiciosPage() {
 
         {/* PROCESO + TECH */}
         <section
-          className="grid gap-10 lg:grid-cols-[1.1fr_minmax(0,1fr)] items-start"
-          id="proceso"
-          aria-label="Proceso y tecnología"
+          id={ANCHORS.proceso}
+          className="grid gap-10 lg:grid-cols-[1.1fr_minmax(0,1fr)] items-start scroll-mt-24"
+          aria-label="Proceso"
         >
           <div>
-            <h2 className="text-2xl font-semibold text-slate-50">Proceso simple (y controlado)</h2>
+            <h2 className="text-2xl font-semibold text-slate-50">Proceso de trabajo</h2>
             <p className="mt-3 text-sm md:text-base text-slate-300 max-w-xl">
-              Claridad desde el inicio: alcance, plazos, responsables y entregables. Eso evita retrabajo y mantiene el
-              proyecto bajo control.
+              Definimos alcance y entregables por escrito desde el inicio para avanzar con control.
             </p>
 
             <div className="mt-6 space-y-4">
@@ -704,19 +786,15 @@ export default function ServiciosPage() {
             <div className="mt-8 p-5 rounded-xl border border-slate-700/70 bg-black/30">
               <div className="flex items-start gap-3">
                 <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 border border-slate-700">
-                  <BadgeCheck className="w-4 h-4 text-sky-400" />
+                  <PhoneCall className="w-4 h-4 text-sky-400" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-50">¿Quieres cerrar rápido?</p>
+                  <p className="text-sm font-semibold text-slate-50">Siguiente paso</p>
                   <p className="mt-1 text-sm text-slate-300">
-                    Envíanos objetivo + secciones + fecha ideal. Respondemos con propuesta y siguiente paso.
+                    Envíanos objetivo + secciones + fecha ideal. Respondemos con propuesta y plan de trabajo.
                   </p>
                   <div className="mt-3 flex flex-wrap gap-3">
-                    <Link
-                      href="/contacto#form"
-                      className="btn-primary inline-flex items-center gap-2 px-5 py-2 text-sm"
-                      data-cta="process_form"
-                    >
+                    <Link href="/contacto#form" className="btn-primary inline-flex items-center gap-2 px-5 py-2 text-sm">
                       Pedir propuesta
                       <ArrowRight className="w-4 h-4" />
                     </Link>
@@ -728,9 +806,9 @@ export default function ServiciosPage() {
           </div>
 
           <div className="card-surface p-6 border border-slate-700/70">
-            <h3 className="text-lg font-semibold text-slate-50">Tecnología (sin humo)</h3>
+            <h3 className="text-lg font-semibold text-slate-50">Tecnología</h3>
             <p className="mt-2 text-sm text-slate-300">
-              Lo importante no es la lista de herramientas, sino que sea operable, rápido y medible.
+              Base moderna para rendimiento, seguridad y operación medible.
             </p>
 
             <ul className="mt-4 space-y-3 text-sm text-slate-200">
@@ -750,12 +828,12 @@ export default function ServiciosPage() {
               ))}
             </ul>
 
-            <p className="mt-4 text-xs text-slate-400">Toda la configuración técnica queda documentada para continuidad.</p>
+            <p className="mt-4 text-xs text-slate-400">Toda la configuración técnica queda documentada.</p>
           </div>
         </section>
 
         {/* MINI CTA GRID */}
-        <section aria-label="Atajos para cerrar">
+        <section aria-label="Atajos">
           <div className="grid gap-4 md:grid-cols-2">
             {miniCTAs.map((m) => {
               const Icon = m.icon;
@@ -782,21 +860,18 @@ export default function ServiciosPage() {
 
                       <div className="mt-4 flex flex-wrap gap-2">
                         <Link
-                          href="/contacto#form"
+                          href={m.hrefPrimary}
                           className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm inline-flex items-center gap-2"
-                          data-cta={`mini_${m.title.toLowerCase().replace(/[^\w]+/g, "_")}`}
                         >
-                          Cotizar →
-                          <ArrowRight className="w-4 h-4" />
+                          {m.primaryLabel ?? "Cotizar"} <ArrowRight className="w-4 h-4" />
                         </Link>
 
-                        {m.anchorHref && (
+                        {m.hrefSecondary && (
                           <Link
-                            href={m.anchorHref}
+                            href={m.hrefSecondary}
                             className="btn-ghost bg-white/5 hover:bg-white/15 px-4 py-2 text-sm inline-flex items-center gap-2"
                           >
-                            Ver detalle →
-                            <ArrowRight className="w-4 h-4" />
+                            {m.secondaryLabel ?? "Ver detalle"} <ArrowRight className="w-4 h-4" />
                           </Link>
                         )}
                       </div>
@@ -810,15 +885,14 @@ export default function ServiciosPage() {
 
         {/* EXTRAS + RECURRENT */}
         <section
-          className="grid gap-10 lg:grid-cols-[1.4fr_minmax(0,1fr)] items-start"
           id={ANCHORS.extras}
-          aria-label="Extras y servicios recurrentes"
+          className="grid gap-10 lg:grid-cols-[1.4fr_minmax(0,1fr)] items-start scroll-mt-24"
+          aria-label="Extras"
         >
-          {/* EXTRAS */}
           <div>
-            <h2 className="text-2xl font-semibold text-slate-50">Servicios adicionales (modulares)</h2>
+            <h2 className="text-2xl font-semibold text-slate-50">Servicios adicionales</h2>
             <p className="mt-2 text-sm text-slate-300 max-w-2xl">
-              Productos rápidos para campañas o mejoras puntuales (sea tu sitio nuestro o de terceros).
+              Servicios modulares para campañas o mejoras puntuales.
             </p>
 
             <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -844,10 +918,8 @@ export default function ServiciosPage() {
                             <Link
                               href={extra.cta.href}
                               className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm inline-flex items-center gap-2"
-                              data-cta={`extra_${extra.title.toLowerCase().replace(/[^\w]+/g, "_")}`}
                             >
-                              {extra.cta.label} →
-                              <ArrowRight className="w-4 h-4" />
+                              {extra.cta.label} <ArrowRight className="w-4 h-4" />
                             </Link>
                           </div>
                         )}
@@ -859,8 +931,7 @@ export default function ServiciosPage() {
             </div>
           </div>
 
-          {/* RECURRENTES */}
-          <div className="card-surface p-5 border border-slate-700/70" id="recurrente">
+          <div className="card-surface p-5 border border-slate-700/70 scroll-mt-24" id={ANCHORS.recurrente}>
             <h2 className="text-lg font-semibold text-slate-50">Servicios recurrentes</h2>
             <p className="mt-2 text-sm text-slate-300">
               Mantén tu sitio estable, vigente y con respuesta rápida cuando algo se necesite.
@@ -892,9 +963,8 @@ export default function ServiciosPage() {
               <Link
                 href="/contacto#form"
                 className="btn-primary w-full text-center inline-flex items-center justify-center gap-2"
-                data-cta="recurrent_form"
               >
-                Quiero continuidad mensual
+                Solicitar plan mensual
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -905,7 +975,7 @@ export default function ServiciosPage() {
         <section id={ANCHORS.faq} aria-label="FAQ" className="scroll-mt-24">
           <h2 className="text-2xl font-semibold text-slate-50">Preguntas frecuentes</h2>
           <p className="mt-2 text-sm text-slate-300 max-w-2xl">
-            Respuestas directas para definir plan y alcance sin vueltas.
+            Respuestas directas para definir plan y alcance.
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -921,19 +991,18 @@ export default function ServiciosPage() {
             <Link
               href="/contacto#form"
               className="btn-primary inline-flex items-center gap-2 px-6 py-3 text-sm md:text-base"
-              data-cta="faq_form"
             >
-              Quiero una propuesta para mi organización
+              Pedir propuesta
               <ArrowRight className="w-4 h-4" />
             </Link>
             <p className="text-xs md:text-sm text-slate-400">
-              Cuéntanos objetivo, público y tipo de sitio. Respondemos con siguiente paso y propuesta.
+              Cuéntanos objetivo, público y tipo de sitio. Respondemos con propuesta y siguiente paso.
             </p>
           </div>
 
           <p className="mt-4 text-[11px] text-slate-500">
-            Nota: cualquier requerimiento fuera del alcance acordado (nuevas secciones, integraciones extra, rediseños o
-            cambios estructurales) se evalúa y se cotiza por separado.
+            Nota: requerimientos fuera del alcance acordado (nuevas secciones, integraciones, rediseños o cambios
+            estructurales) se evalúan y se cotizan por separado.
           </p>
         </section>
       </div>
