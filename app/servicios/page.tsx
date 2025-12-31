@@ -35,6 +35,8 @@ type Plan = {
   note?: string;
   delivery?: string;
   ctaLabel?: string;
+  // 👇 NUEVO: para anclas del home
+  anchorId?: string;
 };
 
 type Card = {
@@ -43,6 +45,8 @@ type Card = {
   price: string;
   icon?: React.ElementType;
   cta?: { label: string; href: string };
+  // 👇 NUEVO: para ancla landing-48h
+  anchorId?: string;
 };
 
 type Recurrent = {
@@ -57,6 +61,8 @@ type Pillar = {
   description: string;
   icon: React.ElementType;
   bullets: string[];
+  // 👇 opcional (por si quieres anclar pilares)
+  anchorId?: string;
 };
 
 type Proof = {
@@ -71,12 +77,29 @@ type MiniCTA = {
   bullets: string[];
   price?: string;
   icon: React.ElementType;
+  // 👇 opcional
+  anchorHref?: string;
 };
 
 const PRIMARY_PLAN_ANCHOR_ID = "plan-medio";
 
+// ✅ IDs que tu Home ya está linkeando (o debería linkear)
+const ANCHORS = {
+  planes: "planes",
+  basico: "basico",
+  medio: "medio",
+  premium: "premium",
+  planMedioCard: PRIMARY_PLAN_ANCHOR_ID,
+  extras: "extras",
+  landing48h: "landing-48h",
+  faq: "faq",
+  sitioCorporativo: "sitio-corporativo",
+  crm: "crm",
+} as const;
+
 const planos: Plan[] = [
   {
+    anchorId: ANCHORS.basico,
     name: "Plan Básico — Presencia profesional",
     price: "$290.000",
     badge: "Ideal para empezar",
@@ -93,11 +116,11 @@ const planos: Plan[] = [
     ],
     delivery: "Entrega en 7 días hábiles desde aprobación de contenido",
     idealFor: "Consultores, profesionales independientes, negocios locales y servicios.",
-    note:
-      "No incluye blog/noticias administrables ni panel de contenidos. CRM opcional como extra.",
+    note: "No incluye blog/noticias administrables ni panel de contenidos. CRM opcional como extra.",
     ctaLabel: "Elegir Básico",
   },
   {
+    anchorId: ANCHORS.medio,
     name: "Plan Medio — Sitio corporativo (recomendado)",
     price: "$590.000 – $690.000",
     badge: "Más elegido",
@@ -117,11 +140,11 @@ const planos: Plan[] = [
     delivery: "Entrega en 2–3 semanas según complejidad de contenido",
     idealFor:
       "Empresas de servicios, clínicas, colegios, estudios, cámaras, equipos comerciales.",
-    note:
-      "Automatizaciones avanzadas, segmentación y flujos se cotizan aparte (Etapa 2).",
+    note: "Automatizaciones avanzadas, segmentación y flujos se cotizan aparte (Etapa 2).",
     ctaLabel: "Elegir Plan Medio",
   },
   {
+    anchorId: ANCHORS.premium,
     name: "Plan Premium — Plataforma institucional",
     price: "$990.000 – $1.500.000",
     badge: "Solución integral",
@@ -140,8 +163,7 @@ const planos: Plan[] = [
     delivery: "Entrega en 3–4 semanas con hitos definidos",
     idealFor:
       "Instituciones, cámaras, gremios y organizaciones con comunicación interna/externa.",
-    note:
-      "Ideal cuando hay múltiples responsables y se necesita control, continuidad y medición.",
+    note: "Ideal cuando hay múltiples responsables y se necesita control, continuidad y medición.",
     ctaLabel: "Elegir Premium",
   },
 ];
@@ -163,11 +185,7 @@ const pilares: Pillar[] = [
     description:
       "Base moderna para que cargue rápido, sea estable y no dependa de hosting frágil.",
     icon: Lock,
-    bullets: [
-      "SSL + CDN + DNS",
-      "Buenas prácticas de despliegue",
-      "Checklist técnico + continuidad",
-    ],
+    bullets: ["SSL + CDN + DNS", "Buenas prácticas de despliegue", "Checklist técnico + continuidad"],
   },
   {
     title: "Medición real",
@@ -178,14 +196,13 @@ const pilares: Pillar[] = [
   },
   {
     title: "Escalable por etapas",
-    description:
-      "Partimos por lo esencial y escalamos. Sin rehacer todo cuando creces.",
+    description: "Partimos por lo esencial y escalamos. Sin rehacer todo cuando creces.",
     icon: Layers,
     bullets: ["Módulos por etapa", "Documentado", "Fácil de mantener"],
   },
 ];
 
-const pruebas: Proof[] = [
+const pruebas = [
   {
     title: "Entrega documentada",
     description:
@@ -204,10 +221,11 @@ const pruebas: Proof[] = [
       "DNS/SSL/performance/medición revisados antes de publicar. Menos sorpresas.",
     icon: ShieldCheck,
   },
-];
+] satisfies Array<Proof>;
 
 const extras: Card[] = [
   {
+    anchorId: ANCHORS.landing48h,
     title: "Landing page (48–72 hrs)",
     description:
       "Página de alta conversión para campañas, lanzamientos o eventos. Con tracking y CTAs claros.",
@@ -344,14 +362,15 @@ const miniCTAs: MiniCTA[] = [
     bullets: ["Landing + tracking", "CTA claro", "Entrega 48–72 hrs"],
     price: "Desde $120.000",
     icon: Zap,
+    anchorHref: `#${ANCHORS.landing48h}`,
   },
   {
     title: "¿Tu sitio existe pero no convierte?",
-    description:
-      "Mejora “sin rehacer todo”: claridad + velocidad + medición.",
+    description: "Mejora “sin rehacer todo”: claridad + velocidad + medición.",
     bullets: ["Core Web Vitals", "SEO On-Page", "Eventos base (GTM)"],
     price: "Desde $100.000",
     icon: Wrench,
+    anchorHref: `#${ANCHORS.extras}`,
   },
 ];
 
@@ -408,6 +427,15 @@ export default function ServiciosPage() {
               Ver plan recomendado
               <ArrowRight className="w-4 h-4" />
             </Link>
+
+            <Link
+              href={`#${ANCHORS.landing48h}`}
+              className="btn-ghost bg-white/10 backdrop-blur hover:bg-white/20 inline-flex items-center gap-2 px-6 py-3 text-sm md:text-base"
+              data-cta="hero_to_landing"
+            >
+              Landing 48–72 hrs
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
 
           <p className="mt-4 text-xs md:text-sm text-slate-300 max-w-xl mx-auto">
@@ -416,27 +444,16 @@ export default function ServiciosPage() {
           </p>
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-[11px] text-slate-300">
-            <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">
-              Entrega documentada
-            </span>
-            <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">
-              Propiedad y accesos claros
-            </span>
-            <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">
-              Medición (GA4/GTM)
-            </span>
-            <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">
-              Escalable por etapas
-            </span>
+            <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">Entrega documentada</span>
+            <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">Propiedad y accesos claros</span>
+            <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">Medición (GA4/GTM)</span>
+            <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">Escalable por etapas</span>
           </div>
         </div>
       </section>
 
       {/* QUICK BENEFITS STRIP */}
-      <section
-        className="bg-slate-950/80 border-b border-slate-800"
-        aria-label="Beneficios rápidos"
-      >
+      <section className="bg-slate-950/80 border-b border-slate-800" aria-label="Beneficios rápidos">
         <div className="section flex flex-col md:flex-row items-center justify-between gap-4 py-6 text-xs md:text-sm text-slate-200">
           <div className="flex items-center gap-2">
             <Clock className="w-4 h-4 text-sky-400" />
@@ -455,23 +472,18 @@ export default function ServiciosPage() {
 
       {/* MAIN */}
       <div className="section mt-16 space-y-20">
-        {/* PRUEBAS (trust blocks) */}
+        {/* PRUEBAS */}
         <section aria-label="Confianza y continuidad">
           <div className="grid gap-4 md:grid-cols-3">
             {pruebas.map((p) => {
               const Icon = p.icon;
               return (
-                <article
-                  key={p.title}
-                  className="card-surface p-5 border border-slate-700/70"
-                >
+                <article key={p.title} className="card-surface p-5 border border-slate-700/70">
                   <div className="flex items-center gap-3">
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 border border-slate-700">
                       <Icon className="w-4 h-4 text-sky-400" />
                     </div>
-                    <h3 className="text-sm font-semibold text-slate-50">
-                      {p.title}
-                    </h3>
+                    <h3 className="text-sm font-semibold text-slate-50">{p.title}</h3>
                   </div>
                   <p className="mt-3 text-sm text-slate-300">{p.description}</p>
                 </article>
@@ -483,9 +495,7 @@ export default function ServiciosPage() {
         {/* PILARES */}
         <section aria-label="Qué incluye trabajar con Tronx Strategy">
           <header className="max-w-3xl">
-            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">
-              Lo que incluye el plan (sin humo)
-            </h2>
+            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">Lo que incluye el plan (sin humo)</h2>
             <p className="mt-3 text-sm md:text-base text-slate-300">
               Diseñamos y construimos sitios que se mantienen, escalan y se miden. Tu web como activo operativo.
             </p>
@@ -495,17 +505,12 @@ export default function ServiciosPage() {
             {pilares.map((p) => {
               const Icon = p.icon;
               return (
-                <article
-                  key={p.title}
-                  className="card-surface p-5 border border-slate-700/70"
-                >
+                <article key={p.title} className="card-surface p-5 border border-slate-700/70">
                   <div className="flex items-center gap-2">
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 border border-slate-700">
                       <Icon className="w-4 h-4 text-sky-400" />
                     </div>
-                    <h3 className="text-sm font-semibold text-slate-50">
-                      {p.title}
-                    </h3>
+                    <h3 className="text-sm font-semibold text-slate-50">{p.title}</h3>
                   </div>
 
                   <p className="mt-3 text-sm text-slate-300">{p.description}</p>
@@ -524,12 +529,46 @@ export default function ServiciosPage() {
           </div>
         </section>
 
+        {/* QUICK NAV (para que tus anchors sean “descubribles”) */}
+        <section aria-label="Accesos rápidos servicios">
+          <div className="card-surface p-5 border border-slate-700/70 bg-black/20">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div>
+                <p className="text-sm font-semibold text-slate-50">Accesos rápidos</p>
+                <p className="text-xs text-slate-400 mt-1">Planes, extras y atajos para cerrar (ideal para Ads).</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Link className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm" href={`#${ANCHORS.basico}`}>
+                  Básico →
+                </Link>
+                <Link className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm" href={`#${ANCHORS.medio}`}>
+                  Medio →
+                </Link>
+                <Link className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm" href={`#${ANCHORS.premium}`}>
+                  Premium →
+                </Link>
+                <Link className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm" href={`#${ANCHORS.landing48h}`}>
+                  Landing 48h →
+                </Link>
+                <Link className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm" href={`#${ANCHORS.extras}`}>
+                  Extras →
+                </Link>
+                <Link className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm" href={`#${ANCHORS.faq}`}>
+                  FAQ →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* PLANES */}
-        <section id="planes" aria-label="Planes">
+        <section id={ANCHORS.planes} aria-label="Planes">
+          {/* Anclas adicionales para compatibilidad con links del home */}
+          <div id={ANCHORS.sitioCorporativo} />
+          <div id={ANCHORS.crm} />
+
           <header className="max-w-3xl mb-8">
-            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">
-              Planes de desarrollo web
-            </h2>
+            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">Planes de desarrollo web</h2>
             <p className="mt-3 text-sm md:text-base text-slate-300">
               Elige el plan según tu etapa. Todos incluyen base moderna, medición y entrega clara para operar sin
               dolores de cabeza.
@@ -540,9 +579,10 @@ export default function ServiciosPage() {
             {planos.map((plan) => (
               <article
                 key={plan.name}
-                id={plan.popular ? PRIMARY_PLAN_ANCHOR_ID : undefined}
+                // ✅ el home linkea #plan-medio, y además dejamos #basico/#medio/#premium
+                id={plan.popular ? ANCHORS.planMedioCard : plan.anchorId}
                 className={cx(
-                  "card-surface p-6 flex flex-col h-full border",
+                  "card-surface p-6 flex flex-col h-full border scroll-mt-24",
                   plan.popular
                     ? "border-sky-400/70 shadow-soft-glow shadow-sky-500/20"
                     : "border-slate-700/70"
@@ -563,20 +603,13 @@ export default function ServiciosPage() {
                     )}
                   </div>
 
-                  <h3 className="mt-3 text-lg font-semibold text-slate-50">
-                    {plan.name}
-                  </h3>
-                  <p className="mt-1 text-sky-400 text-base font-semibold">
-                    {plan.price}
-                  </p>
+                  <h3 className="mt-3 text-lg font-semibold text-slate-50">{plan.name}</h3>
+                  <p className="mt-1 text-sky-400 text-base font-semibold">{plan.price}</p>
                   <p className="mt-3 text-sm text-slate-300">{plan.description}</p>
 
                   {plan.idealFor && (
                     <p className="mt-2 text-xs text-slate-400">
-                      <span className="font-semibold text-slate-200">
-                        Ideal para:
-                      </span>{" "}
-                      {plan.idealFor}
+                      <span className="font-semibold text-slate-200">Ideal para:</span> {plan.idealFor}
                     </p>
                   )}
                 </div>
@@ -592,21 +625,16 @@ export default function ServiciosPage() {
 
                 {plan.delivery && (
                   <p className="mt-4 text-xs text-slate-300 border-t border-slate-800 pt-3">
-                    <span className="font-semibold text-slate-100">Plazo:</span>{" "}
-                    {plan.delivery}
+                    <span className="font-semibold text-slate-100">Plazo:</span> {plan.delivery}
                   </p>
                 )}
 
-                {plan.note && (
-                  <p className="mt-2 text-xs text-slate-400">{plan.note}</p>
-                )}
+                {plan.note && <p className="mt-2 text-xs text-slate-400">{plan.note}</p>}
 
                 <Link
                   href="/contacto#form"
                   className="btn-primary w-full text-center mt-6 inline-flex items-center justify-center gap-2"
-                  data-cta={`plan_${plan.name
-                    .toLowerCase()
-                    .replace(/[^\w]+/g, "_")}`}
+                  data-cta={`plan_${plan.name.toLowerCase().replace(/[^\w]+/g, "_")}`}
                 >
                   {plan.ctaLabel ?? "Quiero este plan"}
                   <ArrowRight className="w-4 h-4" />
@@ -619,13 +647,11 @@ export default function ServiciosPage() {
             ))}
           </div>
 
-          {/* “Qué NO incluye” (filtrado) */}
+          {/* FUERA DE ALCANCE */}
           <div className="mt-8 card-surface p-6 border border-slate-700/70">
             <div className="flex items-center gap-2">
               <Lock className="w-4 h-4 text-sky-400" />
-              <h3 className="text-sm font-semibold text-slate-50">
-                Para evitar malentendidos (fuera de alcance)
-              </h3>
+              <h3 className="text-sm font-semibold text-slate-50">Para evitar malentendidos (fuera de alcance)</h3>
             </div>
             <p className="mt-2 text-sm text-slate-300">
               Nuevas secciones no consideradas, integraciones extra, rediseños completos o funcionalidades tipo “app”
@@ -655,9 +681,7 @@ export default function ServiciosPage() {
           aria-label="Proceso y tecnología"
         >
           <div>
-            <h2 className="text-2xl font-semibold text-slate-50">
-              Proceso simple (y controlado)
-            </h2>
+            <h2 className="text-2xl font-semibold text-slate-50">Proceso simple (y controlado)</h2>
             <p className="mt-3 text-sm md:text-base text-slate-300 max-w-xl">
               Claridad desde el inicio: alcance, plazos, responsables y entregables. Eso evita retrabajo y mantiene el
               proyecto bajo control.
@@ -670,27 +694,20 @@ export default function ServiciosPage() {
                     <Icon className="w-4 h-4 text-sky-400" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-slate-50">
-                      {title}
-                    </h3>
-                    <p className="text-xs md:text-sm text-slate-300">
-                      {description}
-                    </p>
+                    <h3 className="text-sm font-semibold text-slate-50">{title}</h3>
+                    <p className="text-xs md:text-sm text-slate-300">{description}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Micro CTA */}
             <div className="mt-8 p-5 rounded-xl border border-slate-700/70 bg-black/30">
               <div className="flex items-start gap-3">
                 <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 border border-slate-700">
                   <BadgeCheck className="w-4 h-4 text-sky-400" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-50">
-                    ¿Quieres cerrar rápido?
-                  </p>
+                  <p className="text-sm font-semibold text-slate-50">¿Quieres cerrar rápido?</p>
                   <p className="mt-1 text-sm text-slate-300">
                     Envíanos objetivo + secciones + fecha ideal. Respondemos con propuesta y siguiente paso.
                   </p>
@@ -703,9 +720,7 @@ export default function ServiciosPage() {
                       Pedir propuesta
                       <ArrowRight className="w-4 h-4" />
                     </Link>
-                    <p className="text-xs text-slate-400 self-center">
-                      (sin llamada si no quieres)
-                    </p>
+                    <p className="text-xs text-slate-400 self-center">(sin llamada si no quieres)</p>
                   </div>
                 </div>
               </div>
@@ -713,9 +728,7 @@ export default function ServiciosPage() {
           </div>
 
           <div className="card-surface p-6 border border-slate-700/70">
-            <h3 className="text-lg font-semibold text-slate-50">
-              Tecnología (sin humo)
-            </h3>
+            <h3 className="text-lg font-semibold text-slate-50">Tecnología (sin humo)</h3>
             <p className="mt-2 text-sm text-slate-300">
               Lo importante no es la lista de herramientas, sino que sea operable, rápido y medible.
             </p>
@@ -737,33 +750,25 @@ export default function ServiciosPage() {
               ))}
             </ul>
 
-            <p className="mt-4 text-xs text-slate-400">
-              Toda la configuración técnica queda documentada para continuidad.
-            </p>
+            <p className="mt-4 text-xs text-slate-400">Toda la configuración técnica queda documentada para continuidad.</p>
           </div>
         </section>
 
-        {/* MINI CTA GRID (para vender plan) */}
+        {/* MINI CTA GRID */}
         <section aria-label="Atajos para cerrar">
           <div className="grid gap-4 md:grid-cols-2">
             {miniCTAs.map((m) => {
               const Icon = m.icon;
               return (
-                <article
-                  key={m.title}
-                  className="card-surface p-6 border border-slate-700/70"
-                >
+                <article key={m.title} className="card-surface p-6 border border-slate-700/70">
                   <div className="flex items-start gap-3">
                     <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 border border-slate-700">
                       <Icon className="w-4 h-4 text-sky-400" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-base font-semibold text-slate-50">
-                        {m.title}
-                      </h3>
-                      <p className="mt-1 text-sm text-slate-300">
-                        {m.description}
-                      </p>
+                      <h3 className="text-base font-semibold text-slate-50">{m.title}</h3>
+                      <p className="mt-1 text-sm text-slate-300">{m.description}</p>
+
                       <ul className="mt-3 space-y-2 text-sm text-slate-200">
                         {m.bullets.map((b) => (
                           <li key={b} className="flex items-start gap-2">
@@ -772,22 +777,28 @@ export default function ServiciosPage() {
                           </li>
                         ))}
                       </ul>
-                      {m.price && (
-                        <p className="mt-3 text-sm font-semibold text-sky-300">
-                          {m.price}
-                        </p>
-                      )}
-                      <div className="mt-4">
+
+                      {m.price && <p className="mt-3 text-sm font-semibold text-sky-300">{m.price}</p>}
+
+                      <div className="mt-4 flex flex-wrap gap-2">
                         <Link
                           href="/contacto#form"
                           className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm inline-flex items-center gap-2"
-                          data-cta={`mini_${m.title
-                            .toLowerCase()
-                            .replace(/[^\w]+/g, "_")}`}
+                          data-cta={`mini_${m.title.toLowerCase().replace(/[^\w]+/g, "_")}`}
                         >
                           Cotizar →
                           <ArrowRight className="w-4 h-4" />
                         </Link>
+
+                        {m.anchorHref && (
+                          <Link
+                            href={m.anchorHref}
+                            className="btn-ghost bg-white/5 hover:bg-white/15 px-4 py-2 text-sm inline-flex items-center gap-2"
+                          >
+                            Ver detalle →
+                            <ArrowRight className="w-4 h-4" />
+                          </Link>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -800,14 +811,12 @@ export default function ServiciosPage() {
         {/* EXTRAS + RECURRENT */}
         <section
           className="grid gap-10 lg:grid-cols-[1.4fr_minmax(0,1fr)] items-start"
-          id="extras"
+          id={ANCHORS.extras}
           aria-label="Extras y servicios recurrentes"
         >
           {/* EXTRAS */}
           <div>
-            <h2 className="text-2xl font-semibold text-slate-50">
-              Servicios adicionales (modulares)
-            </h2>
+            <h2 className="text-2xl font-semibold text-slate-50">Servicios adicionales (modulares)</h2>
             <p className="mt-2 text-sm text-slate-300 max-w-2xl">
               Productos rápidos para campañas o mejoras puntuales (sea tu sitio nuestro o de terceros).
             </p>
@@ -818,28 +827,24 @@ export default function ServiciosPage() {
                 return (
                   <article
                     key={extra.title}
-                    className="card-surface p-4 text-sm border border-slate-700/70"
+                    id={extra.anchorId}
+                    className="card-surface p-4 text-sm border border-slate-700/70 scroll-mt-24"
                   >
                     <div className="flex items-start gap-3">
                       <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 border border-slate-700">
                         <Icon className="w-4 h-4 text-sky-400" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-semibold text-slate-50">
-                          {extra.title}
-                        </h3>
+                        <h3 className="font-semibold text-slate-50">{extra.title}</h3>
                         <p className="mt-1 text-slate-300">{extra.description}</p>
-                        <p className="mt-2 text-sky-400 font-medium">
-                          {extra.price}
-                        </p>
+                        <p className="mt-2 text-sky-400 font-medium">{extra.price}</p>
+
                         {extra.cta && (
                           <div className="mt-3">
                             <Link
                               href={extra.cta.href}
                               className="btn-ghost bg-white/10 hover:bg-white/20 px-4 py-2 text-sm inline-flex items-center gap-2"
-                              data-cta={`extra_${extra.title
-                                .toLowerCase()
-                                .replace(/[^\w]+/g, "_")}`}
+                              data-cta={`extra_${extra.title.toLowerCase().replace(/[^\w]+/g, "_")}`}
                             >
                               {extra.cta.label} →
                               <ArrowRight className="w-4 h-4" />
@@ -855,13 +860,8 @@ export default function ServiciosPage() {
           </div>
 
           {/* RECURRENTES */}
-          <div
-            className="card-surface p-5 border border-slate-700/70"
-            id="recurrente"
-          >
-            <h2 className="text-lg font-semibold text-slate-50">
-              Servicios recurrentes
-            </h2>
+          <div className="card-surface p-5 border border-slate-700/70" id="recurrente">
+            <h2 className="text-lg font-semibold text-slate-50">Servicios recurrentes</h2>
             <p className="mt-2 text-sm text-slate-300">
               Mantén tu sitio estable, vigente y con respuesta rápida cuando algo se necesite.
             </p>
@@ -902,20 +902,15 @@ export default function ServiciosPage() {
         </section>
 
         {/* FAQ */}
-        <section id="faq" aria-label="FAQ">
-          <h2 className="text-2xl font-semibold text-slate-50">
-            Preguntas frecuentes
-          </h2>
+        <section id={ANCHORS.faq} aria-label="FAQ" className="scroll-mt-24">
+          <h2 className="text-2xl font-semibold text-slate-50">Preguntas frecuentes</h2>
           <p className="mt-2 text-sm text-slate-300 max-w-2xl">
             Respuestas directas para definir plan y alcance sin vueltas.
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {faqs.map((faq) => (
-              <article
-                key={faq.question}
-                className="card-surface p-4 border border-slate-700/70 text-sm"
-              >
+              <article key={faq.question} className="card-surface p-4 border border-slate-700/70 text-sm">
                 <h3 className="font-semibold text-slate-50">{faq.question}</h3>
                 <p className="mt-2 text-slate-300">{faq.answer}</p>
               </article>
