@@ -5,6 +5,9 @@ import "./globals.css";
 import { Navbar } from "../components/site/navbar";
 import Footer from "../components/site/footer";
 
+const siteUrl = "https://www.tronxstrategy.com";
+const ogImage = `${siteUrl}/favicon_TronxStrategy.png`; // 👈 usar favicon para compartir (como pediste)
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -12,16 +15,14 @@ export const viewport: Viewport = {
   themeColor: "#020617", // slate-950
 };
 
-const siteUrl = "https://www.tronxstrategy.com";
-
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Tronx Strategy — Sitios web corporativos en Next.js",
     template: "%s · Tronx Strategy",
   },
   description:
     "Estudio web de Tronx Group. Diseñamos y desarrollamos sitios corporativos modernos en Next.js, con infraestructura GitHub + Vercel + Cloudflare para empresas, cámaras e instituciones.",
-  metadataBase: new URL(siteUrl),
   keywords: [
     "sitios web corporativos",
     "diseño web",
@@ -34,9 +35,8 @@ export const metadata: Metadata = {
     "Tronx Strategy",
     "Tronx Group",
   ],
-  alternates: {
-    canonical: "/", // canónica del home, las demás rutas pueden definir la suya
-  },
+  alternates: { canonical: "/" },
+
   openGraph: {
     title: "Tronx Strategy — Sitios web corporativos modernos en Next.js",
     description:
@@ -47,20 +47,22 @@ export const metadata: Metadata = {
     locale: "es_CL",
     images: [
       {
-        url: "/og_tronxstrategy.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Tronx Strategy — Estudio digital de Tronx Group",
+        url: ogImage,
+        width: 512,
+        height: 512,
+        alt: "Tronx Strategy",
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Tronx Strategy — Sitios web corporativos modernos",
     description:
       "Estudio digital que construye sitios web corporativos en Next.js para empresas, cámaras e instituciones.",
-    images: ["/og_tronxstrategy.jpg"],
+    images: [ogImage],
   },
+
   robots: {
     index: true,
     follow: true,
@@ -72,25 +74,24 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+
   icons: {
     icon: "/favicon_TronxStrategy.png",
     shortcut: "/favicon_TronxStrategy.png",
     apple: "/favicon_TronxStrategy.png",
   },
+
   category: "technology",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const orgLdJson = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Tronx Strategy",
     url: siteUrl,
     logo: `${siteUrl}/favicon_TronxStrategy.png`,
+    image: `${siteUrl}/favicon_TronxStrategy.png`, // 👈 refuerzo para sharing
     description:
       "Estudio web de Tronx Group especializado en sitios corporativos modernos en Next.js para empresas, cámaras e instituciones.",
     parentOrganization: {
@@ -100,7 +101,6 @@ export default function RootLayout({
     },
     sameAs: [
       "https://www.instagram.com/tronxstrategy",
-      // agrega LinkedIn cuando lo tengas:
       // "https://www.linkedin.com/company/tronx-strategy",
     ],
     address: {
@@ -123,14 +123,16 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        {/* JSON-LD para SEO (inline, sin hidratar) */}
         <script
           type="application/ld+json"
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLdJson) }}
         />
       </head>
-      <body className="bg-transparent text-slate-100">
+
+      {/* ⚠️ Importante: evita bg-transparent si tu navbar tiene overlays;
+          usa un fondo base para contraste y para que el icono se vea. */}
+      <body className="bg-slate-950 text-slate-100 antialiased">
         {/* Google Analytics (GA4) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-MZLLPKCM1Q"
@@ -146,7 +148,7 @@ export default function RootLayout({
         </Script>
 
         <Navbar />
-        <main>{children}</main>
+        <main className="min-h-[60vh]">{children}</main>
         <Footer />
       </body>
     </html>
