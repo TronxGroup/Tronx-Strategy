@@ -26,6 +26,10 @@ import {
   Newspaper,
   Users,
   PhoneCall,
+  Coins,
+  Repeat,
+  Receipt,
+  Timer,
 } from "lucide-react";
 
 type Plan = {
@@ -57,6 +61,7 @@ type Recurrent = {
   details: string;
   price: string;
   icon?: React.ElementType;
+  bullets?: string[];
 };
 
 type Pillar = {
@@ -98,6 +103,7 @@ const ANCHORS = {
   faq: "faq",
   proceso: "proceso",
   recurrente: "recurrente",
+  mensual: "mensual",
 } as const;
 
 const planos: Plan[] = [
@@ -108,18 +114,19 @@ const planos: Plan[] = [
     price: "$290.000",
     badge: "Ideal para empezar",
     description:
-      "Para profesionales y negocios que necesitan una web clara, rápida y confiable, con lo técnico resuelto y lista para recibir contactos.",
+      "Web clara, rápida y confiable, con lo técnico resuelto y lista para recibir contactos.",
     features: [
       "Sitio 1–3 secciones (Inicio, Servicios, Contacto)",
-      "Diseño responsive (móvil, tablet, desktop) + performance base",
-      "Formulario de contacto + botón directo a WhatsApp",
-      "SEO base (metadatos, headings, indexación) + optimización de carga",
-      "Configuración dominio/DNS + SSL (candado)",
-      "Conexión GA4 (medición básica)",
+      "Diseño responsive + performance base",
+      "Formulario + botón directo a WhatsApp",
+      "SEO base (metadatos, headings, indexación)",
+      "Dominio/DNS + SSL (candado)",
+      "GA4 (medición básica)",
       "Entrega documentada (accesos + guía breve)",
     ],
     delivery: "Entrega en 7 días hábiles desde aprobación de contenido",
-    idealFor: "Consultores, profesionales independientes, negocios locales y servicios.",
+    idealFor:
+      "Consultores, profesionales independientes, negocios locales y servicios.",
     note: "No incluye blog/noticias administrables ni panel de contenidos. CRM opcional como extra.",
     ctaLabel: "Cotizar Plan Básico",
   },
@@ -131,21 +138,21 @@ const planos: Plan[] = [
     badge: "Más elegido",
     popular: true,
     description:
-      "Para empresas e instituciones que necesitan un sitio completo, medible y listo para campañas, con alcance definido por escrito.",
+      "Sitio completo, medible y listo para campañas, con alcance definido por escrito.",
     features: [
-      "5–7 páginas completas (Inicio, Empresa, Servicios, Equipo, Noticias/Blog, Contacto, etc.)",
-      "Sección noticias administrable (comunicados / institucionalidad)",
-      "GA4 + Tag Manager + eventos base (WhatsApp, formulario, botones clave)",
-      "SEO On-Page: títulos, descripciones, headings, canonical, indexación",
-      "Formularios listos para campañas (captura limpia + trazable)",
-      "Integración base de formularios a correo/CRM (Zoho / HubSpot) según operación",
+      "5–7 páginas (Inicio, Empresa, Servicios, Equipo, Contacto, etc.)",
+      "Noticias administrable (comunicados / institucionalidad)",
+      "GA4 + GTM + eventos base (WhatsApp, formulario, botones clave)",
+      "SEO On-Page (títulos, descripciones, canonical, indexación)",
+      "Formularios trazables (captura limpia + medible)",
+      "Integración base a correo/CRM (Zoho / HubSpot) según operación",
       "Capacitación de administración (1 hora) + checklist de publicación",
       "Entrega documentada (propiedad, accesos, guía de operación)",
     ],
-    delivery: "Entrega en 2–3 semanas según complejidad de contenido",
+    delivery: "Entrega en 2–3 semanas según contenido",
     idealFor:
       "Empresas de servicios, clínicas, colegios, estudios, cámaras, equipos comerciales.",
-    note: "Automatizaciones avanzadas, segmentación y flujos se cotizan aparte (Etapa 2).",
+    note: "Automatizaciones avanzadas y flujos se cotizan aparte (Etapa 2).",
     ctaLabel: "Cotizar Plan Medio",
   },
   {
@@ -155,16 +162,16 @@ const planos: Plan[] = [
     price: "$990.000 – $1.500.000",
     badge: "Solución integral",
     description:
-      "Para organizaciones con múltiples áreas, stakeholders y continuidad: gobierno digital, secciones especiales y operación medible, con alcance definido por escrito.",
+      "Para organizaciones con múltiples áreas: gobierno digital, continuidad y medición.",
     features: [
-      "8–12 páginas + blog avanzado + secciones especiales (documentos, proyectos, directorio, áreas, etc.)",
-      "UX mejorada con micro-interacciones orientadas a claridad y confianza",
-      "Producción básica de contenido (ajuste de textos + imágenes stock profesional)",
-      "Formularios por área + tracking consistente (GA4/GTM) + conversiones base",
-      "Integraciones avanzadas (CRM + formularios + flujos por campañas según necesidad)",
-      "Estructura de gobierno digital (propiedad, accesos, roles y continuidad)",
+      "8–12 páginas + blog avanzado + secciones especiales",
+      "UX mejorada orientada a claridad y confianza",
+      "Ajuste de textos + imágenes stock profesional (base)",
+      "Formularios por área + tracking consistente (GA4/GTM)",
+      "Integraciones avanzadas (CRM + flujos por campañas)",
+      "Gobierno digital (propiedad, accesos, roles y continuidad)",
       "Manual Web Corporativo (PDF) + capacitación",
-      "1 mes de soporte incluido (ajustes menores + acompañamiento)",
+      "1 mes de soporte incluido",
     ],
     delivery: "Entrega en 3–4 semanas con hitos definidos",
     idealFor:
@@ -177,29 +184,33 @@ const planos: Plan[] = [
 const pilares: Pillar[] = [
   {
     title: "Estructura clara",
-    description: "Arquitectura de contenidos para que el usuario entienda y avance.",
+    description: "Arquitectura para que el usuario entienda y avance.",
     icon: LayoutTemplate,
     bullets: [
       "Mensaje por intención (qué haces / por qué tú / cómo contactarte)",
       "Secciones orientadas a conversión",
-      "Lectura rápida y jerarquía visual",
+      "Lectura rápida + jerarquía visual",
     ],
   },
   {
     title: "Performance + seguridad",
-    description: "Base moderna para velocidad, estabilidad y continuidad.",
+    description: "Base moderna para velocidad y continuidad.",
     icon: Lock,
-    bullets: ["SSL + CDN + DNS", "Buenas prácticas de despliegue", "Checklist técnico"],
+    bullets: [
+      "SSL + CDN + DNS",
+      "Buenas prácticas de despliegue",
+      "Checklist técnico pre-publicación",
+    ],
   },
   {
     title: "Medición real",
-    description: "Eventos y conversiones para campañas y mejora continua.",
+    description: "Eventos y conversiones para campañas.",
     icon: BarChart3,
     bullets: ["GA4 + GTM", "Eventos base", "Trazabilidad para anuncios"],
   },
   {
     title: "Escalable por etapas",
-    description: "Crecimiento ordenado sin rehacer el sitio al avanzar.",
+    description: "Crecimiento ordenado sin rehacer todo.",
     icon: Layers,
     bullets: ["Módulos por etapa", "Documentación", "Operación simple"],
   },
@@ -208,7 +219,7 @@ const pilares: Pillar[] = [
 const pruebas: Proof[] = [
   {
     title: "Entrega documentada",
-    description: "Accesos, llaves y guía breve para continuidad operativa.",
+    description: "Accesos + guía breve para continuidad operativa.",
     icon: FileText,
   },
   {
@@ -243,7 +254,8 @@ const extras: Card[] = [
   },
   {
     title: "Optimización performance (Core Web Vitals)",
-    description: "Mejoras de velocidad, peso y carga para elevar experiencia y resultados.",
+    description:
+      "Mejoras de velocidad, peso y carga para elevar experiencia y resultados.",
     price: "$100.000 – $280.000",
     icon: Clock,
     cta: { label: "Optimizar mi sitio", href: "/contacto#form" },
@@ -274,27 +286,43 @@ const extras: Card[] = [
   },
 ];
 
+// ✅ Ajustado para dejar MUY explícito el interés por pago mensual y qué cubre cada servicio
 const recurrentes: Recurrent[] = [
   {
     title: "Hosting administrado (Vercel + Cloudflare)",
     details:
-      "Infraestructura, SSL, CDN, DNS y continuidad del despliegue. Ideal para operar sin fricción.",
+      "Infraestructura operativa del sitio. Mantiene el sitio publicado y funcionando (DNS, SSL, CDN y despliegue).",
     price: "Desde $10.000 / mes",
     icon: Cloud,
+    bullets: [
+      "DNS + SSL (candado) + CDN",
+      "Continuidad de despliegue",
+      "Operación cloud sin fricción",
+    ],
   },
   {
     title: "Soporte y mantención",
     details:
-      "Ajustes menores, correcciones, soporte técnico y acompañamiento. (No incluye carga recurrente de contenidos).",
+      "Soporte técnico mensual para estabilidad y ajustes menores. Ideal para no depender de urgencias.",
     price: "Desde $29.990 / mes",
     icon: Headphones,
+    bullets: [
+      "Correcciones y ajustes menores",
+      "Soporte técnico y acompañamiento",
+      "Monitoreo básico y respuesta rápida",
+    ],
   },
   {
     title: "Gestión de contenidos",
     details:
-      "Publicación mensual de noticias, comunicados, beneficios, actividades, fotos, documentos y enlaces.",
+      "Publicación mensual y actualización de información para mantener el sitio vigente (sin carga interna del equipo).",
     price: "Desde $80.000 / mes",
     icon: FileText,
+    bullets: [
+      "Noticias / comunicados / actividades",
+      "Documentos, enlaces, galerías simples",
+      "Orden y consistencia editorial",
+    ],
   },
 ];
 
@@ -325,16 +353,17 @@ const steps = [
   },
 ];
 
+// ✅ FAQ reforzado hacia el modelo mensual
 const faqs = [
+  {
+    question: "¿El desarrollo es un pago único y lo mensual es opcional?",
+    answer:
+      "Sí. El plan (Básico/Medio/Premium) es implementación. Lo mensual es operación continua: hosting, soporte y/o gestión de contenidos. Recomendado para continuidad.",
+  },
   {
     question: "¿El precio incluye dominio y hosting?",
     answer:
       "Incluye configuración (DNS, SSL y puesta en producción). El dominio y la infraestructura pueden contratarlos ustedes o con nosotros como “hosting administrado”.",
-  },
-  {
-    question: "¿Tengo que entregar textos e imágenes?",
-    answer:
-      "Idealmente sí para acelerar. Si tienes borradores, los ordenamos y mejoramos. En Premium incluimos ajuste de textos + selección de imágenes de stock.",
   },
   {
     question: "¿Qué diferencia hay entre soporte y gestión de contenidos?",
@@ -353,7 +382,8 @@ const faqs = [
   },
 ];
 
-const miniCTAs: MiniCTA[] = [
+// ✅ Mini-CTAs intactos
+const miniCTAs = [
   {
     title: "Landing lista para campañas",
     description: "Alta conversión con tracking y CTAs claros.",
@@ -376,7 +406,7 @@ const miniCTAs: MiniCTA[] = [
     primaryLabel: "Cotizar",
     secondaryLabel: "Ver extras",
   },
-];
+] satisfies MiniCTA[];
 
 function cx(...classes: Array<string | false | undefined | null>) {
   return classes.filter(Boolean).join(" ");
@@ -385,6 +415,27 @@ function cx(...classes: Array<string | false | undefined | null>) {
 function portfolioLink(focus?: "basico" | "medio" | "premium") {
   if (!focus) return "/portafolio";
   return `/portafolio?focus=${encodeURIComponent(focus)}`;
+}
+
+function MoneyRow({
+  label,
+  value,
+  strong,
+}: {
+  label: string;
+  value: string;
+  strong?: boolean;
+}) {
+  return (
+    <div className="flex items-center justify-between gap-3 text-sm">
+      <span className={cx("text-slate-300", strong && "text-slate-100 font-semibold")}>
+        {label}
+      </span>
+      <span className={cx("text-slate-200", strong && "text-sky-300 font-semibold")}>
+        {value}
+      </span>
+    </div>
+  );
 }
 
 export default function ServiciosPage() {
@@ -410,11 +461,13 @@ export default function ServiciosPage() {
 
           <h1 className="text-4xl md:text-5xl font-semibold text-white tracking-tight">
             Sitios web con{" "}
-            <span className="text-sky-300">alcance definido por escrito</span> y entrega clara.
+            <span className="text-sky-300">alcance definido por escrito</span> y{" "}
+            <span className="text-sky-300">operación mensual</span>.
           </h1>
 
           <p className="mt-4 text-slate-200 text-base md:text-lg max-w-3xl mx-auto">
-            Base moderna para rendimiento, seguridad y medición. Entrega documentada para operar con continuidad.
+            Implementación clara + continuidad real: hosting administrado, soporte y gestión de contenidos para mantener el sitio
+            funcionando y vigente.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -423,7 +476,16 @@ export default function ServiciosPage() {
               className="btn-primary inline-flex items-center gap-2 px-6 py-3 text-sm md:text-base"
               data-cta="hero_form"
             >
-              Cotizar mi sitio (sin llamada)
+              Cotizar (sin llamada)
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+
+            <Link
+              href={`#${ANCHORS.mensual}`}
+              className="btn-ghost bg-white/10 backdrop-blur hover:bg-white/20 inline-flex items-center gap-2 px-6 py-3 text-sm md:text-base"
+              data-cta="hero_to_mensual"
+            >
+              Ver operación mensual
               <ArrowRight className="w-4 h-4" />
             </Link>
 
@@ -433,15 +495,6 @@ export default function ServiciosPage() {
               data-cta="hero_to_plan_medio"
             >
               Ver plan recomendado
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-
-            <Link
-              href={`#${ANCHORS.ejemploEstructura}`}
-              className="btn-ghost bg-white/10 backdrop-blur hover:bg-white/20 inline-flex items-center gap-2 px-6 py-3 text-sm md:text-base"
-              data-cta="hero_structure"
-            >
-              Ver ejemplo de estructura
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -454,7 +507,7 @@ export default function ServiciosPage() {
             <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">Entrega documentada</span>
             <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">Accesos claros</span>
             <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">Medición (GA4/GTM)</span>
-            <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">Escalable por etapas</span>
+            <span className="px-3 py-1 rounded-full bg-black/40 border border-slate-700/80">Operación mensual</span>
           </div>
         </div>
       </section>
@@ -463,16 +516,16 @@ export default function ServiciosPage() {
       <section className="bg-slate-950/80 border-b border-slate-800" aria-label="Beneficios rápidos">
         <div className="section flex flex-col md:flex-row items-center justify-between gap-4 py-6 text-xs md:text-sm text-slate-200">
           <div className="flex items-center gap-2">
-            <Clock className="w-4 h-4 text-sky-400" />
-            <span>Plazos claros: desde 7 días hábiles según plan.</span>
+            <Timer className="w-4 h-4 text-sky-400" />
+            <span>Implementación por plan + continuidad mensual.</span>
           </div>
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-            <span>Checklist técnico + entrega documentada.</span>
+            <Receipt className="w-4 h-4 text-emerald-400" />
+            <span>Valores claros: pago único + mensual.</span>
           </div>
           <div className="flex items-center gap-2">
-            <Cloud className="w-4 h-4 text-indigo-400" />
-            <span>Infraestructura moderna (Vercel + Cloudflare).</span>
+            <Repeat className="w-4 h-4 text-indigo-400" />
+            <span>Operación recurrente: hosting, soporte y contenidos.</span>
           </div>
         </div>
       </section>
@@ -502,9 +555,9 @@ export default function ServiciosPage() {
         {/* PILARES */}
         <section aria-label="Qué incluye trabajar con Tronx Strategy">
           <header className="max-w-3xl">
-            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">Lo que incluye el servicio</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">Qué hacemos</h2>
             <p className="mt-3 text-sm md:text-base text-slate-300">
-              Sitios que se entienden, cargan rápido y se pueden medir. Con entrega clara para operar.
+              Implementamos el sitio y dejamos operación clara: que cargue rápido, sea medible y se mantenga vigente.
             </p>
           </header>
 
@@ -536,12 +589,140 @@ export default function ServiciosPage() {
           </div>
         </section>
 
+        {/* ✅ SECCIÓN NUEVA: OPERACIÓN MENSUAL (CLARA + CON INTERÉS EN PAGO MENSUAL) */}
+        <section id={ANCHORS.mensual} aria-label="Operación mensual" className="scroll-mt-24">
+          <header className="max-w-3xl">
+            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">
+              Operación mensual (lo que mantiene el sitio funcionando)
+            </h2>
+            <p className="mt-3 text-sm md:text-base text-slate-300">
+              El desarrollo es implementación. Lo mensual es continuidad: infraestructura + soporte + contenido para que el sitio
+              no quede abandonado.
+            </p>
+          </header>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            {/* Operación */}
+            <article className="card-surface p-6 border border-slate-700/70">
+              <div className="flex items-center gap-2">
+                <Cloud className="w-4 h-4 text-sky-400" />
+                <h3 className="text-sm font-semibold text-slate-50">Infraestructura</h3>
+              </div>
+              <p className="mt-2 text-sm text-slate-300">
+                Hosting administrado para mantener publicado, seguro y estable.
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-slate-200">
+                {["DNS + SSL + CDN", "Despliegue continuo", "Base cloud-first"].map((x) => (
+                  <li key={x} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 mt-[2px] text-sky-400" />
+                    <span>{x}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-sm font-semibold text-sky-300">Desde $10.000 / mes</p>
+            </article>
+
+            {/* Soporte */}
+            <article className="card-surface p-6 border border-slate-700/70">
+              <div className="flex items-center gap-2">
+                <Headphones className="w-4 h-4 text-sky-400" />
+                <h3 className="text-sm font-semibold text-slate-50">Soporte</h3>
+              </div>
+              <p className="mt-2 text-sm text-slate-300">
+                Ajustes menores y soporte técnico para que el sitio no dependa de urgencias.
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-slate-200">
+                {["Correcciones y ajustes menores", "Soporte y acompañamiento", "Respuesta rápida"].map((x) => (
+                  <li key={x} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 mt-[2px] text-sky-400" />
+                    <span>{x}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-sm font-semibold text-sky-300">Desde $29.990 / mes</p>
+            </article>
+
+            {/* Contenido */}
+            <article className="card-surface p-6 border border-slate-700/70">
+              <div className="flex items-center gap-2">
+                <FileText className="w-4 h-4 text-sky-400" />
+                <h3 className="text-sm font-semibold text-slate-50">Contenido</h3>
+              </div>
+              <p className="mt-2 text-sm text-slate-300">
+                Publicación mensual para mantener la web vigente (comunicados, noticias, documentos).
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-slate-200">
+                {["Publicación mensual", "Actualizaciones institucionales", "Orden editorial"].map((x) => (
+                  <li key={x} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 mt-[2px] text-sky-400" />
+                    <span>{x}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-sm font-semibold text-sky-300">Desde $80.000 / mes</p>
+            </article>
+          </div>
+
+          {/* Bundle recomendado */}
+          <div className="mt-6 card-surface p-6 border border-slate-700/70">
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 border border-slate-700">
+                <Coins className="w-5 h-5 text-sky-400" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-base font-semibold text-slate-50">Recomendación: operación mensual completa</h3>
+                <p className="mt-1 text-sm text-slate-300">
+                  Para empresas que quieren continuidad real: hosting + soporte + contenidos.
+                </p>
+
+                <div className="mt-4 grid gap-2 max-w-md">
+                  <MoneyRow label="Hosting administrado" value="$10.000 / mes" />
+                  <MoneyRow label="Soporte y mantención" value="$29.990 / mes" />
+                  <MoneyRow label="Gestión de contenidos" value="$80.000 / mes" />
+                  <div className="border-t border-slate-800 pt-3 mt-1">
+                    <MoneyRow label="Total mensual (referencial)" value="$119.990 / mes" strong />
+                    <p className="mt-2 text-[11px] text-slate-400">
+                      Valores netos. Se suma IVA según corresponda. Ajustamos por frecuencia y volumen.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Link
+                    href="/contacto#form"
+                    className="btn-primary inline-flex items-center gap-2 px-5 py-2 text-sm"
+                    data-cta="mensual_solicitar_plan"
+                  >
+                    Solicitar plan mensual
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+
+                  <Link
+                    href={`#${ANCHORS.planes}`}
+                    className="btn-ghost bg-white/10 hover:bg-white/20 inline-flex items-center gap-2 px-5 py-2 text-sm"
+                    data-cta="mensual_ver_planes"
+                  >
+                    Ver planes de implementación
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+
+                <p className="mt-3 text-xs text-slate-400">
+                  Este modelo reduce fricción y evita “sitios abandonados”: continuidad técnica + actualización mínima mensual.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* EJEMPLO DE ESTRUCTURA */}
         <section id={ANCHORS.ejemploEstructura} aria-label="Ejemplo de estructura" className="scroll-mt-24">
           <header className="max-w-3xl">
-            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">Ejemplo de estructura (sitio corporativo)</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">
+              Ejemplo de estructura (sitio corporativo)
+            </h2>
             <p className="mt-3 text-sm md:text-base text-slate-300">
-              Una estructura típica para explicar rápido, generar confianza y facilitar contacto.
+              Estructura típica para explicar rápido, generar confianza y facilitar contacto.
             </p>
           </header>
 
@@ -611,11 +792,17 @@ export default function ServiciosPage() {
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/portafolio" className="btn-ghost bg-white/10 hover:bg-white/20 px-5 py-2 text-sm inline-flex items-center gap-2">
+            <Link
+              href="/portafolio"
+              className="btn-ghost bg-white/10 hover:bg-white/20 px-5 py-2 text-sm inline-flex items-center gap-2"
+            >
               Ver portafolio
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link href="/contacto#form" className="btn-primary px-5 py-2 text-sm inline-flex items-center gap-2">
+            <Link
+              href="/contacto#form"
+              className="btn-primary px-5 py-2 text-sm inline-flex items-center gap-2"
+            >
               Pedir propuesta
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -623,11 +810,11 @@ export default function ServiciosPage() {
         </section>
 
         {/* PLANES */}
-        <section id={ANCHORS.planes} aria-label="Planes">
+        <section id={ANCHORS.planes} aria-label="Planes" className="scroll-mt-24">
           <header className="max-w-3xl mb-8">
-            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">Planes de desarrollo web</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50">Planes de implementación</h2>
             <p className="mt-3 text-sm md:text-base text-slate-300">
-              Elige el plan según tu etapa. Todos incluyen base moderna, medición y entrega documentada.
+              Implementación por plan. Luego, operación mensual para continuidad (hosting/soporte/contenidos).
             </p>
           </header>
 
@@ -642,10 +829,11 @@ export default function ServiciosPage() {
                   id={plan.popular ? ANCHORS.planMedioCard : plan.anchorId}
                   className={cx(
                     "card-surface p-6 flex flex-col h-full border scroll-mt-24",
-                    plan.popular ? "border-sky-400/70 shadow-soft-glow shadow-sky-500/20" : "border-slate-700/70"
+                    plan.popular
+                      ? "border-sky-400/70 shadow-soft-glow shadow-sky-500/20"
+                      : "border-slate-700/70"
                   )}
                 >
-                  {/* Head */}
                   <div className="mb-4">
                     <div className="flex items-center justify-between gap-2">
                       {plan.badge && (
@@ -672,7 +860,6 @@ export default function ServiciosPage() {
                     )}
                   </div>
 
-                  {/* Features */}
                   <ul className="mt-3 space-y-2 text-sm text-slate-200 flex-1">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-2">
@@ -682,7 +869,6 @@ export default function ServiciosPage() {
                     ))}
                   </ul>
 
-                  {/* Delivery + notes */}
                   {plan.delivery && (
                     <p className="mt-4 text-xs text-slate-300 border-t border-slate-800 pt-3">
                       <span className="font-semibold text-slate-100">Plazo:</span> {plan.delivery}
@@ -691,7 +877,6 @@ export default function ServiciosPage() {
 
                   {plan.note && <p className="mt-2 text-xs text-slate-400">{plan.note}</p>}
 
-                  {/* Primary CTA */}
                   <Link
                     href="/contacto#form"
                     className="btn-primary w-full text-center mt-6 inline-flex items-center justify-center gap-2"
@@ -701,14 +886,13 @@ export default function ServiciosPage() {
                     <ArrowRight className="w-4 h-4" />
                   </Link>
 
-                  {/* Internal CTAs */}
                   <div className="mt-3 grid gap-2">
                     <Link
-                      href={`#${ANCHORS.ejemploEstructura}`}
+                      href={`#${ANCHORS.mensual}`}
                       className="btn-ghost bg-white/10 hover:bg-white/20 w-full text-center inline-flex items-center justify-center gap-2 px-4 py-2 text-sm"
-                      data-cta={`plan_${planKey}_estructura`}
+                      data-cta={`plan_${planKey}_mensual`}
                     >
-                      Ver ejemplo de estructura
+                      Ver operación mensual
                       <ArrowRight className="w-4 h-4" />
                     </Link>
 
@@ -730,15 +914,14 @@ export default function ServiciosPage() {
             })}
           </div>
 
-          {/* FUERA DE ALCANCE */}
           <div className="mt-8 card-surface p-6 border border-slate-700/70">
             <div className="flex items-center gap-2">
               <Lock className="w-4 h-4 text-sky-400" />
               <h3 className="text-sm font-semibold text-slate-50">Fuera de alcance</h3>
             </div>
             <p className="mt-2 text-sm text-slate-300">
-              Nuevas secciones no consideradas, integraciones extra, rediseños completos o funcionalidades tipo “app”
-              se evalúan y se cotizan aparte.
+              Nuevas secciones, integraciones extra, rediseños completos o funcionalidades tipo “app” se evalúan y se cotizan
+              aparte.
             </p>
 
             <div className="mt-4 grid gap-2 md:grid-cols-2 text-sm text-slate-200">
@@ -794,7 +977,10 @@ export default function ServiciosPage() {
                     Envíanos objetivo + secciones + fecha ideal. Respondemos con propuesta y plan de trabajo.
                   </p>
                   <div className="mt-3 flex flex-wrap gap-3">
-                    <Link href="/contacto#form" className="btn-primary inline-flex items-center gap-2 px-5 py-2 text-sm">
+                    <Link
+                      href="/contacto#form"
+                      className="btn-primary inline-flex items-center gap-2 px-5 py-2 text-sm"
+                    >
                       Pedir propuesta
                       <ArrowRight className="w-4 h-4" />
                     </Link>
@@ -807,9 +993,7 @@ export default function ServiciosPage() {
 
           <div className="card-surface p-6 border border-slate-700/70">
             <h3 className="text-lg font-semibold text-slate-50">Tecnología</h3>
-            <p className="mt-2 text-sm text-slate-300">
-              Base moderna para rendimiento, seguridad y operación medible.
-            </p>
+            <p className="mt-2 text-sm text-slate-300">Base moderna para rendimiento, seguridad y operación medible.</p>
 
             <ul className="mt-4 space-y-3 text-sm text-slate-200">
               {[
@@ -883,7 +1067,7 @@ export default function ServiciosPage() {
           </div>
         </section>
 
-        {/* EXTRAS + RECURRENT */}
+        {/* EXTRAS + RECURRENT (mantengo, pero ahora la sección mensual ya dejó el mensaje principal) */}
         <section
           id={ANCHORS.extras}
           className="grid gap-10 lg:grid-cols-[1.4fr_minmax(0,1fr)] items-start scroll-mt-24"
@@ -891,9 +1075,7 @@ export default function ServiciosPage() {
         >
           <div>
             <h2 className="text-2xl font-semibold text-slate-50">Servicios adicionales</h2>
-            <p className="mt-2 text-sm text-slate-300 max-w-2xl">
-              Servicios modulares para campañas o mejoras puntuales.
-            </p>
+            <p className="mt-2 text-sm text-slate-300 max-w-2xl">Servicios modulares para campañas o mejoras puntuales.</p>
 
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               {extras.map((extra) => {
@@ -934,7 +1116,7 @@ export default function ServiciosPage() {
           <div className="card-surface p-5 border border-slate-700/70 scroll-mt-24" id={ANCHORS.recurrente}>
             <h2 className="text-lg font-semibold text-slate-50">Servicios recurrentes</h2>
             <p className="mt-2 text-sm text-slate-300">
-              Mantén tu sitio estable, vigente y con respuesta rápida cuando algo se necesite.
+              Mantén tu sitio estable, vigente y con respuesta rápida. Ideal para continuidad mensual.
             </p>
 
             <ul className="mt-4 space-y-4 text-sm text-slate-200">
@@ -945,10 +1127,20 @@ export default function ServiciosPage() {
                     <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 border border-slate-700">
                       <Icon className="w-4 h-4 text-sky-400" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <p className="font-semibold text-slate-50">{srv.title}</p>
                       <p className="text-slate-300">{srv.details}</p>
-                      <p className="text-sky-400 text-xs mt-1">{srv.price}</p>
+                      {srv.bullets?.length ? (
+                        <ul className="mt-2 space-y-1 text-xs text-slate-300">
+                          {srv.bullets.map((b) => (
+                            <li key={b} className="flex items-start gap-2">
+                              <CheckCircle2 className="w-3.5 h-3.5 mt-[2px] text-sky-400" />
+                              <span>{b}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                      <p className="text-sky-400 text-xs mt-2">{srv.price}</p>
                     </div>
                   </li>
                 );
@@ -974,9 +1166,7 @@ export default function ServiciosPage() {
         {/* FAQ */}
         <section id={ANCHORS.faq} aria-label="FAQ" className="scroll-mt-24">
           <h2 className="text-2xl font-semibold text-slate-50">Preguntas frecuentes</h2>
-          <p className="mt-2 text-sm text-slate-300 max-w-2xl">
-            Respuestas directas para definir plan y alcance.
-          </p>
+          <p className="mt-2 text-sm text-slate-300 max-w-2xl">Respuestas directas para definir plan y alcance.</p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {faqs.map((faq) => (
@@ -1001,8 +1191,8 @@ export default function ServiciosPage() {
           </div>
 
           <p className="mt-4 text-[11px] text-slate-500">
-            Nota: requerimientos fuera del alcance acordado (nuevas secciones, integraciones, rediseños o cambios
-            estructurales) se evalúan y se cotizan por separado.
+            Nota: requerimientos fuera del alcance acordado (nuevas secciones, integraciones, rediseños o cambios estructurales)
+            se evalúan y se cotizan por separado.
           </p>
         </section>
       </div>
