@@ -1,4 +1,5 @@
 // app/layout.tsx
+
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
@@ -6,41 +7,45 @@ import { Navbar } from "../components/site/navbar";
 import Footer from "../components/site/footer";
 
 const siteUrl = "https://www.tronxstrategy.com";
-const ogImage = `${siteUrl}/favicon_TronxStrategy.png`; // 👈 usar favicon para compartir (como pediste)
+const ogImage = `${siteUrl}/favicon_TronxStrategy.png`;
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#020617", // slate-950
+  themeColor: "#020617",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+
   title: {
-    default: "Tronx Strategy — Sitios web corporativos en Next.js",
+    default: "Tronx Strategy — WebOps y sitios corporativos en Next.js",
     template: "%s · Tronx Strategy",
   },
+
   description:
-    "Estudio web de Tronx Group. Diseñamos y desarrollamos sitios corporativos modernos en Next.js, con infraestructura GitHub + Vercel + Cloudflare para empresas, cámaras e instituciones.",
+    "Tronx Strategy es la unidad WebOps de Tronx Group. Diseñamos y desarrollamos sitios corporativos modernos en Next.js con infraestructura GitHub + Vercel + Cloudflare.",
+
   keywords: [
+    "WebOps",
     "sitios web corporativos",
-    "diseño web",
     "desarrollo web Next.js",
-    "Vercel",
+    "infraestructura Vercel",
     "Cloudflare",
-    "sitio institucional",
+    "portal institucional",
     "landing page",
-    "portal web",
+    "CRM integración",
     "Tronx Strategy",
     "Tronx Group",
   ],
+
   alternates: { canonical: "/" },
 
   openGraph: {
-    title: "Tronx Strategy — Sitios web corporativos modernos en Next.js",
+    title: "Tronx Strategy — WebOps corporativo en Next.js",
     description:
-      "Sitios web modernos, rápidos y seguros para empresas que quieren crecer. Infraestructura GitHub + Vercel + Cloudflare.",
+      "Sitios web corporativos modernos, medibles y preparados para continuidad mensual.",
     url: siteUrl,
     siteName: "Tronx Strategy",
     type: "website",
@@ -57,9 +62,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Tronx Strategy — Sitios web corporativos modernos",
+    title: "Tronx Strategy — WebOps corporativo",
     description:
-      "Estudio digital que construye sitios web corporativos en Next.js para empresas, cámaras e instituciones.",
+      "Arquitectura moderna + gobierno digital + continuidad operativa.",
     images: [ogImage],
   },
 
@@ -84,31 +89,39 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const orgLdJson = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Tronx Strategy",
     url: siteUrl,
     logo: `${siteUrl}/favicon_TronxStrategy.png`,
-    image: `${siteUrl}/favicon_TronxStrategy.png`, // 👈 refuerzo para sharing
+    image: `${siteUrl}/favicon_TronxStrategy.png`,
     description:
-      "Estudio web de Tronx Group especializado en sitios corporativos modernos en Next.js para empresas, cámaras e instituciones.",
+      "Unidad WebOps de Tronx Group especializada en sitios corporativos modernos en Next.js para empresas, cámaras e instituciones.",
+
     parentOrganization: {
       "@type": "Organization",
       name: "Tronx Group SpA",
       url: "https://www.tronxgroup.com",
     },
+
     sameAs: [
       "https://www.instagram.com/tronxstrategy",
-      // "https://www.linkedin.com/company/tronx-strategy",
+      "https://www.linkedin.com/company/tronx-strategy",
     ],
+
     address: {
       "@type": "PostalAddress",
       addressCountry: "CL",
       addressLocality: "Santiago",
       addressRegion: "Región Metropolitana",
     },
+
     contactPoint: [
       {
         "@type": "ContactPoint",
@@ -121,19 +134,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   };
 
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <head>
+        {/* Structured Data */}
         <script
           type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLdJson) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(orgLdJson),
+          }}
         />
       </head>
 
-      {/* ⚠️ Importante: evita bg-transparent si tu navbar tiene overlays;
-          usa un fondo base para contraste y para que el icono se vea. */}
-      <body className="bg-slate-950 text-slate-100 antialiased">
+      <body className="bg-slate-950 text-slate-100 antialiased selection:bg-sky-400/30 selection:text-white">
+
+        {/* ============================= */}
         {/* Google Analytics (GA4) */}
+        {/* ============================= */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-MZLLPKCM1Q"
           strategy="afterInteractive"
@@ -143,13 +159,33 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-MZLLPKCM1Q');
+            gtag('config', 'G-MZLLPKCM1Q', {
+              anonymize_ip: true,
+              send_page_view: true
+            });
           `}
         </Script>
 
+        {/* ============================= */}
+        {/* Navbar */}
+        {/* ============================= */}
         <Navbar />
-        <main className="min-h-[60vh]">{children}</main>
-        <Footer />
+
+        {/* ============================= */}
+        {/* Main */}
+        {/* ============================= */}
+        <main className="min-h-[70vh] relative z-10">
+          {children}
+        </main>
+
+        {/* ============================= */}
+        {/* Footer */}
+        {/* ============================= */}
+        <Footer
+          instagram="https://www.instagram.com/tronxstrategy"
+          linkedin="https://www.linkedin.com/company/tronx-strategy"
+        />
+
       </body>
     </html>
   );
