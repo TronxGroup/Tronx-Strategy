@@ -1,192 +1,148 @@
-// app/layout.tsx
+// components/site/footer.tsx
 
-import type { Metadata, Viewport } from "next";
-import Script from "next/script";
-import "./globals.css";
-import { Navbar } from "../components/site/navbar";
-import Footer from "../components/site/footer";
+import Link from "next/link";
+import { Instagram, Linkedin, Mail, Phone } from "lucide-react";
 
-const siteUrl = "https://www.tronxstrategy.com";
-const ogImage = `${siteUrl}/favicon_TronxStrategy.png`;
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 5,
-  themeColor: "#020617",
+type FooterProps = {
+  instagram?: string;
+  linkedin?: string;
 };
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-
-  title: {
-    default: "Tronx Strategy — WebOps y sitios corporativos en Next.js",
-    template: "%s · Tronx Strategy",
-  },
-
-  description:
-    "Tronx Strategy es la unidad WebOps de Tronx Group. Diseñamos y desarrollamos sitios corporativos modernos en Next.js con infraestructura GitHub + Vercel + Cloudflare.",
-
-  keywords: [
-    "WebOps",
-    "sitios web corporativos",
-    "desarrollo web Next.js",
-    "infraestructura Vercel",
-    "Cloudflare",
-    "portal institucional",
-    "landing page",
-    "CRM integración",
-    "Tronx Strategy",
-    "Tronx Group",
-  ],
-
-  alternates: { canonical: "/" },
-
-  openGraph: {
-    title: "Tronx Strategy — WebOps corporativo en Next.js",
-    description:
-      "Sitios web corporativos modernos, medibles y preparados para continuidad mensual.",
-    url: siteUrl,
-    siteName: "Tronx Strategy",
-    type: "website",
-    locale: "es_CL",
-    images: [
-      {
-        url: ogImage,
-        width: 512,
-        height: 512,
-        alt: "Tronx Strategy",
-      },
-    ],
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Tronx Strategy — WebOps corporativo",
-    description:
-      "Arquitectura moderna + gobierno digital + continuidad operativa.",
-    images: [ogImage],
-  },
-
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-snippet": -1,
-      "max-image-preview": "large",
-      "max-video-preview": -1,
-    },
-  },
-
-  icons: {
-    icon: "/favicon_TronxStrategy.png",
-    shortcut: "/favicon_TronxStrategy.png",
-    apple: "/favicon_TronxStrategy.png",
-  },
-
-  category: "technology",
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const orgLdJson = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Tronx Strategy",
-    url: siteUrl,
-    logo: `${siteUrl}/favicon_TronxStrategy.png`,
-    image: `${siteUrl}/favicon_TronxStrategy.png`,
-    description:
-      "Unidad WebOps de Tronx Group especializada en sitios corporativos modernos en Next.js para empresas, cámaras e instituciones.",
-
-    parentOrganization: {
-      "@type": "Organization",
-      name: "Tronx Group SpA",
-      url: "https://www.tronxgroup.com",
-    },
-
-    sameAs: [
-      "https://www.instagram.com/tronxstrategy",
-      "https://www.linkedin.com/company/tronx-strategy",
-    ],
-
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "CL",
-      addressLocality: "Santiago",
-      addressRegion: "Región Metropolitana",
-    },
-
-    contactPoint: [
-      {
-        "@type": "ContactPoint",
-        contactType: "sales",
-        telephone: "+56-9-2008-0031",
-        areaServed: "CL",
-        availableLanguage: ["es"],
-      },
-    ],
-  };
+export default function Footer({
+  instagram,
+  linkedin,
+}: FooterProps) {
+  const year = new Date().getFullYear();
 
   return (
-    <html lang="es" suppressHydrationWarning>
-      <head>
-        {/* Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(orgLdJson),
-          }}
-        />
-      </head>
+    <footer className="relative mt-24 border-t border-slate-800 bg-slate-950">
+      <div className="mx-auto max-w-6xl px-4 py-14">
 
-      <body className="bg-slate-950 text-slate-100 antialiased selection:bg-sky-400/30 selection:text-white">
+        <div className="grid gap-10 md:grid-cols-3">
 
-        {/* ============================= */}
-        {/* Google Analytics (GA4) */}
-        {/* ============================= */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-MZLLPKCM1Q"
-          strategy="afterInteractive"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-MZLLPKCM1Q', {
-              anonymize_ip: true,
-              send_page_view: true
-            });
-          `}
-        </Script>
+          {/* ===================== */}
+          {/* Columna 1 — Marca */}
+          {/* ===================== */}
+          <div className="space-y-4">
+            <p className="text-sm font-semibold text-white tracking-wide">
+              Tronx Strategy
+            </p>
 
-        {/* ============================= */}
-        {/* Navbar */}
-        {/* ============================= */}
-        <Navbar />
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Unidad WebOps de Tronx Group SpA.
+              Diseñamos activos digitales con arquitectura moderna,
+              gobierno técnico claro y continuidad mensual.
+            </p>
 
-        {/* ============================= */}
-        {/* Main */}
-        {/* ============================= */}
-        <main className="min-h-[70vh] relative z-10">
-          {children}
-        </main>
+            <p className="text-xs text-slate-500">
+              © {year} Tronx Strategy. Todos los derechos reservados.
+            </p>
+          </div>
 
-        {/* ============================= */}
-        {/* Footer */}
-        {/* ============================= */}
-        <Footer
-          instagram="https://www.instagram.com/tronxstrategy"
-          linkedin="https://www.linkedin.com/company/tronx-strategy"
-        />
+          {/* ===================== */}
+          {/* Columna 2 — Navegación */}
+          {/* ===================== */}
+          <div className="space-y-4">
+            <p className="text-sm font-semibold text-white">
+              Navegación
+            </p>
 
-      </body>
-    </html>
+            <ul className="space-y-2 text-sm text-slate-400">
+              <li>
+                <Link href="/" className="hover:text-white transition">
+                  Inicio
+                </Link>
+              </li>
+              <li>
+                <Link href="/nosotros" className="hover:text-white transition">
+                  Nosotros
+                </Link>
+              </li>
+              <li>
+                <Link href="/servicios" className="hover:text-white transition">
+                  Servicios
+                </Link>
+              </li>
+              <li>
+                <Link href="/portafolio" className="hover:text-white transition">
+                  Portafolio
+                </Link>
+              </li>
+              <li>
+                <Link href="/contacto" className="hover:text-white transition">
+                  Contacto
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* ===================== */}
+          {/* Columna 3 — Contacto */}
+          {/* ===================== */}
+          <div className="space-y-4">
+            <p className="text-sm font-semibold text-white">
+              Contacto directo
+            </p>
+
+            <div className="space-y-3 text-sm text-slate-400">
+
+              <a
+                href="mailto:info@tronxstrategy.com"
+                className="flex items-center gap-3 hover:text-white transition"
+              >
+                <Mail className="w-4 h-4 text-sky-400" />
+                info@tronxstrategy.com
+              </a>
+
+              <a
+                href="https://wa.me/56920080031"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 hover:text-white transition"
+              >
+                <Phone className="w-4 h-4 text-green-400" />
+                +56 9 2008 0031
+              </a>
+            </div>
+
+            {/* Redes sociales */}
+            <div className="flex gap-4 pt-2">
+              {instagram && (
+                <a
+                  href={instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full border border-slate-700 text-slate-400 hover:border-sky-400 hover:text-white transition"
+                >
+                  <Instagram className="w-4 h-4" />
+                </a>
+              )}
+
+              {linkedin && (
+                <a
+                  href={linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full border border-slate-700 text-slate-400 hover:border-sky-400 hover:text-white transition"
+                >
+                  <Linkedin className="w-4 h-4" />
+                </a>
+              )}
+            </div>
+
+            <p className="text-xs text-slate-500 pt-2">
+              Operación 100% remota · Santiago, Chile
+            </p>
+          </div>
+
+        </div>
+
+        {/* Línea inferior holding */}
+        <div className="mt-12 border-t border-slate-800 pt-6 text-xs text-slate-600 text-center">
+          Tronx Strategy es una unidad de Tronx Group SpA.
+        </div>
+
+      </div>
+    </footer>
   );
 }
