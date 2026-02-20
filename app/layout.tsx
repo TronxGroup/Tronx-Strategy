@@ -1,7 +1,9 @@
 // app/layout.tsx
 
-import type { Metadata } from "next";
 import "./globals.css";
+import type { Metadata } from "next";
+import Script from "next/script";
+import { Navbar } from "../components/site/navbar";
 import Footer from "../components/site/footer";
 
 export const metadata: Metadata = {
@@ -19,8 +21,15 @@ export default function RootLayout({
     <html lang="es">
       <body className="bg-slate-950 text-slate-100 antialiased">
 
-        {children}
+        {/* NAVBAR */}
+        <Navbar />
 
+        {/* CONTENIDO */}
+        <main className="min-h-[70vh]">
+          {children}
+        </main>
+
+        {/* FOOTER */}
         <Footer
           instagram="https://www.instagram.com/tronxstrategy"
           linkedin="https://www.linkedin.com/company/tronx-strategy"
