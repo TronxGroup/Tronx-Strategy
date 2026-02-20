@@ -1,7 +1,17 @@
 // app/contacto/page.tsx
 "use client";
 
-import Script from "next/script";
+import Link from "next/link";
+import {
+  Mail,
+  MessageCircle,
+  ArrowRight,
+  MapPin,
+  Clock,
+  ShieldCheck,
+  Workflow,
+  BarChart3,
+} from "lucide-react";
 
 export default function ContactoPage() {
   return (
@@ -15,233 +25,185 @@ export default function ContactoPage() {
       }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-[2px]" />
 
-      {/* Script reCAPTCHA */}
-      <Script
-        src="https://www.google.com/recaptcha/api.js"
-        async
-        defer
-        strategy="lazyOnload"
-      />
+      <div className="relative section py-20 lg:py-28 flex-1 space-y-20">
 
-      {/* Contenido */}
-      <div className="relative section py-16 lg:py-24 flex-1">
-        {/* Encabezado */}
-        <section className="max-w-4xl">
+        {/* =======================================================
+           HERO
+        ======================================================= */}
+        <header className="max-w-4xl">
           <p className="section-title text-sky-300/90">Contacto</p>
+
           <h1 className="section-heading text-white">
-            Cuéntanos qué necesitas y diseñamos el plan adecuado.
+            Si tu proyecto requiere estructura y continuidad,
+            <br className="hidden md:block" />
+            conversemos directamente.
           </h1>
+
           <p className="section-subtitle text-slate-300 max-w-2xl">
-            Completa el formulario o escríbenos directamente. Respondemos dentro
-            de 24 horas hábiles.
+            No trabajamos con formularios automáticos.
+            Escríbenos con contexto real y te respondemos con alcance claro,
+            tiempos y recomendación estratégica.
           </p>
+        </header>
+
+        {/* =======================================================
+           CTA PRINCIPALES
+        ======================================================= */}
+        <section className="grid gap-6 md:grid-cols-2 max-w-4xl">
+
+          {/* Email */}
+          <a
+            href="mailto:info@tronxstrategy.com"
+            className="card-surface p-8 bg-black/70 border border-slate-700/70 backdrop-blur-sm rounded-2xl hover:border-sky-400/40 transition"
+          >
+            <Mail className="w-6 h-6 text-sky-400 mb-4" />
+            <h2 className="text-lg font-semibold text-white">
+              Escribir por correo
+            </h2>
+            <p className="mt-2 text-sm text-slate-300">
+              info@tronxstrategy.com
+            </p>
+            <p className="mt-4 text-xs text-slate-400">
+              Ideal si necesitas enviar contexto detallado,
+              enlaces, documentos o requerimientos técnicos.
+            </p>
+          </a>
+
+          {/* WhatsApp */}
+          <a
+            href="https://wa.me/56920080031"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card-surface p-8 bg-black/70 border border-slate-700/70 backdrop-blur-sm rounded-2xl hover:border-green-400/40 transition"
+          >
+            <MessageCircle className="w-6 h-6 text-green-400 mb-4" />
+            <h2 className="text-lg font-semibold text-white">
+              Conversar por WhatsApp
+            </h2>
+            <p className="mt-2 text-sm text-slate-300">
+              +56 9 2008 0031
+            </p>
+            <p className="mt-4 text-xs text-slate-400">
+              Ideal para coordinación rápida o primera validación de idea.
+            </p>
+          </a>
         </section>
 
-        {/* Formulario + Aside */}
-        <section className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] items-start">
-          {/* FORMULARIO (Zoho WebToLead, mismo diseño Tronx) */}
-          <form
-  id="webform6988454000001329111"
-  name="WebToLeads6988454000001329111"
-  method="POST"
-  action="https://crm.zoho.com/crm/WebToLeadForm"
-  acceptCharset="UTF-8"
-  className="card-surface p-6 space-y-5 bg-black/70 border border-slate-700/70 backdrop-blur-sm rounded-2xl"
->
-  {/* --- HIDDEN ZOHO (NO TOCAR) --- */}
-  <input
-    type="hidden"
-    name="xnQsjsdp"
-    value="c0dc3ffa504f6e87c28e87d1f635554b975ade794041575b3f5b48f48329d5dd"
-  />
-  <input type="hidden" name="zc_gad" id="zc_gad" value="" />
-  <input
-    type="hidden"
-    name="xmIwtLD"
-    value="413078008e8a3bcce6d97d6302b548f90a53ed4e7ce073494598ea7007edd4d3fee6a18c3f509e526a14298bd390f08e"
-  />
-  <input type="hidden" name="actionType" value="TGVhZHM=" />
-  <input
-    type="hidden"
-    name="returnURL"
-    value="https://www.tronxstrategy.com/confirm"
-  />
+        {/* =======================================================
+           CÓMO TRABAJAMOS
+        ======================================================= */}
+        <section className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] max-w-5xl">
 
-  {/* Marca */}
-  <input type="hidden" name="LEADCF5" value="Tronx-Strategy" />
+          {/* Proceso */}
+          <div className="card-surface p-8 bg-black/70 border border-slate-700/70 backdrop-blur-sm rounded-2xl">
+            <h2 className="text-lg font-semibold text-white">
+              Cómo trabajamos
+            </h2>
 
-  {/* Origen del Lead */}
-  <input
-    type="hidden"
-    name="LEADCF9"
-    value="tronxstrategy.com/contacto"
-  />
+            <ol className="mt-6 space-y-4 text-sm text-slate-300">
+              <li>
+                <strong className="text-white">1.</strong> Definimos objetivo,
+                alcance y restricciones reales.
+              </li>
+              <li>
+                <strong className="text-white">2.</strong> Entregamos propuesta
+                clara con valor cerrado.
+              </li>
+              <li>
+                <strong className="text-white">3.</strong> Ejecutamos bajo
+                arquitectura moderna (Next.js + Vercel + Cloudflare).
+              </li>
+              <li>
+                <strong className="text-white">4.</strong> Dejamos el activo
+                documentado y listo para continuidad mensual.
+              </li>
+            </ol>
+          </div>
 
-  {/* Honeypot */}
-  <input type="hidden" name="aG9uZXlwb3Q" style={{ display: "none" }} />
-
-  {/* Nombre + Empresa */}
-  <div className="grid gap-5 md:grid-cols-2">
-    <Field label="Nombre y Apellido" name="Last Name" required />
-    <Field label="Empresa / institución" name="Company" required />
-  </div>
-
-  {/* Email + Teléfono */}
-  <div className="grid gap-5 md:grid-cols-2">
-    <Field label="Correo electrónico" name="Email" type="email" required />
-    <Field label="Teléfono / WhatsApp" name="Mobile" />
-  </div>
-
-  {/* Tipo de proyecto */}
-  <div>
-    <Label>Tipo de proyecto</Label>
-    <select name="LEADCF32" required className="input-select">
-      <option value="-None-">Selecciona una opción</option>
-      <option value="Sitio web corporativo">Sitio web corporativo</option>
-      <option value="Landing page">Landing page</option>
-      <option value="Portal o directorio">Portal o directorio</option>
-      <option value="Rediseño de sitio actual">Rediseño de sitio actual</option>
-      <option value="Otro">Otro</option>
-    </select>
-  </div>
-
-  {/* Mensaje */}
-  <div>
-    <Label>Mensaje</Label>
-    <textarea
-      name="LEADCF3"
-      rows={5}
-      className="input-area"
-      placeholder="Cuéntanos brevemente qué necesitas..."
-    />
-  </div>
-
-  {/* reCAPTCHA */}
-  <div className="mt-4">
-    <div
-      className="g-recaptcha"
-      data-sitekey="6LfP4RYsAAAAAHgL1XFwZogFNns_cLHZwKhEmcB6"
-      data-theme="light"
-    />
-  </div>
-
-  {/* Botones */}
-  <div className="mt-6 flex flex-wrap items-center gap-3">
-    <button
-      type="submit"
-      id="formsubmit"
-      className="btn-primary w-full md:w-auto formsubmit"
-    >
-      Enviar mensaje
-    </button>
-
-    <button type="reset" className="btn-ghost w-full md:w-auto">
-      Restablecer
-    </button>
-  </div>
-
-  <p className="text-xs text-slate-500 mt-3">
-    También puedes escribir directamente a{" "}
-    <span className="text-slate-200 font-medium">
-      info@tronxstrategy.com
-    </span>.
-  </p>
-</form>
-
-          {/* ASIDE DERECHO */}
+          {/* Información institucional */}
           <aside className="space-y-5 text-sm text-slate-300">
-            {/* Datos de contacto */}
-            <div className="card-surface p-5 bg-black/70 border border-slate-700/70 backdrop-blur-sm rounded-2xl">
+
+            <div className="card-surface p-6 bg-black/70 border border-slate-700/70 backdrop-blur-sm rounded-2xl">
               <h2 className="text-base font-semibold text-white">
-                Datos de contacto
+                Información institucional
               </h2>
-              <ul className="mt-3 space-y-2">
-                <li>
-                  <span className="text-slate-400">Correo: </span>
-                  info@tronxstrategy.com
-                </li>
-                <li>
-                  <span className="text-slate-400">Ubicación: </span>
+
+              <ul className="mt-4 space-y-3">
+                <li className="flex gap-3">
+                  <MapPin className="w-4 h-4 text-sky-400 mt-1" />
                   Providencia, Santiago · Operación 100% remota.
                 </li>
-                <li>
-                  <span className="text-slate-400">Horario: </span>
+                <li className="flex gap-3">
+                  <Clock className="w-4 h-4 text-sky-400 mt-1" />
                   Lunes a viernes: 9:00–18:00 (GMT-3)
+                </li>
+                <li className="flex gap-3">
+                  <ShieldCheck className="w-4 h-4 text-sky-400 mt-1" />
+                  Alcance definido por escrito.
                 </li>
               </ul>
             </div>
 
-            {/* Cómo trabajamos */}
-            <div className="card-surface p-5 bg-black/70 border border-slate-700/70 backdrop-blur-sm rounded-2xl">
+            <div className="card-surface p-6 bg-black/70 border border-slate-700/70 backdrop-blur-sm rounded-2xl">
               <h2 className="text-base font-semibold text-white">
-                Cómo trabajamos
+                Enfoque Tronx
               </h2>
-              <ol className="mt-3 list-decimal list-inside space-y-2">
-                <li>Reunión inicial para objetivos y alcance.</li>
-                <li>Propuesta clara con presupuesto cerrado.</li>
-                <li>Diseño, desarrollo y revisión con tu equipo.</li>
-                <li>Salida a producción + soporte inicial.</li>
-              </ol>
+
+              <div className="mt-4 space-y-3">
+                <div className="flex gap-3">
+                  <Workflow className="w-4 h-4 text-sky-400 mt-1" />
+                  Estructura operable.
+                </div>
+                <div className="flex gap-3">
+                  <BarChart3 className="w-4 h-4 text-sky-400 mt-1" />
+                  Medición real.
+                </div>
+                <div className="flex gap-3">
+                  <ShieldCheck className="w-4 h-4 text-sky-400 mt-1" />
+                  Continuidad mensual recomendada.
+                </div>
+              </div>
             </div>
           </aside>
         </section>
+
+        {/* =======================================================
+           CTA FINAL
+        ======================================================= */}
+        <section className="text-center pt-6">
+          <p className="text-sm text-slate-400">
+            Envíanos objetivo + secciones + fecha ideal.
+          </p>
+
+          <div className="mt-4 flex flex-wrap justify-center gap-3">
+            <Link
+              href="mailto:info@tronxstrategy.com"
+              className="btn-primary inline-flex items-center gap-2 px-6 py-3"
+            >
+              Escribir ahora
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+
+            <a
+              href="https://wa.me/56920080031"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost bg-white/10 hover:bg-white/20 inline-flex items-center gap-2 px-6 py-3"
+            >
+              WhatsApp
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          <p className="mt-4 text-xs text-slate-500">
+            Trabajamos con alcance definido. No realizamos desarrollos
+            fuera de especificación sin evaluación formal.
+          </p>
+        </section>
+
       </div>
     </section>
   );
 }
-
-/* ---------- SUBCOMPONENTES ---------- */
-
-function Label({ children }: { children: React.ReactNode }) {
-  return (
-    <label className="block text-xs font-semibold text-slate-300 uppercase tracking-[0.16em]">
-      {children}
-    </label>
-  );
-}
-
-function Field({
-  label,
-  name,
-  type = "text",
-  required = false,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-}) {
-  return (
-    <div>
-      <Label>{label}</Label>
-      <input
-        name={name}
-        type={type}
-        required={required}
-        className="input-base"
-      />
-    </div>
-  );
-}
-
-/* ---------- CLASES GLOBALES SUGERIDAS (globals.css) ----------
-.input-base {
-  @apply mt-1 w-full rounded-xl border border-slate-700/70 bg-black/60
-         px-3 py-2 text-sm text-slate-50 outline-none
-         focus:border-tronx-accent/70;
-}
-
-.input-select {
-  @apply mt-1 w-full rounded-xl border border-slate-700/70 bg-black/60
-         px-3 py-2 text-sm text-slate-50 outline-none
-         focus:border-tronx-accent/70;
-}
-
-.input-area {
-  @apply mt-1 w-full rounded-xl border border-slate-700/70 bg-black/60
-         px-3 py-2 text-sm text-slate-50 outline-none
-         focus:border-tronx-accent/70;
-}
-----------------------------------------------------------------*/
