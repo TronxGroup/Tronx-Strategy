@@ -1,15 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowUpRight,
-  Filter,
-  Search,
-  X,
   ChevronDown,
-  Check,
   Layers,
   ShieldCheck,
   BarChart3,
@@ -35,7 +31,6 @@ type Project = {
   tags: string[];
   url: string;
   service: Service;
-  highlights?: string[];
   outcome?: string;
   year?: string;
   priority?: number;
@@ -51,13 +46,8 @@ const projects: Project[] = [
     img: "/portafolio/apcc.jpg",
     type: "Portal gremial · CRM · Eventos",
     description:
-      "Sitio institucional moderno con motor de contenidos y formularios conectados a CRM para apoyar membresías, cursos y misiones comerciales.",
-    outcome: "Base institucional + captación trazable para operación gremial.",
-    highlights: [
-      "Contenidos administrables",
-      "Formularios a CRM",
-      "Estructura para membresías",
-    ],
+      "Sitio institucional moderno con motor de contenidos y formularios conectados a CRM para membresías y misiones comerciales.",
+    outcome: "Base institucional + captación trazable.",
     status: "En operación",
     tags: ["Gremios", "CRM", "Eventos"],
     url: "https://www.asiapacific-chamber.com",
@@ -66,19 +56,74 @@ const projects: Project[] = [
     priority: 100,
   },
   {
+    name: "AF MINVU–SERVIU Tarapacá",
+    img: "/portafolio/minvu.jpg",
+    type: "Portal institucional · Noticias",
+    description:
+      "Portal para asociación de funcionarios con noticias, beneficios y estructura operable por equipos internos.",
+    outcome: "Sitio institucional con continuidad.",
+    status: "En desarrollo",
+    tags: ["Institucional", "Noticias"],
+    url: "https://www.afminvuserviutarapaca.cl",
+    service: "Plan Medio",
+    year: "2025",
+    priority: 95,
+  },
+  {
     name: "Dekaelo Media",
     img: "/portafolio/dekaelo.jpg",
-    type: "Estudio audiovisual · Portafolio",
+    type: "Portafolio audiovisual",
     description:
-      "Sitio para estudio audiovisual con foco en videos corporativos y estructura preparada para escalar servicios.",
-    outcome: "Portafolio orientado a conversión y crecimiento.",
-    highlights: ["Arquitectura clara", "CTAs estratégicos"],
+      "Sitio para estudio audiovisual con arquitectura preparada para campañas y crecimiento por servicios.",
+    outcome: "Portafolio orientado a conversión.",
     status: "En operación",
     tags: ["Audiovisual", "Portafolio"],
     url: "https://www.dekaelomedia.com",
     service: "Plan Medio",
     year: "2025",
     priority: 80,
+  },
+  {
+    name: "SANRAVAL",
+    img: "/portafolio/sanraval.jpg",
+    type: "Directorio territorial · Plataforma propia",
+    description:
+      "Plataforma del eje Santiago–Rancagua–Valparaíso con estructura SEO y base escalable.",
+    outcome: "Activo propio con crecimiento por contenidos.",
+    status: "Beta",
+    tags: ["Directorio", "Territorio"],
+    url: "https://www.sanraval.cl",
+    service: "Plan Premium",
+    year: "2025",
+    priority: 75,
+  },
+  {
+    name: "CityLube — Serviteca",
+    img: "/portafolio/citylube.jpg",
+    type: "Landing · SEO Local",
+    description:
+      "Landing enfocada en conversión directa vía WhatsApp y posicionamiento local.",
+    outcome: "Captación rápida con SEO local.",
+    status: "En operación",
+    tags: ["SEO Local", "Servicios"],
+    url: "https://www.citylube.cl",
+    service: "Landing page 48 horas",
+    year: "2025",
+    priority: 60,
+  },
+  {
+    name: "MagiaImaginacion.cl — Echevensko",
+    img: "/portafolio/magia.jpg",
+    type: "Landing de posicionamiento",
+    description:
+      "Plataforma para charlas corporativas con estructura preparada para campañas.",
+    outcome: "Base de posicionamiento lista para escalar.",
+    status: "En operación",
+    tags: ["Branding", "Charlas"],
+    url: "https://www.magiaimaginacion.cl",
+    service: "Plan Básico",
+    year: "2025",
+    priority: 50,
   },
 ];
 
@@ -87,10 +132,6 @@ const projects: Project[] = [
 /* ============================= */
 
 const ALL = "Todos";
-
-function cx(...classes: Array<string | false | undefined | null>) {
-  return classes.filter(Boolean).join(" ");
-}
 
 function pillService(service: Service) {
   const base =
@@ -123,10 +164,9 @@ function pillStatus(status: Status) {
 /* ============================= */
 
 export default function PortafolioClient() {
-  const [q, setQ] = useState("");
   const [serviceFilter, setServiceFilter] = useState<string>(ALL);
   const [serviceOpen, setServiceOpen] = useState(false);
-  const serviceWrapRef = useRef<HTMLDivElement | null>(null);
+  const wrapRef = useRef<HTMLDivElement | null>(null);
 
   const services = useMemo(() => {
     const set = new Set<string>();
@@ -136,10 +176,7 @@ export default function PortafolioClient() {
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
-      if (
-        serviceWrapRef.current &&
-        !serviceWrapRef.current.contains(e.target as Node)
-      ) {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) {
         setServiceOpen(false);
       }
     }
@@ -148,127 +185,77 @@ export default function PortafolioClient() {
   }, []);
 
   const filtered = useMemo(() => {
-    const query = q.toLowerCase();
-
     return [...projects]
       .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0))
-      .filter((p) => {
-        if (serviceFilter !== ALL && p.service !== serviceFilter)
-          return false;
-
-        if (!query) return true;
-
-        const text = (
-          p.name +
-          p.description +
-          p.tags.join(" ") +
-          p.service
-        ).toLowerCase();
-
-        return text.includes(query);
-      });
-  }, [q, serviceFilter]);
-
-  /* ============================= */
-  /* UI */
-  /* ============================= */
+      .filter((p) =>
+        serviceFilter === ALL ? true : p.service === serviceFilter
+      );
+  }, [serviceFilter]);
 
   return (
     <div className="section">
+
       {/* HEADER */}
       <section className="max-w-4xl">
         <p className="section-title">Portafolio</p>
         <h1 className="section-heading">
-          Proyectos web listos para operar y escalar.
+          Activos digitales construidos para operar.
         </h1>
         <p className="section-subtitle max-w-3xl">
-          No diseñamos sitios “bonitos”. Construimos activos digitales
-          estructurados para continuidad, medición y crecimiento.
+          Casos reales desarrollados con arquitectura moderna,
+          gobierno técnico claro y continuidad mensual.
         </p>
 
-        {/* ENFOQUE TRONX */}
+        {/* ENFOQUE */}
         <div className="mt-8 grid md:grid-cols-3 gap-4 text-sm">
           <div className="card-surface p-4 border border-white/10">
             <Layers className="w-5 h-5 text-sky-400 mb-2" />
-            Arquitectura clara y escalable.
+            Arquitectura escalable.
           </div>
           <div className="card-surface p-4 border border-white/10">
             <BarChart3 className="w-5 h-5 text-sky-400 mb-2" />
-            Medición real (GA4 / eventos).
+            Medición real.
           </div>
           <div className="card-surface p-4 border border-white/10">
             <ShieldCheck className="w-5 h-5 text-sky-400 mb-2" />
-            Continuidad operativa.
+            Gobierno técnico.
           </div>
         </div>
 
-        {/* TOOLBAR */}
-        <div className="mt-8 grid gap-3 lg:grid-cols-[1.4fr_0.8fr_auto]">
-          <div className="rounded-2xl border border-white/10 bg-black/40 px-4 py-3 flex items-center gap-3">
-            <Search className="w-4 h-4 text-slate-400" />
-            <input
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="Buscar proyecto..."
-              className="w-full bg-transparent outline-none text-sm text-slate-200"
-            />
-            {q && (
-              <button onClick={() => setQ("")}>
-                <X className="w-4 h-4 text-slate-400" />
-              </button>
-            )}
-          </div>
-
-          <div
-            ref={serviceWrapRef}
-            className="relative rounded-2xl border border-white/10 bg-black/40 px-4 py-3"
-          >
-            <button
-              onClick={() => setServiceOpen(!serviceOpen)}
-              className="w-full flex justify-between text-sm text-slate-200"
-            >
-              {serviceFilter}
-              <ChevronDown className="w-4 h-4" />
-            </button>
-
-            {serviceOpen && (
-              <div className="absolute mt-2 w-full bg-slate-950 border border-white/10 rounded-xl z-20">
-                {services.map((s) => (
-                  <button
-                    key={s}
-                    onClick={() => {
-                      setServiceFilter(s);
-                      setServiceOpen(false);
-                    }}
-                    className="w-full text-left px-4 py-2 text-sm hover:bg-sky-400/20"
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
+        {/* FILTER */}
+        <div
+          ref={wrapRef}
+          className="relative mt-8 max-w-xs rounded-2xl border border-white/10 bg-black/40 px-4 py-3"
+        >
           <button
-            onClick={() => {
-              setQ("");
-              setServiceFilter(ALL);
-            }}
-            className="rounded-2xl border border-white/10 px-4 py-3 text-sm"
+            onClick={() => setServiceOpen(!serviceOpen)}
+            className="w-full flex justify-between text-sm text-slate-200"
           >
-            Limpiar
+            {serviceFilter}
+            <ChevronDown className="w-4 h-4" />
           </button>
+
+          {serviceOpen && (
+            <div className="absolute mt-2 w-full bg-slate-950 border border-white/10 rounded-xl z-20">
+              {services.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => {
+                    setServiceFilter(s);
+                    setServiceOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-2 text-sm hover:bg-sky-400/20"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       {/* GRID */}
-      <section className="mt-10 grid gap-10 md:grid-cols-2">
-        {filtered.length === 0 && (
-          <div className="col-span-full text-center text-slate-400 py-12">
-            No encontramos proyectos con esos filtros.
-          </div>
-        )}
-
+      <section className="mt-12 grid gap-10 md:grid-cols-2">
         {filtered.map((project) => (
           <article
             key={project.name}
@@ -334,8 +321,7 @@ export default function PortafolioClient() {
       {/* FINAL CTA */}
       <section className="mt-16 text-center">
         <p className="text-sm text-slate-400">
-          Si tu proyecto requiere estructura, continuidad y medición,
-          partimos por un Plan Medio o Premium.
+          Si tu proyecto requiere estructura y continuidad, partimos por un Plan Medio o Premium.
         </p>
         <div className="mt-4">
           <Link href="/contacto#form" className="btn-primary">
