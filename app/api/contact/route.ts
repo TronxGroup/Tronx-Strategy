@@ -26,7 +26,6 @@ export async function POST(req: Request) {
     }
 
     const to = process.env.LEADS_TO || "info@tronxstrategy.com";
-    // Si tu dominio NO está verificado en Resend, usa onboarding@resend.dev
     const from = process.env.LEADS_FROM || "Tronx Strategy <onboarding@resend.dev>";
 
     const service = safe(body.service);
