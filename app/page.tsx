@@ -1,3 +1,4 @@
+// app/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -13,6 +14,8 @@ import {
   Coins,
   Timer,
   MessageSquareMore,
+  FileText,
+  ShieldCheck,
 } from "lucide-react";
 
 const SITE_URL = "https://www.tronxstrategy.com";
@@ -20,14 +23,14 @@ const WHATSAPP_NUMBER = "56920080031";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Tronx Strategy — Captación digital para empresas de servicios | Chile",
+  title: "Tronx Strategy — Base comercial digital para empresas de servicios | Chile",
   description:
-    "Tronx Strategy diseña sistemas simples de captación para empresas de servicios: landing, sitio web, medición, Google Ads y operación mensual.",
+    "Tronx Strategy diseña bases comerciales digitales para empresas de servicios: sitio web claro, textos base, medición, activación de captación y continuidad mensual.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Tronx Strategy — Captación digital para empresas de servicios",
+    title: "Tronx Strategy — Base comercial digital para empresas de servicios",
     description:
-      "Landing, sitio, medición y Google Ads opcional para generar consultas reales en empresas de servicios.",
+      "Estructura clara, textos base, medición, Google Ads opcional y continuidad mensual para captar más consultas.",
     url: "/",
     type: "website",
     locale: "es_CL",
@@ -114,15 +117,16 @@ export default function HomePage() {
             </p>
 
             <h1 className="mt-4 text-4xl font-semibold leading-tight text-white md:text-6xl">
-              Menos dependencia de referidos.
+              Una base digital más clara para
               <br />
-              Más <span className="text-sky-300">consultas reales</span>.
+              generar <span className="text-sky-300">más consultas reales</span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-200">
-              Diseñamos sistemas simples para captar clientes: landing o sitio
-              web claro, formularios y WhatsApp, medición real y Google Ads
-              opcional. Todo enfocado en empresas que venden servicios.
+              Diseñamos estructuras simples para empresas de servicios: sitio
+              web claro, textos base, formularios y WhatsApp, medición real,
+              activación de captación cuando conviene y continuidad mensual para
+              que el sistema siga funcionando.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
@@ -154,6 +158,21 @@ export default function HomePage() {
               </a>
             </div>
 
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-xl border border-white/10 bg-black/30 p-4">
+                <p className="font-semibold text-sky-300">Base digital</p>
+                <p className="mt-1 text-sm text-slate-300">desde $290.000</p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-black/30 p-4">
+                <p className="font-semibold text-sky-300">Captación</p>
+                <p className="mt-1 text-sm text-slate-300">desde $390.000</p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-black/30 p-4">
+                <p className="font-semibold text-sky-300">Continuidad</p>
+                <p className="mt-1 text-sm text-slate-300">desde $119.990/mes</p>
+              </div>
+            </div>
+
             <p className="mt-6 text-xs text-slate-400">
               Enfoque: servicios. No e-commerce. No sistemas complejos.
             </p>
@@ -169,12 +188,25 @@ export default function HomePage() {
                 <div className="flex items-center gap-2">
                   <LayoutTemplate className="h-4 w-4 text-sky-300" />
                   <p className="font-semibold text-white">
-                    1. Implementamos tu base digital
+                    1. Creamos tu base comercial digital
                   </p>
                 </div>
                 <p className="mt-2 text-sm text-slate-300">
-                  Creamos una landing o sitio claro para que el cliente entienda
-                  rápido qué haces y cómo contactarte.
+                  Diseñamos una landing o sitio claro para explicar mejor el
+                  servicio, ordenar la oferta y facilitar el contacto.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-black/40 p-4">
+                <div className="flex items-center gap-2">
+                  <FileText className="h-4 w-4 text-sky-300" />
+                  <p className="font-semibold text-white">
+                    2. Ayudamos con textos y mensajes base
+                  </p>
+                </div>
+                <p className="mt-2 text-sm text-slate-300">
+                  Ajustamos títulos, textos base y llamados a la acción para que
+                  la empresa se entienda mejor.
                 </p>
               </div>
 
@@ -182,7 +214,7 @@ export default function HomePage() {
                 <div className="flex items-center gap-2">
                   <MessageSquareMore className="h-4 w-4 text-sky-300" />
                   <p className="font-semibold text-white">
-                    2. Medimos formularios y WhatsApp
+                    3. Medimos formularios y WhatsApp
                   </p>
                 </div>
                 <p className="mt-2 text-sm text-slate-300">
@@ -195,12 +227,12 @@ export default function HomePage() {
                 <div className="flex items-center gap-2">
                   <Search className="h-4 w-4 text-sky-300" />
                   <p className="font-semibold text-white">
-                    3. Activamos Google Ads si conviene
+                    4. Activamos captación si conviene
                   </p>
                 </div>
                 <p className="mt-2 text-sm text-slate-300">
-                  Si tu servicio ya tiene demanda, sumamos campañas de búsqueda
-                  para acelerar captación.
+                  Si el servicio ya tiene demanda, activamos Google Ads para
+                  acelerar consultas con una estructura medible.
                 </p>
               </div>
 
@@ -208,7 +240,7 @@ export default function HomePage() {
                 <div className="flex items-center gap-2">
                   <Headphones className="h-4 w-4 text-sky-300" />
                   <p className="font-semibold text-white">
-                    4. Damos continuidad mensual
+                    5. Damos continuidad mensual
                   </p>
                 </div>
                 <p className="mt-2 text-sm text-slate-300">
@@ -235,8 +267,8 @@ export default function HomePage() {
           <SectionTitle
             center
             eyebrow="Problema que resolvemos"
-            title="Muchas empresas de servicios tienen sitio, pero no tienen sistema"
-            desc="Un sitio por sí solo no basta. Lo importante es tener una estructura clara para generar consultas y medir qué está funcionando."
+            title="Muchas empresas de servicios tienen sitio, pero no tienen una base comercial clara"
+            desc="Un sitio por sí solo no basta. Lo importante es explicar bien la oferta, facilitar el contacto, medir consultas y sostener la operación en el tiempo."
           />
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -272,67 +304,98 @@ export default function HomePage() {
           <SectionTitle
             center
             eyebrow="Servicios"
-            title="Servicios simples, claros y fáciles de entender"
-            desc="Trabajamos con una lógica modular: implementación, campañas y continuidad."
+            title="Tres servicios claros para captar mejor"
+            desc="Nuestra lógica es simple: primero ordenamos la base, luego activamos captación y después sostenemos el sistema."
           />
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             <article className="rounded-2xl border border-white/10 bg-black/40 p-6">
               <LayoutTemplate className="mb-3 h-5 w-5 text-sky-400" />
               <h3 className="text-lg font-semibold text-white">
-                Landing o sitio web para servicios
+                Base comercial digital
               </h3>
               <p className="mt-2 text-sm text-slate-300">
-                Creamos una base digital clara para mostrar tu oferta, generar
-                confianza y facilitar el contacto.
+                Landing o sitio claro para mostrar mejor la oferta, ordenar el
+                servicio y facilitar el contacto.
               </p>
 
               <ul className="mt-4 space-y-2">
-                <CheckItem>Landing de captación</CheckItem>
-                <CheckItem>Sitio institucional</CheckItem>
+                <CheckItem>Landing o sitio institucional</CheckItem>
+                <CheckItem>Estructura y textos base</CheckItem>
                 <CheckItem>Formulario + WhatsApp</CheckItem>
                 <CheckItem>SEO base e indexación</CheckItem>
                 <CheckItem>Entrega documentada</CheckItem>
               </ul>
+
+              <div className="mt-5 rounded-xl border border-white/10 bg-slate-950 p-4">
+                <p className="text-sm font-medium text-white">Desde $290.000</p>
+                <p className="mt-1 text-xs text-slate-400">
+                  Ideal para empresas que necesitan una base clara y profesional.
+                </p>
+              </div>
             </article>
 
             <article className="rounded-2xl border border-sky-400/30 bg-sky-500/10 p-6">
               <BarChart3 className="mb-3 h-5 w-5 text-sky-400" />
               <h3 className="text-lg font-semibold text-white">
-                Medición y Google Ads
+                Activación de captación
               </h3>
               <p className="mt-2 text-sm text-slate-300">
-                Configuramos eventos y campañas para que puedas captar y medir
+                Medición y Google Ads opcional para atraer y entender mejor las
                 consultas reales.
               </p>
 
               <ul className="mt-4 space-y-2">
-                <CheckItem>Eventos medibles</CheckItem>
-                <CheckItem>GA4 / Tag si aplica</CheckItem>
+                <CheckItem>Tracking y eventos medibles</CheckItem>
+                <CheckItem>Revisión comercial de landing</CheckItem>
+                <CheckItem>Textos base de anuncios</CheckItem>
                 <CheckItem>Google Ads Search</CheckItem>
-                <CheckItem>Negativas base</CheckItem>
                 <CheckItem>Optimización periódica</CheckItem>
               </ul>
+
+              <div className="mt-5 rounded-xl border border-sky-400/20 bg-black/20 p-4">
+                <p className="text-sm font-medium text-white">Desde $390.000</p>
+                <p className="mt-1 text-xs text-slate-300">
+                  Recomendado cuando ya existe demanda y la empresa puede responder leads.
+                </p>
+              </div>
             </article>
 
             <article className="rounded-2xl border border-white/10 bg-black/40 p-6">
               <Wrench className="mb-3 h-5 w-5 text-sky-400" />
               <h3 className="text-lg font-semibold text-white">
-                Operación mensual
+                Continuidad mensual
               </h3>
               <p className="mt-2 text-sm text-slate-300">
-                Mantenemos el sistema activo con soporte, ajustes y contenido
-                básico.
+                Mantenemos el sistema activo con soporte, ajustes y continuidad
+                básica para que no quede botado.
               </p>
 
               <ul className="mt-4 space-y-2">
                 <CheckItem>Hosting administrado</CheckItem>
                 <CheckItem>Soporte mensual</CheckItem>
                 <CheckItem>Ajustes menores</CheckItem>
-                <CheckItem>Actualizaciones</CheckItem>
+                <CheckItem>Actualizaciones básicas</CheckItem>
                 <CheckItem>Continuidad comercial básica</CheckItem>
               </ul>
+
+              <div className="mt-5 rounded-xl border border-white/10 bg-slate-950 p-4">
+                <p className="text-sm font-medium text-white">Desde $119.990 / mes</p>
+                <p className="mt-1 text-xs text-slate-400">
+                  Para mantener la base vigente y lista para seguir creciendo.
+                </p>
+              </div>
             </article>
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/servicios"
+              className="btn-primary inline-flex items-center gap-2 px-6 py-3"
+            >
+              Ver detalle de servicios
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -344,7 +407,7 @@ export default function HomePage() {
             center
             eyebrow="Enfoque"
             title="Esto es para empresas de servicios. No para cualquier proyecto."
-            desc="Buscamos trabajar donde sí tiene sentido construir un sistema simple de captación."
+            desc="Trabajamos donde sí tiene sentido construir una base clara de captación."
           />
 
           <div className="mt-12 grid gap-6 lg:grid-cols-2">
@@ -358,7 +421,7 @@ export default function HomePage() {
                 <CheckItem>Cotizaciones, consultas o agenda</CheckItem>
                 <CheckItem>Servicios B2B o B2C claros</CheckItem>
                 <CheckItem>Negocios con capacidad de responder leads</CheckItem>
-                <CheckItem>Proyectos con foco y objetivo definido</CheckItem>
+                <CheckItem>Proyectos con foco comercial</CheckItem>
               </ul>
             </div>
 
@@ -385,24 +448,26 @@ export default function HomePage() {
           <SectionTitle
             center
             eyebrow="Modelo de trabajo"
-            title="Tres capas simples"
-            desc="Primero implementamos. Luego medimos. Después sostenemos."
+            title="Una lógica simple y fácil de entender"
+            desc="Primero ordenamos la base. Luego activamos captación. Después sostenemos."
           />
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
               <Coins className="mb-3 h-5 w-5 text-sky-400" />
-              <h3 className="font-semibold text-white">1. Implementación</h3>
+              <h3 className="font-semibold text-white">1. Base</h3>
               <p className="mt-2 text-sm text-slate-300">
-                Pago único por landing o sitio web.
+                Pago único por una landing o sitio web con estructura clara y
+                textos base.
               </p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
               <Search className="mb-3 h-5 w-5 text-sky-400" />
-              <h3 className="font-semibold text-white">2. Performance</h3>
+              <h3 className="font-semibold text-white">2. Captación</h3>
               <p className="mt-2 text-sm text-slate-300">
-                Google Ads opcional si hay demanda y medición clara.
+                Activamos campañas cuando ya existe demanda y la estructura está
+                lista para medir.
               </p>
             </div>
 
@@ -424,7 +489,7 @@ export default function HomePage() {
             center
             eyebrow="Proceso"
             title="Proceso claro y rápido"
-            desc="Sin complejidad innecesaria. Lo importante es publicar bien y medir desde el inicio."
+            desc="Sin complejidad innecesaria. Lo importante es publicar bien, medir desde el inicio y sostener lo que funciona."
           />
 
           <div className="mt-12 grid gap-6 md:grid-cols-4">
@@ -438,7 +503,7 @@ export default function HomePage() {
             <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
               <p className="font-semibold text-sky-300">02</p>
               <p className="mt-2 text-sm text-slate-300">
-                Estructura y copy con foco comercial.
+                Estructura, mensajes y textos base.
               </p>
             </div>
 
@@ -452,7 +517,7 @@ export default function HomePage() {
             <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
               <p className="font-semibold text-sky-300">04</p>
               <p className="mt-2 text-sm text-slate-300">
-                Publicación y continuidad mensual opcional.
+                Publicación y continuidad opcional.
               </p>
             </div>
           </div>
@@ -463,23 +528,60 @@ export default function HomePage() {
               <h3 className="font-semibold text-white">Tiempos típicos</h3>
             </div>
             <p className="mt-2 text-sm text-slate-300">
-              Landing simple: 7–10 días hábiles. Sitio institucional: 2–4
-              semanas.
+              Landing simple: 7–10 días hábiles. Sitio institucional: 2–4 semanas.
             </p>
           </div>
         </div>
       </section>
 
+      {/* DIFERENCIAL */}
+      <section className="bg-black py-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <SectionTitle
+            center
+            eyebrow="Nuestro diferencial"
+            title="No solo hacemos una web: ayudamos a ordenar la oferta y dejar una base útil"
+            desc="El valor no está solo en publicar un sitio, sino en que la empresa quede mejor explicada, mejor medida y mejor preparada para captar."
+          />
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-slate-950 p-6">
+              <FileText className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">Más claridad</h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Ordenamos servicios, textos y llamadas a la acción para que se entienda mejor qué vendes.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-slate-950 p-6">
+              <BarChart3 className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">Más control</h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Formularios, WhatsApp y eventos configurados para registrar consultas reales.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-slate-950 p-6">
+              <ShieldCheck className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">Más continuidad</h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Sitios y sistemas pensados para seguir operando, no para quedar abandonados.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA FINAL */}
-      <section className="bg-black py-24 text-center">
+      <section className="bg-slate-950 py-24 text-center">
         <div className="mx-auto max-w-4xl px-4 lg:px-8">
           <h2 className="text-3xl font-semibold text-white md:text-4xl">
-            ¿Necesitas más consultas para tu servicio?
+            ¿Necesitas una base más clara para captar mejor?
           </h2>
 
           <p className="mx-auto mt-4 max-w-2xl text-slate-300">
-            Cuéntanos qué vendes, en qué ciudad trabajas y qué objetivo tienes.
-            Te proponemos una estructura simple y clara.
+            Cuéntanos qué servicio vendes, en qué ciudad trabajas y qué objetivo tienes.
+            Te proponemos una estructura simple, medible y aterrizada.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -503,8 +605,7 @@ export default function HomePage() {
           </div>
 
           <p className="mt-6 text-xs text-slate-400">
-            Tronx Strategy trabaja con servicios. No e-commerce. No sistemas
-            complejos.
+            Tronx Strategy trabaja con empresas de servicios. No e-commerce. No sistemas complejos.
           </p>
         </div>
       </section>
