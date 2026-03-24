@@ -1,210 +1,155 @@
 // app/layout.tsx
-import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Navbar } from "../components/site/navbar";
-import Footer from "../components/site/footer";
+import "./globals.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import { inter, manrope } from "./fonts";
 
 const siteUrl = "https://www.tronxstrategy.com";
 const siteName = "Tronx Strategy";
-const siteTagline = "Sitios para servicios + medición + continuidad (WebOps)";
-const favicon = "/favicon_TronxStrategy.png";
-
-// Recomendado: crea un OG real (1200x630) en /public/og-tronxstrategy.jpg
-const ogImage = "/og-tronxstrategy.jpg";
-
-const GA_ID = "G-MZLLPKCM1Q"; // GA4
-// Si usas Google Ads Tag (AW-XXXX), ponlo aquí. Si no, déjalo vacío.
-const ADS_ID = ""; // "AW-XXXXXXXXXXX"
+const siteTagline = "Base comercial digital para empresas de servicios";
+const defaultTitle =
+  "Tronx Strategy — Base comercial digital para empresas de servicios";
+const defaultDescription =
+  "Diseñamos bases comerciales digitales para empresas de servicios: sitio web claro, textos base, medición real, activación de captación y continuidad mensual.";
 
 export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
   themeColor: "#020617",
+  colorScheme: "dark",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-
   title: {
-    default: "Tronx Strategy — WebOps para sitios de servicios",
-    template: "%s · Tronx Strategy",
+    default: defaultTitle,
+    template: `%s | ${siteName}`,
   },
-
-  description:
-    "Construimos sitios para servicios (no e-commerce) con estructura operable, medición real y continuidad mensual. Next.js + Vercel + Cloudflare. Google Ads opcional.",
-
+  description: defaultDescription,
+  applicationName: siteName,
   keywords: [
-    "sitios web para servicios",
-    "landing page profesional chile",
-    "desarrollo web Next.js",
-    "WebOps",
-    "Vercel",
-    "Cloudflare",
-    "sitios institucionales",
-    "portales institucionales",
-    "sitio corporativo",
-    "Google Ads para servicios",
-    "Tronx Strategy",
+    "sitio web para servicios",
+    "landing page servicios",
+    "captación digital",
+    "base comercial digital",
+    "google ads servicios",
+    "medición de leads",
+    "continuidad web",
+    "texto web para servicios",
+    "tronx strategy",
+    "Chile",
   ],
-
   alternates: {
     canonical: "/",
   },
-
+  authors: [{ name: siteName, url: siteUrl }],
+  creator: siteName,
+  publisher: siteName,
+  category: "business",
   openGraph: {
-    title: "Tronx Strategy — Sitios para servicios + medición + continuidad",
-    description:
-      "WebOps para empresas e instituciones: estructura operable, medición real y continuidad mensual. Google Ads opcional.",
-    url: siteUrl,
-    siteName,
     type: "website",
     locale: "es_CL",
+    url: siteUrl,
+    siteName,
+    title: defaultTitle,
+    description:
+      "Estructura clara, textos base, medición, activación de captación y continuidad mensual para captar más consultas.",
     images: [
       {
-        url: ogImage,
+        url: "/og-tronxstrategy.jpg",
         width: 1200,
         height: 630,
-        alt: "Tronx Strategy — WebOps para sitios de servicios",
+        alt: "Tronx Strategy",
       },
     ],
   },
-
   twitter: {
     card: "summary_large_image",
-    title: "Tronx Strategy — WebOps para sitios de servicios",
+    title: defaultTitle,
     description:
-      "Sitios para servicios con estructura operable, medición real y continuidad mensual. Next.js + infraestructura moderna.",
-    images: [ogImage],
+      "Sitio web claro, textos base, medición y continuidad mensual para empresas de servicios.",
+    images: ["/og-tronxstrategy.jpg"],
   },
-
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png" }],
+  },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
   },
-
-  icons: {
-    icon: [
-      { url: favicon, sizes: "32x32", type: "image/png" },
-      { url: favicon, sizes: "192x192", type: "image/png" },
-    ],
-    shortcut: favicon,
-    apple: [{ url: favicon, sizes: "180x180" }],
-  },
-
-  category: "technology",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const orgLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: siteName,
-    url: siteUrl,
-    logo: `${siteUrl}${favicon}`,
-    description: siteTagline,
-    parentOrganization: {
-      "@type": "Organization",
-      name: "Tronx Group SpA",
-      url: "https://www.tronxgroup.com",
-    },
-    sameAs: [
-      "https://www.instagram.com/tronxstrategy",
-      "https://www.linkedin.com/company/tronx-strategy",
-    ],
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "CL",
-      addressLocality: "Santiago",
-    },
-  };
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteName,
+  url: siteUrl,
+  description: siteTagline,
+  logo: `${siteUrl}/icon.png`,
+  sameAs: [],
+};
 
-  const websiteLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: siteName,
-    url: siteUrl,
-    inLanguage: "es-CL",
-  };
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteName,
+  url: siteUrl,
+  description: defaultDescription,
+  inLanguage: "es-CL",
+};
 
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="es">
+    <html lang="es-CL" className="scroll-smooth">
       <head>
-        <meta name="author" content="Tronx Strategy" />
-        <meta name="application-name" content={siteName} />
-
-        {/* Preconnect (ligero) */}
+        <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
-      </head>
-
-      <body className="bg-slate-950 text-slate-100 antialiased">
-        {/* Google Analytics */}
-        {GA_ID ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="gtag-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}', { anonymize_ip: true });
-              `}
-            </Script>
-          </>
-        ) : null}
-
-        {/* Google Ads (opcional) */}
-        {ADS_ID ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="gtag-ads-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${ADS_ID}');
-              `}
-            </Script>
-          </>
-        ) : null}
-
-        {/* JSON-LD */}
         <Script
           id="ld-org"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
         <Script
           id="ld-website"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
+      </head>
 
-        {/* NAVBAR */}
+      <body
+        className={`${inter.variable} ${manrope.variable} bg-slate-950 text-slate-100 antialiased`}
+      >
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+
         <Navbar />
-
-        {/* MAIN */}
         <main className="min-h-[70vh]">{children}</main>
-
-        {/* FOOTER */}
-        <Footer
-          instagram="https://www.instagram.com/tronxstrategy"
-          linkedin="https://www.linkedin.com/company/tronx-strategy"
-        />
+        <Footer />
       </body>
     </html>
   );
