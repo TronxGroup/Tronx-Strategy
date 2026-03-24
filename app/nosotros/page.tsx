@@ -1,450 +1,338 @@
-"use client";
-
-import React from "react";
+// app/nosotros/page.tsx
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
-  ShieldCheck,
-  BarChart3,
-  Workflow,
   CheckCircle2,
-  Lock,
-  Wrench,
-  Cloud,
+  ShieldCheck,
+  LayoutTemplate,
+  BarChart3,
   Headphones,
-  FileText,
-  Zap,
   Ban,
-  Layers3,
-  Sparkles,
-  Timer,
+  BadgeCheck,
+  FileText,
+  Search,
 } from "lucide-react";
 
-/* =======================================================
-   UTIL
-======================================================= */
+const SITE_URL = "https://www.tronxstrategy.com";
+const WHATSAPP_NUMBER = "56920080031";
 
-function cx(...classes: Array<string | false | undefined | null>) {
-  return classes.filter(Boolean).join(" ");
-}
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: "Nosotros — Tronx Strategy | Captación digital para empresas de servicios",
+  description:
+    "Conoce el enfoque de Tronx Strategy: sitios web, medición, Google Ads opcional y continuidad para empresas de servicios.",
+  alternates: {
+    canonical: "/nosotros",
+  },
+  openGraph: {
+    title: "Nosotros — Tronx Strategy",
+    description:
+      "Tronx Strategy diseña sistemas simples de captación para empresas de servicios.",
+    url: "/nosotros",
+    type: "website",
+    locale: "es_CL",
+    siteName: "Tronx Strategy",
+  },
+};
 
-function Pill({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-slate-200">
-      {children}
-    </span>
-  );
+function buildWhatsAppLink() {
+  const text =
+    "Hola 👋 Quiero conversar con Tronx Strategy.\n\n" +
+    "Empresa / Proyecto:\n" +
+    "Servicio principal:\n" +
+    "Ciudad:\n" +
+    "Objetivo (cotizaciones / consultas / agenda):\n\n" +
+    "Gracias 🙌";
+
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 
 function CheckItem({ children }: { children: React.ReactNode }) {
   return (
-    <li className="flex items-start gap-3 text-sm md:text-base text-slate-300">
-      <CheckCircle2 className="w-4 h-4 mt-[3px] text-sky-300" />
+    <li className="flex items-start gap-2 text-sm text-slate-200">
+      <CheckCircle2 className="mt-[2px] h-4 w-4 shrink-0 text-sky-400" />
       <span>{children}</span>
     </li>
   );
 }
 
-function Card({
-  icon: Icon,
+function SectionTitle({
+  eyebrow,
   title,
-  text,
-  tone = "default",
+  desc,
+  center = false,
 }: {
-  icon: any;
+  eyebrow?: string;
   title: string;
-  text: string;
-  tone?: "default" | "highlight";
+  desc?: string;
+  center?: boolean;
 }) {
   return (
-    <div
-      className={cx(
-        "card-surface p-6 border bg-black/55",
-        tone === "highlight"
-          ? "border-sky-400/30 shadow-soft-glow shadow-sky-500/10"
-          : "border-white/10"
+    <div className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
+      {eyebrow && (
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-sky-300">
+          {eyebrow}
+        </p>
       )}
-    >
-      <div className="flex items-center gap-3">
-        <Icon className="w-5 h-5 text-sky-300" />
-        <h3 className="text-white font-semibold">{title}</h3>
-      </div>
-      <p className="mt-3 text-sm text-slate-300">{text}</p>
+      <h1 className="mt-3 text-3xl font-semibold text-white md:text-5xl">
+        {title}
+      </h1>
+      {desc && <p className="mt-4 text-slate-300">{desc}</p>}
     </div>
   );
 }
 
-/* =======================================================
-   COMPONENT
-======================================================= */
-
 export default function NosotrosPage() {
+  const waLink = buildWhatsAppLink();
+
   return (
-    <section
-      className="relative min-h-screen w-full"
-      style={{
-        backgroundImage: "url('/BG_nosotros_strategy.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-[1px]" />
-
-      <div className="relative section py-20 lg:py-24 space-y-20">
-        {/* =======================================================
-           HERO
-        ======================================================= */}
-        <header className="max-w-5xl space-y-6">
-          <p className="text-xs font-semibold tracking-[0.28em] uppercase text-sky-300/90">
-            Nosotros
-          </p>
-
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">
-            Tronx Strategy es{" "}
-            <span className="text-sky-300">WebOps</span>: sitios que no solo se
-            publican,
-            <br className="hidden md:block" />{" "}
-            <span className="text-sky-300">
-              se operan y se mantienen activos
-            </span>
-            .
-          </h1>
-
-          <p className="text-base md:text-lg text-slate-200 max-w-4xl">
-            No vendemos “una web”. Construimos un activo digital para servicios:
-            propuesta clara, medición real y continuidad mensual para que el
-            sitio sea parte del negocio, no un proyecto olvidado.
-          </p>
-
-          <div className="flex flex-wrap gap-2 pt-1">
-            <Pill>Servicios (B2B/B2C)</Pill>
-            <Pill>Arquitectura moderna</Pill>
-            <Pill>Medición + conversión</Pill>
-            <Pill>Operación mensual</Pill>
-          </div>
-
-          <div className="flex flex-wrap gap-3 pt-3">
-            <Link
-              href="/contacto#form"
-              className="btn-primary inline-flex items-center gap-2 px-6 py-3"
-            >
-              Cotizar proyecto
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-
-            <Link
-              href="/servicios#packs"
-              className="btn-ghost bg-white/10 hover:bg-white/20 inline-flex items-center gap-2 px-6 py-3"
-            >
-              Ver packs
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-
-            <Link
-              href="/portafolio"
-              className="btn-ghost bg-white/5 hover:bg-white/15 inline-flex items-center gap-2 px-6 py-3"
-            >
-              Ver casos reales
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <p className="text-xs text-slate-400">
-            Enfoque: sitios de servicios. No e-commerce. No sistemas complejos.
-          </p>
-        </header>
-
-        {/* =======================================================
-           PROPUESTA DE VALOR
-        ======================================================= */}
-        <section className="grid gap-6 md:grid-cols-3">
-          <Card
-            icon={ShieldCheck}
-            title="Operación y propiedad"
-            text="Accesos, roles y continuidad. El sitio no queda en tierra de nadie."
-            tone="highlight"
+    <main className="bg-black text-white">
+      {/* HERO */}
+      <section className="border-b border-white/10 bg-slate-950 py-24 md:py-32">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <SectionTitle
+            eyebrow="Nosotros"
+            title="Tronx Strategy existe para hacer una cosa bien: ayudar a empresas de servicios a captar mejor"
+            desc="No somos una agencia que ofrece de todo. Diseñamos sistemas simples y claros para generar consultas, cotizaciones o agenda: sitio web, medición, Google Ads opcional y continuidad mensual."
           />
-          <Card
-            icon={BarChart3}
-            title="Medición real"
-            text="Eventos clave (lead/WhatsApp) y data para tomar decisiones, no intuición."
-          />
-          <Card
-            icon={Workflow}
-            title="Estructura operable"
-            text="Arquitectura clara + documentación para publicar sin fricción."
-          />
-        </section>
 
-        {/* =======================================================
-           LO QUE HACEMOS / LO QUE NO
-        ======================================================= */}
-        <section className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-2xl border border-white/10 bg-black/55 p-8 space-y-5">
-            <div className="flex items-center gap-3">
-              <Sparkles className="w-5 h-5 text-sky-300" />
-              <h2 className="text-2xl md:text-3xl font-semibold text-white">
-                Qué hacemos (en concreto)
-              </h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <LayoutTemplate className="mb-3 h-5 w-5 text-sky-400" />
+              <h2 className="font-semibold text-white">Claridad comercial</h2>
+              <p className="mt-2 text-sm text-slate-300">
+                Ordenamos la oferta para que el cliente entienda rápido qué
+                servicio ofreces y cómo contactarte.
+              </p>
             </div>
 
-            <ul className="space-y-3">
-              <CheckItem>
-                Estructura + copy alineado a objetivo real (leads, reputación,
-                institucionalidad).
-              </CheckItem>
-              <CheckItem>
-                Implementación moderna: Next.js + Vercel + Cloudflare.
-              </CheckItem>
-              <CheckItem>
-                Dominio, DNS, SSL y accesos documentados (propiedad clara).
-              </CheckItem>
-              <CheckItem>
-                Medición: Ads Tag / GA4 + eventos base (según pack).
-              </CheckItem>
-              <CheckItem>
-                Escalamiento por etapas: noticias, CRM básico, automatizaciones
-                simples.
-              </CheckItem>
-              <CheckItem>
-                Entrega documentada + checklist + capacitación breve.
-              </CheckItem>
-            </ul>
-          </div>
-
-          <div className="rounded-2xl border border-white/10 bg-black/55 p-8 space-y-5">
-            <div className="flex items-center gap-3">
-              <Ban className="w-5 h-5 text-sky-300" />
-              <h2 className="text-2xl md:text-3xl font-semibold text-white">
-                Qué NO hacemos
-              </h2>
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <BarChart3 className="mb-3 h-5 w-5 text-sky-400" />
+              <h2 className="font-semibold text-white">Medición real</h2>
+              <p className="mt-2 text-sm text-slate-300">
+                Formularios, WhatsApp y campañas con trazabilidad para saber qué
+                sí funciona.
+              </p>
             </div>
 
-            <p className="text-slate-300">
-              Para mantener foco y tiempos razonables, evitamos proyectos que
-              requieren desarrollo tipo software.
-            </p>
-
-            <ul className="space-y-3">
-              <CheckItem>E-commerce (pagos, despacho, catálogo complejo)</CheckItem>
-              <CheckItem>Apps, portales, dashboards o sistemas a medida</CheckItem>
-              <CheckItem>Integraciones “enterprise” sin etapa previa</CheckItem>
-              <CheckItem>
-                Proyectos sin responsable comercial (sin respuesta a leads)
-              </CheckItem>
-            </ul>
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <Headphones className="mb-3 h-5 w-5 text-sky-400" />
+              <h2 className="font-semibold text-white">Continuidad</h2>
+              <p className="mt-2 text-sm text-slate-300">
+                Sitios activos, mantenidos y listos para seguir operando en el
+                tiempo.
+              </p>
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* =======================================================
-           CÓMO TRABAJAMOS (3 pasos)
-        ======================================================= */}
-        <section className="rounded-2xl border border-white/10 bg-black/50 p-10 space-y-8">
-          <div className="flex items-center gap-3">
-            <Layers3 className="w-5 h-5 text-sky-300" />
-            <h2 className="text-2xl md:text-3xl font-semibold text-white">
-              Cómo trabajamos
-            </h2>
+      {/* ENFOQUE */}
+      <section className="py-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <SectionTitle
+            eyebrow="Nuestro enfoque"
+            title="Menos discurso. Más estructura útil."
+            desc="Creemos que muchas empresas de servicios no necesitan un proyecto digital complejo. Necesitan una base clara, bien ejecutada y fácil de operar."
+          />
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <div className="rounded-2xl border border-white/10 bg-slate-950 p-6">
+              <h2 className="text-xl font-semibold text-white">
+                Qué buscamos hacer
+              </h2>
+              <ul className="mt-6 space-y-2">
+                <CheckItem>Mostrar mejor la oferta de una empresa</CheckItem>
+                <CheckItem>Facilitar el contacto y la conversión</CheckItem>
+                <CheckItem>Dejar medición básica bien implementada</CheckItem>
+                <CheckItem>Preparar una base lista para campañas</CheckItem>
+                <CheckItem>Evitar sitios abandonados o confusos</CheckItem>
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-slate-950 p-6">
+              <h2 className="text-xl font-semibold text-white">
+                Qué evitamos
+              </h2>
+              <ul className="mt-6 space-y-2">
+                <CheckItem>Promesas exageradas</CheckItem>
+                <CheckItem>Proyectos sobredimensionados</CheckItem>
+                <CheckItem>Marketing sin medición</CheckItem>
+                <CheckItem>Complejidad innecesaria</CheckItem>
+                <CheckItem>Vender servicios que no operamos bien</CheckItem>
+              </ul>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid gap-4 md:grid-cols-3">
-            {[
-              {
-                icon: Timer,
-                title: "1) Definimos el objetivo",
-                text: "Lead, agenda, cotización o institucional. Alcance por escrito.",
-              },
-              {
-                icon: Wrench,
-                title: "2) Construimos y medimos",
-                text: "Sitio + tracking. Checklist técnico antes de publicar.",
-              },
-              {
-                icon: Zap,
-                title: "3) Operamos y optimizamos",
-                text: "Continuidad mensual (recomendado) para mantener el activo vivo.",
-              },
-            ].map(({ icon: Icon, title, text }) => (
-              <div
-                key={title}
-                className="rounded-xl border border-white/10 bg-black/40 p-6"
-              >
-                <Icon className="w-5 h-5 text-sky-300 mb-3" />
-                <p className="text-white font-semibold">{title}</p>
-                <p className="text-sm text-slate-300 mt-2">{text}</p>
+      {/* PARA QUIÉN */}
+      <section className="bg-slate-950 py-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <SectionTitle
+            center
+            eyebrow="Para quién es Tronx Strategy"
+            title="Trabajamos mejor con empresas de servicios e instituciones"
+            desc="Especialmente cuando el objetivo es claro: generar consultas, cotizaciones o agenda."
+          />
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <div className="flex items-center gap-2">
+                <BadgeCheck className="h-5 w-5 text-sky-400" />
+                <h3 className="font-semibold text-white">Sí es para ti si...</h3>
               </div>
-            ))}
-          </div>
 
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/servicios#packs"
-              className="btn-ghost bg-white/10 hover:bg-white/20 inline-flex items-center gap-2 px-6 py-3"
-            >
-              Ver packs y alcance
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/contacto#form"
-              className="btn-primary inline-flex items-center gap-2 px-6 py-3"
-            >
-              Pedir propuesta
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </section>
+              <ul className="mt-4 space-y-2">
+                <CheckItem>Vendes un servicio claro</CheckItem>
+                <CheckItem>Necesitas más consultas o cotizaciones</CheckItem>
+                <CheckItem>Quieres una estructura profesional</CheckItem>
+                <CheckItem>Te interesa medir contactos reales</CheckItem>
+                <CheckItem>Tienes capacidad de responder leads</CheckItem>
+              </ul>
+            </div>
 
-        {/* =======================================================
-           CONTINUIDAD (MENSAJE CLAVE)
-        ======================================================= */}
-        <section className="rounded-2xl border border-sky-400/25 bg-black/50 p-8 space-y-6">
-          <div className="flex items-center gap-3">
-            <Zap className="w-5 h-5 text-sky-300" />
-            <h2 className="text-xl md:text-2xl font-semibold text-white">
-              Continuidad mensual (recomendado)
-            </h2>
-          </div>
-
-          <p className="text-sm md:text-base text-slate-300 max-w-3xl">
-            El valor real aparece cuando el sitio se mantiene activo. Infra +
-            soporte + contenidos = un activo digital sostenible.
-          </p>
-
-          <div className="grid gap-4 md:grid-cols-3">
-            {[
-              {
-                icon: Cloud,
-                title: "Hosting administrado",
-                price: "Desde $10.000 / mes",
-                text: "Cloud, DNS, SSL y continuidad técnica.",
-              },
-              {
-                icon: Headphones,
-                title: "Soporte técnico",
-                price: "Desde $29.990 / mes",
-                text: "Ajustes menores y acompañamiento.",
-              },
-              {
-                icon: FileText,
-                title: "Gestión de contenidos",
-                price: "Desde $80.000 / mes",
-                text: "Publicación y actualización mensual.",
-              },
-            ].map(({ icon: Icon, title, price, text }) => (
-              <div
-                key={title}
-                className="rounded-xl border border-white/10 bg-black/40 p-5"
-              >
-                <Icon className="w-5 h-5 text-sky-300 mb-3" />
-                <p className="text-white font-semibold">{title}</p>
-                <p className="text-sky-300 mt-1 text-sm">{price}</p>
-                <p className="text-sm text-slate-300 mt-2">{text}</p>
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <div className="flex items-center gap-2">
+                <Ban className="h-5 w-5 text-sky-400" />
+                <h3 className="font-semibold text-white">No es para ti si...</h3>
               </div>
-            ))}
+
+              <ul className="mt-4 space-y-2">
+                <CheckItem>Buscas e-commerce o tienda online</CheckItem>
+                <CheckItem>Necesitas una app o sistema complejo</CheckItem>
+                <CheckItem>No hay responsable comercial</CheckItem>
+                <CheckItem>Solo estás comparando por precio</CheckItem>
+                <CheckItem>Buscas “marketing” sin foco ni medición</CheckItem>
+              </ul>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div className="rounded-xl border border-white/10 bg-black/40 p-6">
-            <p className="text-xs uppercase tracking-[0.22em] text-slate-300">
-              Plan recomendado
-            </p>
-            <p className="text-2xl font-semibold text-white mt-2">$119.990 / mes</p>
-            <p className="text-xs text-slate-400 mt-1">Hosting + Soporte + Contenidos</p>
+      {/* COMO TRABAJAMOS */}
+      <section className="py-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <SectionTitle
+            eyebrow="Cómo trabajamos"
+            title="Tres capas simples"
+            desc="Nuestro trabajo se organiza en una lógica fácil de entender y fácil de sostener."
+          />
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <LayoutTemplate className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">1. Implementación</h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Landing o sitio web con foco en claridad, estructura y contacto.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <Search className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">2. Medición y Ads</h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Configuración de eventos y Google Ads opcional para acelerar
+                captación cuando conviene.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <Headphones className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">3. Continuidad</h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Soporte, ajustes y actualizaciones para que el sistema siga
+                funcionando.
+              </p>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <Link
-            href="/contacto#form"
-            className="btn-primary inline-flex items-center gap-2 px-6 py-3"
-          >
-            Solicitar continuidad mensual
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </section>
+      {/* PRINCIPIOS */}
+      <section className="bg-slate-950 py-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <SectionTitle
+            eyebrow="Principios"
+            title="Qué valoramos al construir un proyecto"
+            desc="Más que estética o volumen de features, nos importa que la estructura tenga sentido."
+          />
 
-        {/* =======================================================
-           ESTÁNDAR DE ENTREGA
-        ======================================================= */}
-        <section className="space-y-6">
-          <h2 className="text-2xl md:text-3xl font-semibold text-white">
-            Estándar de entrega
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <ShieldCheck className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">Claridad</h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Que el servicio se entienda rápido.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <BarChart3 className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">Medición</h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Que exista trazabilidad mínima real.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <FileText className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">Orden</h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Que el proyecto quede bien documentado.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <Headphones className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">Continuidad</h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Que el sitio pueda seguir vivo después de publicar.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CIERRE */}
+      <section className="py-24 text-center">
+        <div className="mx-auto max-w-4xl px-4 lg:px-8">
+          <h2 className="text-3xl font-semibold text-white md:text-4xl">
+            ¿Conversamos tu proyecto?
           </h2>
 
-          <div className="grid gap-4 md:grid-cols-3">
-            {[
-              {
-                icon: CheckCircle2,
-                title: "Alcance por escrito",
-                text: "Qué entra, qué no entra, hitos y responsables.",
-              },
-              {
-                icon: Lock,
-                title: "Propiedad y accesos",
-                text: "Dominio, DNS y usuarios documentados.",
-              },
-              {
-                icon: Wrench,
-                title: "Checklist técnico",
-                text: "Performance, indexación, eventos y publicación.",
-              },
-            ].map(({ icon: Icon, title, text }) => (
-              <div
-                key={title}
-                className="card-surface p-6 bg-black/45 border border-white/10"
-              >
-                <Icon className="w-5 h-5 text-sky-300 mb-3" />
-                <p className="text-white font-semibold">{title}</p>
-                <p className="text-sm text-slate-300 mt-2">{text}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* =======================================================
-           CTA FINAL
-        ======================================================= */}
-        <section className="rounded-2xl border border-white/10 bg-black/50 p-10 text-center space-y-6">
-          <h3 className="text-2xl font-semibold text-white">
-            Si necesitas claridad comercial + estructura técnica, conversemos.
-          </h3>
-
-          <p className="text-slate-300 max-w-2xl mx-auto">
-            Envíanos objetivo, secciones y fecha ideal. Te respondemos con
-            alcance definido, valor claro y recomendación de continuidad.
+          <p className="mx-auto mt-4 max-w-2xl text-slate-300">
+            Si tu empresa necesita una base digital más clara para captar mejor,
+            podemos diseñar una estructura simple, medible y fácil de sostener.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/contacto#form"
               className="btn-primary inline-flex items-center gap-2 px-6 py-3"
             >
-              Cotizar proyecto
-              <ArrowRight className="w-4 h-4" />
+              Solicitar propuesta
+              <ArrowRight className="h-4 w-4" />
             </Link>
 
-            <Link
-              href="/servicios#packs"
-              className="btn-ghost bg-white/10 hover:bg-white/20 inline-flex items-center gap-2 px-6 py-3"
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost inline-flex items-center gap-2 bg-white/10 px-6 py-3 hover:bg-white/20"
             >
-              Ver packs
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-
-            <Link
-              href="/portafolio"
-              className="btn-ghost bg-white/5 hover:bg-white/15 inline-flex items-center gap-2 px-6 py-3"
-            >
-              Ver portafolio
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+              WhatsApp
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
 
-          <p className="text-xs text-slate-400">
-            Trabajamos con alcance definido. Cambios estructurales o nuevas
-            integraciones se evalúan aparte.
+          <p className="mt-6 text-xs text-slate-400">
+            Tronx Strategy trabaja con empresas de servicios e instituciones. No
+            e-commerce. No sistemas complejos.
           </p>
-        </section>
-      </div>
-    </section>
+        </div>
+      </section>
+    </main>
   );
 }
