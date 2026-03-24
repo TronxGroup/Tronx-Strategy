@@ -18,7 +18,8 @@ const SITE_URL = "https://www.tronxstrategy.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Portafolio — Tronx Strategy | Sitios web para servicios e instituciones",
+  title:
+    "Portafolio — Tronx Strategy | Sitios web para servicios e instituciones",
   description:
     "Portafolio de Tronx Strategy: casos reales de sitios web para servicios, instituciones y plataformas con foco en estructura clara, medición y continuidad.",
   alternates: {
@@ -52,7 +53,7 @@ type Project = {
   priority?: number;
 };
 
-const projects: Project[] = [
+const projects = [
   {
     name: "APCC — Cámara Asia Pacífico",
     img: "/portafolio/apcc.jpg",
@@ -137,7 +138,11 @@ const projects: Project[] = [
     year: "2025",
     priority: 50,
   },
-].sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
+] satisfies Project[];
+
+const sortedProjects = [...projects].sort(
+  (a, b) => (b.priority ?? 0) - (a.priority ?? 0)
+);
 
 function CheckItem({ children }: { children: React.ReactNode }) {
   return (
@@ -150,14 +155,10 @@ function CheckItem({ children }: { children: React.ReactNode }) {
 
 function ServicePill({ service }: { service: Service }) {
   const styles: Record<Service, string> = {
-    "Pack Premium":
-      "border-sky-400/60 text-sky-300 bg-sky-500/10",
-    "Pack Pro":
-      "border-indigo-400/60 text-indigo-300 bg-indigo-500/10",
-    "Pack Start":
-      "border-slate-500/60 text-slate-200 bg-white/5",
-    "Landing 48h":
-      "border-emerald-400/60 text-emerald-300 bg-emerald-500/10",
+    "Pack Premium": "border-sky-400/60 text-sky-300 bg-sky-500/10",
+    "Pack Pro": "border-indigo-400/60 text-indigo-300 bg-indigo-500/10",
+    "Pack Start": "border-slate-500/60 text-slate-200 bg-white/5",
+    "Landing 48h": "border-emerald-400/60 text-emerald-300 bg-emerald-500/10",
   };
 
   return (
@@ -171,12 +172,9 @@ function ServicePill({ service }: { service: Service }) {
 
 function StatusPill({ status }: { status: Status }) {
   const styles: Record<Status, string> = {
-    "En operación":
-      "border-green-400/60 text-green-300 bg-green-500/10",
-    "En desarrollo":
-      "border-sky-400/60 text-sky-300 bg-sky-500/10",
-    Beta:
-      "border-yellow-400/60 text-yellow-300 bg-yellow-500/10",
+    "En operación": "border-green-400/60 text-green-300 bg-green-500/10",
+    "En desarrollo": "border-sky-400/60 text-sky-300 bg-sky-500/10",
+    Beta: "border-yellow-400/60 text-yellow-300 bg-yellow-500/10",
   };
 
   return (
@@ -311,7 +309,7 @@ export default function PortafolioPage() {
           </div>
 
           <div className="mt-12 grid gap-10 md:grid-cols-2">
-            {projects.map((project) => (
+            {sortedProjects.map((project) => (
               <article
                 key={project.name}
                 className="overflow-hidden rounded-2xl border border-white/10 bg-black/40 transition hover:border-sky-400/40"
