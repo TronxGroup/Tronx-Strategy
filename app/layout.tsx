@@ -3,8 +3,8 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/site/navbar";
-import Footer from "@/components/site/footer";
+import Navbar from "../components/site/navbar";
+import Footer from "../components/site/footer";
 
 const inter = Inter({
   subsets: ["latin"],
