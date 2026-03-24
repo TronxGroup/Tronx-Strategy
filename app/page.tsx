@@ -1,22 +1,22 @@
 // app/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import {
   ArrowRight,
   CheckCircle2,
-  Cloud,
-  Headphones,
-  FileText,
-  ShieldCheck,
-  BarChart3,
   LayoutTemplate,
   Zap,
-  Coins,
+  ShieldCheck,
+  BarChart3,
+  Headphones,
   Search,
+  BadgeCheck,
   Ban,
   Timer,
-  BadgeCheck,
+  Coins,
+  MessageSquareMore,
+  FileText,
+  Wrench,
 } from "lucide-react";
 
 const SITE_URL = "https://www.tronxstrategy.com";
@@ -24,22 +24,24 @@ const WHATSAPP_NUMBER = "56920080031";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Tronx Strategy — Sitios para servicios + Google Ads | Chile",
+  title: "Tronx Strategy — Sistema de captación digital para empresas de servicios | Chile",
   description:
-    "Sitios web profesionales para servicios (no e-commerce). Landing/sitio institucional + medición + Google Ads opcional para generar leads.",
+    "Diseñamos sistemas de captación digital para empresas de servicios: sitio web, estructura comercial, medición y Google Ads opcional para generar contactos reales.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Tronx Strategy — Sitios para servicios + Google Ads",
+    title: "Tronx Strategy — Sistema de captación digital para empresas de servicios",
     description:
-      "Implementación web + operación mensual + performance opcional. Enfocado en servicios: abogados, consultoría, salud, educación, instituciones.",
+      "Sitio, propuesta clara, medición y Google Ads opcional. Enfocado en empresas de servicios que necesitan leads, cotizaciones o agenda.",
     url: "/",
     type: "website",
+    locale: "es_CL",
+    siteName: "Tronx Strategy",
   },
 };
 
 function buildWhatsAppLink() {
   const text =
-    "Hola 👋 Quiero cotizar un sitio web para servicios + (opcional) Google Ads.\n\n" +
+    "Hola 👋 Quiero cotizar un sistema de captación digital para mi empresa.\n\n" +
     "Empresa / Proyecto:\n" +
     "Servicio principal:\n" +
     "Ciudad:\n" +
@@ -60,9 +62,35 @@ function Pill({ children }: { children: React.ReactNode }) {
 function CheckItem({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex items-start gap-2 text-sm text-slate-200">
-      <CheckCircle2 className="w-4 h-4 mt-[2px] text-sky-400" />
+      <CheckCircle2 className="mt-[2px] h-4 w-4 shrink-0 text-sky-400" />
       <span>{children}</span>
     </li>
+  );
+}
+
+function SectionTitle({
+  eyebrow,
+  title,
+  desc,
+  center = false,
+}: {
+  eyebrow?: string;
+  title: string;
+  desc?: string;
+  center?: boolean;
+}) {
+  return (
+    <div className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
+      {eyebrow && (
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-sky-300">
+          {eyebrow}
+        </p>
+      )}
+      <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">
+        {title}
+      </h2>
+      {desc && <p className="mt-4 text-slate-300">{desc}</p>}
+    </div>
   );
 }
 
@@ -73,33 +101,32 @@ export default function HomePage() {
     <>
       {/* HERO */}
       <section
-        className="relative min-h-screen flex items-center"
+        className="relative flex min-h-screen items-center"
         style={{
           backgroundImage: "url('/BG_hero_strategy.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="absolute inset-0 bg-black/75" />
+        <div className="absolute inset-0 bg-black/80" />
 
-        <div className="relative max-w-6xl mx-auto px-4 lg:px-8 py-24 grid lg:grid-cols-2 gap-12 items-center">
-          {/* LEFT */}
-          <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-sky-300 font-semibold">
-              Sitios para servicios · No e-commerce
+        <div className="relative mx-auto grid max-w-6xl gap-12 px-4 py-24 lg:grid-cols-2 lg:px-8">
+          <div className="flex flex-col justify-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-sky-300">
+              Captación digital para empresas de servicios
             </p>
 
-            <h1 className="mt-4 text-4xl md:text-5xl font-semibold text-white leading-tight">
-              Un sitio profesional que{" "}
-              <span className="text-sky-300">genera contactos</span>
+            <h1 className="mt-4 text-4xl font-semibold leading-tight text-white md:text-6xl">
+              Más que un sitio:
               <br />
-              (y Google Ads opcional)
+              un <span className="text-sky-300">sistema real de captación</span>
             </h1>
 
-            <p className="mt-5 text-lg text-slate-200 max-w-xl">
-              Construimos landing o sitio institucional para servicios con estructura clara, formularios/WhatsApp y
-              medición real. Si tu servicio ya tiene demanda, activamos Google Ads Search para captar leads de intención
-              alta.
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-200">
+              Diseñamos una base comercial clara para empresas de servicios:
+              propuesta de valor, páginas estratégicas, formularios o WhatsApp,
+              medición real y Google Ads opcional para generar contactos
+              medibles.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
@@ -112,271 +139,659 @@ export default function HomePage() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/contacto#form" className="btn-primary px-6 py-3 text-base inline-flex items-center gap-2">
+              <Link
+                href="/contacto#form"
+                className="btn-primary inline-flex items-center gap-2 px-6 py-3 text-base"
+              >
                 Solicitar propuesta
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="h-4 w-4" />
               </Link>
 
               <a
                 href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-ghost bg-white/10 hover:bg-white/20 px-6 py-3 text-base inline-flex items-center gap-2"
+                className="btn-ghost inline-flex items-center gap-2 bg-white/10 px-6 py-3 text-base hover:bg-white/20"
               >
                 WhatsApp directo
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="h-4 w-4" />
               </a>
             </div>
 
-            <div className="mt-6 grid sm:grid-cols-3 gap-3 text-sm text-slate-200">
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
               <div className="rounded-xl border border-white/10 bg-black/30 p-4">
-                <p className="text-sky-300 font-semibold">Implementación</p>
-                <p className="mt-1 text-slate-300">desde $290.000</p>
+                <p className="font-semibold text-sky-300">Implementación</p>
+                <p className="mt-1 text-sm text-slate-300">desde $290.000</p>
               </div>
               <div className="rounded-xl border border-white/10 bg-black/30 p-4">
-                <p className="text-sky-300 font-semibold">Operación mensual</p>
-                <p className="mt-1 text-slate-300">hosting + soporte</p>
+                <p className="font-semibold text-sky-300">Continuidad mensual</p>
+                <p className="mt-1 text-sm text-slate-300">
+                  soporte + contenidos
+                </p>
               </div>
               <div className="rounded-xl border border-white/10 bg-black/30 p-4">
-                <p className="text-sky-300 font-semibold">Performance (opcional)</p>
-                <p className="mt-1 text-slate-300">Google Ads Search</p>
+                <p className="font-semibold text-sky-300">Performance opcional</p>
+                <p className="mt-1 text-sm text-slate-300">
+                  Google Ads Search
+                </p>
               </div>
             </div>
 
             <p className="mt-5 text-xs text-slate-400">
-              Valores netos + IVA. Alcance definido por escrito. Entrega documentada.
+              Valores netos + IVA. Alcance definido por escrito. Entrega
+              documentada.
             </p>
           </div>
 
-          {/* RIGHT CARD */}
-          <div className="bg-black/60 backdrop-blur rounded-2xl border border-white/10 p-8 shadow-xl">
-            <h2 className="text-2xl font-semibold text-white">Packs para servicios</h2>
-            <p className="mt-2 text-sm text-slate-300">
-              Tres niveles claros. Luego, operación mensual opcional.
+          <div className="rounded-2xl border border-white/10 bg-black/60 p-8 shadow-xl backdrop-blur">
+            <p className="text-sm font-medium text-sky-300">
+              Qué resuelve este sistema
             </p>
 
-            <div className="mt-6 space-y-4 text-sm">
-              <div className="p-4 border border-white/10 rounded-xl bg-black/40">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="font-semibold text-white">Pack Start</p>
-                  <LayoutTemplate className="w-4 h-4 text-sky-300" />
+            <div className="mt-6 space-y-4">
+              <div className="rounded-xl border border-white/10 bg-black/40 p-4">
+                <div className="flex items-center gap-2">
+                  <LayoutTemplate className="h-4 w-4 text-sky-300" />
+                  <p className="font-semibold text-white">
+                    Oferta más clara
+                  </p>
                 </div>
-                <p className="text-sky-300 font-semibold">Desde $290.000</p>
-                <p className="text-slate-300 mt-1">1–3 secciones + formulario + WhatsApp.</p>
-              </div>
-
-              <div className="p-4 border border-sky-400/40 rounded-xl bg-sky-500/10">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="font-semibold text-white">Pack Pro (recomendado)</p>
-                  <Zap className="w-4 h-4 text-sky-300" />
-                </div>
-                <p className="text-sky-300 font-semibold">$590.000 – $690.000</p>
-                <p className="text-slate-300 mt-1">
-                  5–7 páginas + medición de eventos + sección administrable.
+                <p className="mt-2 text-sm text-slate-300">
+                  Organizamos tus servicios, mensajes y llamados a la acción para
+                  que el cliente entienda rápido qué haces y cómo contactarte.
                 </p>
               </div>
 
-              <div className="p-4 border border-white/10 rounded-xl bg-black/40">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="font-semibold text-white">Pack Premium</p>
-                  <ShieldCheck className="w-4 h-4 text-sky-300" />
+              <div className="rounded-xl border border-white/10 bg-black/40 p-4">
+                <div className="flex items-center gap-2">
+                  <MessageSquareMore className="h-4 w-4 text-sky-300" />
+                  <p className="font-semibold text-white">
+                    Más consultas medibles
+                  </p>
                 </div>
-                <p className="text-sky-300 font-semibold">$990.000 – $1.500.000</p>
-                <p className="text-slate-300 mt-1">8–12 páginas + UX optimizada + integraciones.</p>
+                <p className="mt-2 text-sm text-slate-300">
+                  Formularios, WhatsApp y eventos configurados para saber qué
+                  acciones generan contactos reales.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-sky-400/30 bg-sky-500/10 p-4">
+                <div className="flex items-center gap-2">
+                  <BarChart3 className="h-4 w-4 text-sky-300" />
+                  <p className="font-semibold text-white">
+                    Base lista para crecer
+                  </p>
+                </div>
+                <p className="mt-2 text-sm text-slate-300">
+                  Si tu servicio ya tiene demanda, agregamos Google Ads Search
+                  para acelerar captación con una estructura que sí se puede
+                  optimizar.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-black/40 p-4">
+                <div className="flex items-center gap-2">
+                  <Headphones className="h-4 w-4 text-sky-300" />
+                  <p className="font-semibold text-white">
+                    Continuidad mensual
+                  </p>
+                </div>
+                <p className="mt-2 text-sm text-slate-300">
+                  Hosting, soporte y contenidos para que el sitio no quede
+                  abandonado después de publicar.
+                </p>
               </div>
             </div>
 
             <div className="mt-6 grid gap-3">
-              <Link href="/servicios" className="btn-ghost bg-white/10 hover:bg-white/20 px-6 py-3 text-center">
-                Ver detalle de packs
+              <Link
+                href="/servicios"
+                className="btn-ghost bg-white/10 px-6 py-3 text-center hover:bg-white/20"
+              >
+                Ver planes de implementación
               </Link>
-              <Link href="/contacto#form" className="btn-primary w-full text-center inline-flex justify-center items-center gap-2">
+              <Link
+                href="/contacto#form"
+                className="btn-primary inline-flex w-full items-center justify-center gap-2 text-center"
+              >
                 Solicitar propuesta
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
 
             <p className="mt-4 text-xs text-slate-400">
-              Enfoque: sitios de servicios. No e-commerce. No sistemas complejos.
+              Enfoque: empresas de servicios. No e-commerce. No sistemas
+              complejos.
             </p>
           </div>
         </div>
       </section>
 
-      {/* DIFFERENTIATOR */}
+      {/* RESULTADOS / PROBLEMA */}
       <section className="bg-slate-950 py-20">
-        <div className="max-w-6xl mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl font-semibold text-white text-center">
-            No es “un sitio bonito”: es un sistema para vender servicios
-          </h2>
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <SectionTitle
+            center
+            eyebrow="Qué hacemos"
+            title="Tronx Strategy no parte desde una web; parte desde un problema comercial"
+            desc="Cuando una empresa de servicios depende solo de referidos, tiene una oferta confusa o no sabe qué canal trae consultas, necesita una base comercial clara y medible."
+          />
 
-          <p className="text-slate-300 text-center mt-4 max-w-3xl mx-auto">
-            Estructura clara + medición + operación mensual opcional. Si agregas performance, captas demanda existente con
-            Google Search.
-          </p>
-
-          <div className="mt-12 grid md:grid-cols-3 gap-6 text-sm text-slate-200">
-            <div className="p-6 border border-white/10 rounded-2xl bg-black/40">
-              <div className="flex items-center gap-2">
-                <Cloud className="w-5 h-5 text-sky-400" />
-                <h3 className="font-semibold text-white">Infraestructura moderna</h3>
-              </div>
-              <p className="mt-2 text-slate-300">
-                Next.js + Vercel + Cloudflare para rendimiento, seguridad y estabilidad.
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <h3 className="font-semibold text-white">
+                Ordenar la propuesta
+              </h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Definimos qué servicio mostrar, cómo presentarlo y qué llamada a
+                la acción debe tener prioridad.
               </p>
             </div>
 
-            <div className="p-6 border border-white/10 rounded-2xl bg-black/40">
-              <div className="flex items-center gap-2">
-                <BarChart3 className="w-5 h-5 text-sky-400" />
-                <h3 className="font-semibold text-white">Medición real</h3>
-              </div>
-              <p className="mt-2 text-slate-300">
-                Formulario/WhatsApp medibles. Atribución para entender qué trae leads.
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <h3 className="font-semibold text-white">
+                Generar contactos medibles
+              </h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Formularios, WhatsApp y eventos configurados para registrar
+                leads y entender qué sí funciona.
               </p>
             </div>
 
-            <div className="p-6 border border-white/10 rounded-2xl bg-black/40">
-              <div className="flex items-center gap-2">
-                <Headphones className="w-5 h-5 text-sky-400" />
-                <h3 className="font-semibold text-white">Continuidad mensual</h3>
-              </div>
-              <p className="mt-2 text-slate-300">
-                Hosting administrado, soporte y contenidos para que no quede “abandonado”.
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <h3 className="font-semibold text-white">
+                Dejar una base lista para crecer
+              </h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Una estructura sólida para sumar campañas, contenidos y
+                optimización sin partir de cero cada vez.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* WHAT WE DO / DON'T */}
-      <section className="py-20 bg-black">
-        <div className="max-w-6xl mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl font-semibold text-white text-center">Enfoque claro: servicios</h2>
-          <p className="text-slate-300 text-center mt-4 max-w-3xl mx-auto">
-            Trabajamos con ofertas de servicios que necesitan leads: cotizaciones, agenda, consultas.
-          </p>
+      {/* PARA QUIÉN ES / NO ES */}
+      <section className="bg-black py-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <SectionTitle
+            center
+            eyebrow="Enfoque"
+            title="Pensado para empresas de servicios, no para todo tipo de proyecto"
+            desc="Trabajamos donde tiene sentido construir un sistema de captación: cotizaciones, agenda, consultas o contacto comercial."
+          />
 
-          <div className="mt-12 grid lg:grid-cols-2 gap-6 text-sm text-slate-200">
-            <div className="p-6 border border-white/10 rounded-2xl bg-black/40">
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
               <div className="flex items-center gap-2">
-                <BadgeCheck className="w-5 h-5 text-sky-400" />
-                <h3 className="font-semibold text-white">Sí hacemos</h3>
+                <BadgeCheck className="h-5 w-5 text-sky-400" />
+                <h3 className="font-semibold text-white">Sí es para ti si...</h3>
               </div>
+
               <ul className="mt-4 space-y-2">
-                <CheckItem>Landings de captación (1 servicio / 1 oferta)</CheckItem>
-                <CheckItem>Sitios institucionales (5–12 páginas)</CheckItem>
-                <CheckItem>Casos, testimonios, FAQ y páginas de servicio</CheckItem>
-                <CheckItem>Formularios, WhatsApp y tracking de conversiones</CheckItem>
-                <CheckItem>Google Ads Search opcional (alta intención)</CheckItem>
+                <CheckItem>
+                  Vendes un servicio y necesitas más cotizaciones, consultas o
+                  reuniones
+                </CheckItem>
+                <CheckItem>
+                  Tu empresa necesita una presencia más clara y profesional
+                </CheckItem>
+                <CheckItem>
+                  Quieres medir formularios, WhatsApp o conversiones reales
+                </CheckItem>
+                <CheckItem>
+                  Tienes capacidad comercial para responder leads
+                </CheckItem>
+                <CheckItem>
+                  Quieres una base lista para crecer con Ads o contenidos
+                </CheckItem>
               </ul>
             </div>
 
-            <div className="p-6 border border-white/10 rounded-2xl bg-black/40">
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
               <div className="flex items-center gap-2">
-                <Ban className="w-5 h-5 text-sky-400" />
-                <h3 className="font-semibold text-white">No hacemos</h3>
+                <Ban className="h-5 w-5 text-sky-400" />
+                <h3 className="font-semibold text-white">
+                  No es para ti si...
+                </h3>
               </div>
+
               <ul className="mt-4 space-y-2">
-                <CheckItem>E-commerce / pagos / despacho</CheckItem>
-                <CheckItem>Sistemas complejos a medida (apps, portales, dashboards)</CheckItem>
-                <CheckItem>Proyectos sin dueño comercial (sin respuesta a leads)</CheckItem>
-                <CheckItem>“Marketing sin medición”</CheckItem>
+                <CheckItem>
+                  Buscas e-commerce, pagos online o despacho
+                </CheckItem>
+                <CheckItem>
+                  Necesitas un sistema complejo a medida, portal o app
+                </CheckItem>
+                <CheckItem>
+                  No hay una oferta comercial definida ni responsable de
+                  respuesta
+                </CheckItem>
+                <CheckItem>
+                  Quieres “marketing” sin medición ni criterio de negocio
+                </CheckItem>
+                <CheckItem>
+                  Estás cotizando solo por el precio más bajo
+                </CheckItem>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* PROCESS */}
-      <section className="py-20 bg-slate-950">
-        <div className="max-w-6xl mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl font-semibold text-white text-center">Proceso claro (sin humo)</h2>
+      {/* PLANES */}
+      <section className="bg-slate-950 py-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <SectionTitle
+            center
+            eyebrow="Planes de implementación"
+            title="Tres niveles claros para salir a vender con una base real"
+            desc="Pago único por implementación. Luego, continuidad mensual opcional. Google Ads se activa solo cuando tiene sentido."
+          />
 
-          <div className="mt-12 grid md:grid-cols-4 gap-6 text-sm text-slate-200">
-            <div className="p-6 border border-white/10 rounded-2xl bg-black/40">
-              <p className="text-sky-300 font-semibold">01</p>
-              <p className="mt-2">Brief y propuesta de valor (servicio, ciudad, objetivo).</p>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            <article className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-lg font-semibold text-white">
+                  Pack Start
+                </h3>
+                <LayoutTemplate className="h-5 w-5 text-sky-400" />
+              </div>
+              <p className="mt-1 font-semibold text-sky-300">Desde $290.000</p>
+              <p className="mt-2 text-sm text-slate-300">
+                Para salir rápido con una landing clara y lista para recibir
+                consultas.
+              </p>
+
+              <ul className="mt-4 space-y-2">
+                <CheckItem>
+                  1–3 secciones enfocadas en una oferta principal
+                </CheckItem>
+                <CheckItem>Formulario + WhatsApp</CheckItem>
+                <CheckItem>SEO base + indexación</CheckItem>
+                <CheckItem>Configuración técnica esencial</CheckItem>
+                <CheckItem>Entrega documentada</CheckItem>
+              </ul>
+
+              <div className="mt-5 rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-slate-200">
+                Ideal para: 1 servicio, 1 ciudad, 1 objetivo.
+              </div>
+
+              <Link
+                href="/contacto#form"
+                className="btn-primary mt-6 inline-flex w-full items-center justify-center gap-2 text-center"
+              >
+                Cotizar
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </article>
+
+            <article className="rounded-2xl border border-sky-400/40 bg-sky-500/10 p-6 shadow-xl shadow-sky-500/10">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-lg font-semibold text-white">
+                  Pack Pro (recomendado)
+                </h3>
+                <Zap className="h-5 w-5 text-sky-400" />
+              </div>
+              <p className="mt-1 font-semibold text-sky-300">
+                $590.000 – $690.000
+              </p>
+              <p className="mt-2 text-sm text-slate-300">
+                Sitio completo para servicios con estructura profesional,
+                medición y base lista para performance.
+              </p>
+
+              <ul className="mt-4 space-y-2">
+                <CheckItem>
+                  5–7 páginas: servicios, sobre, casos, FAQ, contacto
+                </CheckItem>
+                <CheckItem>
+                  Estructura comercial más clara y más sólida
+                </CheckItem>
+                <CheckItem>
+                  Eventos medibles: formulario, WhatsApp, contacto
+                </CheckItem>
+                <CheckItem>GA4 + GTM / Tag de Ads si aplica</CheckItem>
+                <CheckItem>
+                  Integración básica con correo, planilla o CRM simple
+                </CheckItem>
+              </ul>
+
+              <div className="mt-5 rounded-xl border border-sky-400/20 bg-black/20 p-4 text-sm text-slate-200">
+                Ideal para abogados, consultorías, clínicas, instituciones y
+                equipos comerciales.
+              </div>
+
+              <Link
+                href="/contacto#form"
+                className="btn-primary mt-6 inline-flex w-full items-center justify-center gap-2 text-center"
+              >
+                Cotizar este plan
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </article>
+
+            <article className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-lg font-semibold text-white">
+                  Pack Premium
+                </h3>
+                <ShieldCheck className="h-5 w-5 text-sky-400" />
+              </div>
+              <p className="mt-1 font-semibold text-sky-300">
+                $990.000 – $1.500.000
+              </p>
+              <p className="mt-2 text-sm text-slate-300">
+                Para organizaciones con varios servicios, más prueba social y
+                una estructura más trabajada.
+              </p>
+
+              <ul className="mt-4 space-y-2">
+                <CheckItem>
+                  8–12 páginas con servicios y sub-servicios
+                </CheckItem>
+                <CheckItem>Blog o recursos administrables</CheckItem>
+                <CheckItem>
+                  UX más cuidada: jerarquía, microcopy y estructura
+                </CheckItem>
+                <CheckItem>
+                  Integraciones avanzadas: CRM, calendarios, formularios
+                </CheckItem>
+                <CheckItem>1 mes de soporte incluido</CheckItem>
+              </ul>
+
+              <Link
+                href="/contacto#form"
+                className="btn-primary mt-6 inline-flex w-full items-center justify-center gap-2 text-center"
+              >
+                Cotizar
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </article>
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              href="/servicios"
+              className="btn-ghost inline-flex items-center gap-2 bg-white/10 px-6 py-3 hover:bg-white/20"
+            >
+              Ver detalle de planes
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ADS */}
+      <section className="bg-black py-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <SectionTitle
+            center
+            eyebrow="Google Ads opcional"
+            title="Performance cuando ya existe intención de búsqueda"
+            desc="Search no reemplaza una mala oferta, pero acelera una buena. Lo activamos cuando tu servicio ya tiene demanda y existe una base clara para medir leads."
+          />
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            <article className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <Search className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="text-sm font-semibold text-white">
+                Setup Ads
+              </h3>
+              <p className="mt-2 text-sky-300">$600.000 + IVA</p>
+              <ul className="mt-4 space-y-2">
+                <CheckItem>Estructura Search por intención</CheckItem>
+                <CheckItem>Anuncios + extensiones</CheckItem>
+                <CheckItem>Negativas base</CheckItem>
+                <CheckItem>Conversión lead medible</CheckItem>
+                <CheckItem>QA y checklist de lanzamiento</CheckItem>
+              </ul>
+            </article>
+
+            <article className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <Wrench className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="text-sm font-semibold text-white">
+                Gestión mensual
+              </h3>
+              <p className="mt-2 text-sky-300">$350.000 + IVA / mes</p>
+              <ul className="mt-4 space-y-2">
+                <CheckItem>Optimización cada 7 días</CheckItem>
+                <CheckItem>Negativas + términos de búsqueda</CheckItem>
+                <CheckItem>Iteración de anuncios</CheckItem>
+                <CheckItem>Reporte cada 14 días</CheckItem>
+                <CheckItem>Mejoras básicas de landing</CheckItem>
+              </ul>
+            </article>
+
+            <article className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <Coins className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="text-sm font-semibold text-white">
+                Presupuesto sugerido
+              </h3>
+              <p className="mt-2 text-sky-300">Desde $150.000 / mes</p>
+              <p className="mt-2 text-sm text-slate-300">
+                El presupuesto de Ads lo define el cliente y se paga
+                directamente a Google o se reembolsa contra comprobante.
+              </p>
+
+              <div className="mt-4 rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-slate-200">
+                Recomendado para servicios con decisión relativamente rápida,
+                búsqueda activa y foco comercial claro.
+              </div>
+            </article>
+          </div>
+
+          <div className="mt-8 rounded-2xl border border-white/10 bg-slate-950 p-6">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-5 w-5 text-sky-400" />
+              <h3 className="text-base font-semibold text-white">
+                Qué sí garantiza el sistema
+              </h3>
             </div>
-            <div className="p-6 border border-white/10 rounded-2xl bg-black/40">
-              <p className="text-sky-300 font-semibold">02</p>
-              <p className="mt-2">Estructura + copy + diseño (decisión rápida).</p>
+
+            <p className="mt-2 text-sm text-slate-300">
+              No prometemos resultados mágicos. Diseñamos una estructura clara,
+              medible y optimizable para que el canal tenga sentido de negocio.
+            </p>
+
+            <ul className="mt-4 grid gap-2 md:grid-cols-2">
+              <CheckItem>Conversión registrada como lead</CheckItem>
+              <CheckItem>Atribución más clara</CheckItem>
+              <CheckItem>Protección básica de presupuesto</CheckItem>
+              <CheckItem>Iteración sobre datos reales</CheckItem>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTINUIDAD */}
+      <section className="bg-slate-950 py-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <SectionTitle
+            center
+            eyebrow="Continuidad mensual"
+            title="La diferencia entre publicar un sitio y mantener una herramienta comercial activa"
+            desc="Después de implementar, la mayoría de los sitios se abandona. Por eso ofrecemos continuidad técnica, soporte y actualización básica para sostener el sistema en el tiempo."
+          />
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            <article className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <Headphones className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="text-sm font-semibold text-white">
+                Soporte mensual
+              </h3>
+              <p className="mt-2 text-sky-300">Desde $29.990 / mes</p>
+              <p className="mt-2 text-sm text-slate-300">
+                Ajustes menores, acompañamiento y estabilidad operativa.
+              </p>
+            </article>
+
+            <article className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <FileText className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="text-sm font-semibold text-white">
+                Gestión de contenidos
+              </h3>
+              <p className="mt-2 text-sky-300">Desde $80.000 / mes</p>
+              <p className="mt-2 text-sm text-slate-300">
+                Publicación y actualización institucional para que el sitio siga
+                vivo y vigente.
+              </p>
+            </article>
+
+            <article className="rounded-2xl border border-white/10 bg-black/40 p-6">
+              <BarChart3 className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="text-sm font-semibold text-white">
+                Continuidad comercial
+              </h3>
+              <p className="mt-2 text-sky-300">Según alcance</p>
+              <p className="mt-2 text-sm text-slate-300">
+                Ajustes sobre landings, mensajes, CTA y apoyo a campañas cuando
+                el sistema ya está en operación.
+              </p>
+            </article>
+          </div>
+
+          <div className="mt-8 rounded-2xl border border-sky-400/20 bg-sky-500/10 p-6">
+            <p className="text-sm text-slate-200">Plan mensual recomendado</p>
+            <h3 className="mt-2 text-2xl font-semibold text-white">
+              Hosting + soporte + contenidos
+            </h3>
+            <p className="mt-3 font-semibold text-sky-300">
+              Desde $119.990 / mes
+            </p>
+
+            <Link
+              href="/contacto#form"
+              className="btn-primary mt-5 inline-flex items-center gap-2 px-6 py-3"
+            >
+              Solicitar plan mensual
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* PROCESO */}
+      <section className="bg-black py-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <SectionTitle
+            center
+            eyebrow="Proceso"
+            title="Un proceso claro, sin humo ni complejidad innecesaria"
+            desc="Buscamos velocidad, foco y una implementación que sí tenga lógica comercial."
+          />
+
+          <div className="mt-12 grid gap-6 md:grid-cols-4">
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6 text-sm text-slate-200">
+              <p className="font-semibold text-sky-300">01</p>
+              <p className="mt-2">
+                Brief, servicio principal, ciudad y objetivo comercial.
+              </p>
             </div>
-            <div className="p-6 border border-white/10 rounded-2xl bg-black/40">
-              <p className="text-sky-300 font-semibold">03</p>
-              <p className="mt-2">Desarrollo + tracking + pruebas.</p>
+
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6 text-sm text-slate-200">
+              <p className="font-semibold text-sky-300">02</p>
+              <p className="mt-2">
+                Estructura, copy y jerarquía con foco en claridad y conversión.
+              </p>
             </div>
-            <div className="p-6 border border-white/10 rounded-2xl bg-black/40">
-              <p className="text-sky-300 font-semibold">04</p>
-              <p className="mt-2">Publicación + checklist + entrega documentada.</p>
+
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6 text-sm text-slate-200">
+              <p className="font-semibold text-sky-300">03</p>
+              <p className="mt-2">
+                Desarrollo, tracking, pruebas y validación técnica.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-6 text-sm text-slate-200">
+              <p className="font-semibold text-sky-300">04</p>
+              <p className="mt-2">
+                Publicación, checklist final y entrega documentada.
+              </p>
             </div>
           </div>
 
-          <div className="mt-10 grid lg:grid-cols-3 gap-6 text-sm">
-            <div className="p-6 border border-white/10 rounded-2xl bg-black/40 text-slate-200">
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-slate-950 p-6 text-sm text-slate-200">
               <div className="flex items-center gap-2">
-                <Timer className="w-5 h-5 text-sky-400" />
+                <Timer className="h-5 w-5 text-sky-400" />
                 <p className="font-semibold text-white">Tiempos típicos</p>
               </div>
               <p className="mt-2 text-slate-300">
-                Start: 7–10 días hábiles · Pro: 2–4 semanas · Premium: 3–6 semanas (según contenido).
+                Start: 7–10 días hábiles · Pro: 2–4 semanas · Premium: 3–6
+                semanas.
               </p>
             </div>
 
-            <div className="p-6 border border-white/10 rounded-2xl bg-black/40 text-slate-200">
+            <div className="rounded-2xl border border-white/10 bg-slate-950 p-6 text-sm text-slate-200">
               <div className="flex items-center gap-2">
-                <Coins className="w-5 h-5 text-sky-400" />
+                <Coins className="h-5 w-5 text-sky-400" />
                 <p className="font-semibold text-white">Precios claros</p>
               </div>
               <p className="mt-2 text-slate-300">
-                Rango según alcance. Todo queda definido por escrito antes de empezar.
+                El alcance se define antes de empezar. Sin ambigüedades ni
+                promesas vagas.
               </p>
             </div>
 
-            <div className="p-6 border border-white/10 rounded-2xl bg-black/40 text-slate-200">
+            <div className="rounded-2xl border border-white/10 bg-slate-950 p-6 text-sm text-slate-200">
               <div className="flex items-center gap-2">
-                <Search className="w-5 h-5 text-sky-400" />
-                <p className="font-semibold text-white">Si activas Ads</p>
+                <Search className="h-5 w-5 text-sky-400" />
+                <p className="font-semibold text-white">Ads si conviene</p>
               </div>
               <p className="mt-2 text-slate-300">
-                Setup + optimización semanal + reporte quincenal. Captamos demanda existente (Search).
+                Activamos performance cuando la oferta, la estructura y la
+                medición ya están bien resueltas.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <section className="py-24 bg-black text-center">
-        <h2 className="text-3xl font-semibold text-white">¿Listo para vender servicios con un sistema real?</h2>
+      {/* CTA FINAL */}
+      <section className="bg-slate-950 py-24 text-center">
+        <div className="mx-auto max-w-4xl px-4 lg:px-8">
+          <h2 className="text-3xl font-semibold text-white md:text-4xl">
+            ¿Listo para convertir tu presencia digital en una base comercial real?
+          </h2>
 
-        <p className="mt-4 text-slate-300 max-w-2xl mx-auto">
-          Cuéntanos tu servicio, ciudad y objetivo. Te respondemos con una propuesta clara (alcance + tiempos + valor).
-        </p>
+          <p className="mx-auto mt-4 max-w-2xl text-slate-300">
+            Cuéntanos tu servicio, ciudad y objetivo. Te respondemos con una
+            propuesta clara: alcance, tiempos y recomendación según tu etapa.
+          </p>
 
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Link href="/contacto#form" className="btn-primary px-6 py-3 inline-flex items-center gap-2">
-            Pedir propuesta
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link
+              href="/contacto#form"
+              className="btn-primary inline-flex items-center gap-2 px-6 py-3"
+            >
+              Pedir propuesta
+              <ArrowRight className="h-4 w-4" />
+            </Link>
 
-          <a
-            href={waLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-ghost bg-white/10 hover:bg-white/20 px-6 py-3 inline-flex items-center gap-2"
-          >
-            WhatsApp
-            <ArrowRight className="w-4 h-4" />
-          </a>
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost inline-flex items-center gap-2 bg-white/10 px-6 py-3 hover:bg-white/20"
+            >
+              WhatsApp
+              <ArrowRight className="h-4 w-4" />
+            </a>
 
-          <Link
-            href="/servicios#ads"
-            className="btn-ghost bg-white/10 hover:bg-white/20 px-6 py-3 inline-flex items-center gap-2"
-          >
-            Ver Google Ads (opcional)
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+            <Link
+              href="/servicios#ads"
+              className="btn-ghost inline-flex items-center gap-2 bg-white/10 px-6 py-3 hover:bg-white/20"
+            >
+              Ver Google Ads
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <p className="mt-6 text-xs text-slate-400">
+            Trabajamos con empresas de servicios. No e-commerce. No sistemas
+            complejos.
+          </p>
         </div>
       </section>
     </>
