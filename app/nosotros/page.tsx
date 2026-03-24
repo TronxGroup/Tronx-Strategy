@@ -12,6 +12,7 @@ import {
   BadgeCheck,
   FileText,
   Search,
+  MessageSquareMore,
 } from "lucide-react";
 
 const SITE_URL = "https://www.tronxstrategy.com";
@@ -19,16 +20,17 @@ const WHATSAPP_NUMBER = "56920080031";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Nosotros — Tronx Strategy | Captación digital para empresas de servicios",
+  title:
+    "Nosotros — Tronx Strategy | Base comercial digital para empresas de servicios",
   description:
-    "Conoce el enfoque de Tronx Strategy: sitios web, medición, Google Ads opcional y continuidad para empresas de servicios.",
+    "Conoce el enfoque de Tronx Strategy: estructura clara, textos base, medición, activación de captación y continuidad mensual para empresas de servicios.",
   alternates: {
     canonical: "/nosotros",
   },
   openGraph: {
     title: "Nosotros — Tronx Strategy",
     description:
-      "Tronx Strategy diseña sistemas simples de captación para empresas de servicios.",
+      "Tronx Strategy diseña bases comerciales digitales para empresas de servicios.",
     url: "/nosotros",
     type: "website",
     locale: "es_CL",
@@ -93,8 +95,8 @@ export default function NosotrosPage() {
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <SectionTitle
             eyebrow="Nosotros"
-            title="Tronx Strategy existe para hacer una cosa bien: ayudar a empresas de servicios a captar mejor"
-            desc="No somos una agencia que ofrece de todo. Diseñamos sistemas simples y claros para generar consultas, cotizaciones o agenda: sitio web, medición, Google Ads opcional y continuidad mensual."
+            title="Tronx Strategy existe para ayudar a empresas de servicios a captar mejor"
+            desc="Diseñamos bases comerciales digitales para empresas de servicios: estructura clara, textos base, medición, activación de captación y continuidad mensual. No buscamos hacer de todo; buscamos resolver bien un problema concreto."
           />
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -133,7 +135,7 @@ export default function NosotrosPage() {
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <SectionTitle
             eyebrow="Nuestro enfoque"
-            title="Menos discurso. Más estructura útil."
+            title="Menos humo. Más estructura útil."
             desc="Creemos que muchas empresas de servicios no necesitan un proyecto digital complejo. Necesitan una base clara, bien ejecutada y fácil de operar."
           />
 
@@ -144,6 +146,8 @@ export default function NosotrosPage() {
               </h2>
               <ul className="mt-6 space-y-2">
                 <CheckItem>Mostrar mejor la oferta de una empresa</CheckItem>
+                <CheckItem>Ayudar a explicar mejor el servicio</CheckItem>
+                <CheckItem>Ordenar textos y llamados a la acción</CheckItem>
                 <CheckItem>Facilitar el contacto y la conversión</CheckItem>
                 <CheckItem>Dejar medición básica bien implementada</CheckItem>
                 <CheckItem>Preparar una base lista para campañas</CheckItem>
@@ -223,24 +227,31 @@ export default function NosotrosPage() {
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
               <LayoutTemplate className="mb-3 h-5 w-5 text-sky-400" />
-              <h3 className="font-semibold text-white">1. Implementación</h3>
+              <h3 className="font-semibold text-white">
+                1. Base comercial digital
+              </h3>
               <p className="mt-2 text-sm text-slate-300">
-                Landing o sitio web con foco en claridad, estructura y contacto.
+                Landing o sitio web con estructura clara, textos base y foco en
+                contacto.
               </p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
               <Search className="mb-3 h-5 w-5 text-sky-400" />
-              <h3 className="font-semibold text-white">2. Medición y Ads</h3>
+              <h3 className="font-semibold text-white">
+                2. Activación de captación
+              </h3>
               <p className="mt-2 text-sm text-slate-300">
-                Configuración de eventos y Google Ads opcional para acelerar
-                captación cuando conviene.
+                Tracking y Google Ads opcional para acelerar consultas cuando
+                conviene.
               </p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
               <Headphones className="mb-3 h-5 w-5 text-sky-400" />
-              <h3 className="font-semibold text-white">3. Continuidad</h3>
+              <h3 className="font-semibold text-white">
+                3. Continuidad mensual
+              </h3>
               <p className="mt-2 text-sm text-slate-300">
                 Soporte, ajustes y actualizaciones para que el sistema siga
                 funcionando.
@@ -256,7 +267,7 @@ export default function NosotrosPage() {
           <SectionTitle
             eyebrow="Principios"
             title="Qué valoramos al construir un proyecto"
-            desc="Más que estética o volumen de features, nos importa que la estructura tenga sentido."
+            desc="Más que estética o volumen de funciones, nos importa que la estructura tenga sentido."
           />
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -269,18 +280,18 @@ export default function NosotrosPage() {
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
-              <BarChart3 className="mb-3 h-5 w-5 text-sky-400" />
-              <h3 className="font-semibold text-white">Medición</h3>
+              <FileText className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">Mensajes útiles</h3>
               <p className="mt-2 text-sm text-slate-300">
-                Que exista trazabilidad mínima real.
+                Que los textos y llamados a la acción tengan lógica comercial.
               </p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
-              <FileText className="mb-3 h-5 w-5 text-sky-400" />
-              <h3 className="font-semibold text-white">Orden</h3>
+              <BarChart3 className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">Medición</h3>
               <p className="mt-2 text-sm text-slate-300">
-                Que el proyecto quede bien documentado.
+                Que exista trazabilidad mínima real.
               </p>
             </div>
 
@@ -295,8 +306,48 @@ export default function NosotrosPage() {
         </div>
       </section>
 
+      {/* DIFERENCIAL */}
+      <section className="py-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <SectionTitle
+            eyebrow="Nuestro diferencial"
+            title="No solo armamos páginas: ayudamos a ordenar la oferta"
+            desc="El valor de Tronx Strategy no está solo en publicar un sitio, sino en dejar una base más clara, mejor explicada y más lista para captar."
+          />
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-slate-950 p-6">
+              <LayoutTemplate className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">Base clara</h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Estructuramos el sitio para que el servicio se entienda y el
+                contacto sea simple.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-slate-950 p-6">
+              <MessageSquareMore className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">Mejor mensaje</h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Ayudamos con textos base, títulos y llamados a la acción para
+                mejorar claridad comercial.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-slate-950 p-6">
+              <Search className="mb-3 h-5 w-5 text-sky-400" />
+              <h3 className="font-semibold text-white">Más preparación</h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Dejamos una estructura lista para medir, activar campañas y
+                seguir creciendo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CIERRE */}
-      <section className="py-24 text-center">
+      <section className="bg-slate-950 py-24 text-center">
         <div className="mx-auto max-w-4xl px-4 lg:px-8">
           <h2 className="text-3xl font-semibold text-white md:text-4xl">
             ¿Conversamos tu proyecto?
