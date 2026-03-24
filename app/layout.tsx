@@ -1,10 +1,22 @@
 // app/layout.tsx
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import { inter, manrope } from "./fonts";
+import Navbar from "@/components/site/navbar";
+import Footer from "@/components/site/footer";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+});
 
 const siteUrl = "https://www.tronxstrategy.com";
 const siteName = "Tronx Strategy";
@@ -110,9 +122,13 @@ export default function RootLayout({
   return (
     <html lang="es-CL" className="scroll-smooth">
       <head>
-        <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
+        <meta
+          name="format-detection"
+          content="telephone=no, date=no, email=no, address=no"
+        />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
+
         <Script
           id="ld-org"
           type="application/ld+json"
